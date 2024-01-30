@@ -26,7 +26,7 @@ const SLIDES: SlideType[] = [
  { src: 'MLS_Cyclist_14.jpeg', name: 'Cyclist', width: 1586, height: 2163 },
 ]
 
-const Carousel = () => {
+const Carousel = ({ isFocused }) => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
 
   const changeSlide = useCallback((direction: number) => setActiveSlideIndex(currentIndex => (currentIndex + direction) % SLIDES.length), []);
@@ -47,10 +47,13 @@ const Carousel = () => {
 
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [changeSlide]);
+  if (!isFocused) {
 
+    return null;
+  }
   return (
     <article className={styles.frame}>
-      <h2>Selected Work</h2>
+      <h2 className={styles.heading}>Selected Work</h2>
       <ul className={styles.carousel} onClick={handleNext}>
         {SLIDES.map((slide, index) => (
           <Slide

@@ -1,3 +1,5 @@
+const path = require("path");
+
 module.exports = {
   plugins: {
     "postcss-preset-env": {
@@ -12,6 +14,7 @@ module.exports = {
         "custom-properties": false,
       },
     },
+    "postcss-mixins": {},
     "postcss-nesting": {}
   },
 };

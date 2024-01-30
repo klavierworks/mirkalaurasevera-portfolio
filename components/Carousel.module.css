@@ -1,3 +1,7 @@
+.heading {
+  display: none;
+}
+
 .slide {
   --scale: 0;
 
