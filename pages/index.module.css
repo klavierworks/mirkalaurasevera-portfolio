@@ -50,6 +50,7 @@
   align-self: end;
   text-align: center;
   pointer-events: all;
+  cursor: pointer;
   z-index: 999;
   position: relative;
   grid-column: 2 / 3;
