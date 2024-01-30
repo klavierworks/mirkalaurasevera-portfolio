@@ -30,8 +30,7 @@ export default function Home() {
       <article className={styles.exhibitions}>
         <h2 className={styles.heading}>Selected exhibitions</h2>
         <p>
-          Nieuwe Instituut, Rotterdam 2022, Marséll Paradise, Milan 2022, Photo Élysée, Lausanne 2019, Black Iris, Berlin 2018, Chamber, New York 2016, Austin Center for Photography, Austin Texas 2014, pavlov's dog, Berlin 2014, Signal Gallery, New York 2013.
-      {router.pathname}
+          {`Nieuwe Instituut, Rotterdam 2022, Marséll Paradise, Milan 2022, Photo Élysée, Lausanne 2019, Black Iris, Berlin 2018, Chamber, New York 2016, Austin Center for Photography, Austin Texas 2014, pavlov's dog, Berlin 2014, Signal Gallery, New York 2013.`}
         </p>
       </article>
       <Carousel isFocused={!isAboutVisible} />
