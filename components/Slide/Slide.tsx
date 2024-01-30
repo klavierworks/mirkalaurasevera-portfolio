@@ -1,29 +1,72 @@
 import Image from "next/image"
 import styles from './Slide.module.css';
-import type { SlideType } from "../Carousel";
-import { CSSProperties } from "react";
+import { SLIDES, type SlideType } from "../Carousel";
+import { CSSProperties, ChangeEvent, useCallback, useMemo, useState } from "react";
 import { animated, useSpring } from "@react-spring/web";
 
 type SlideProps = {
-  isActive: boolean;
-  slide: SlideType
+  activeSlideIndex: number;
+  index: number;
+  slide: SlideType;
 }
 
-const Slide = ({ isActive, slide }: SlideProps) => {
-  const spring = useSpring({
-    '--scale': isActive ? 1 : 0,
-    '--rotate': isActive ? 720 : 0,
-    delay: 250,
-  })
+const Slide = ({ activeSlideIndex, index, slide}: SlideProps) => {
+  const isActive = activeSlideIndex === index;
+  const isPreviouslyActive =
+    activeSlideIndex === index + 2
+    || activeSlideIndex === index + 1
+    || activeSlideIndex === 0 && index === SLIDES.length - 1;
+  
+    const [isFocused, setIsFocused] = useState(isActive);
+  
+    const zIndex = useMemo(() => {
+      if (isPreviouslyActive) {
+        return 1;
+      }
+      return 2;
+    }, [isPreviouslyActive]);
+
+  const rotate = useMemo(() => {
+    if (isPreviouslyActive) {
+      return 1080;
+    }
+    if (isActive) {
+      return 720;
+    }
+    return 0;
+  }, [isActive, isPreviouslyActive]);
+
+  const scale = useMemo(() => {
+    if (isPreviouslyActive) {
+      return 4;
+    }
+    if (isActive) {
+      return 1;
+    }
+    return 0;
+  }, [isActive, isPreviouslyActive]);
+
+  const [spring] = useSpring({
+      delay: isActive ? 100 : 0,
+      zIndex,
+      scale,
+      rotate,
+      onStart: () => {
+        setIsFocused(false);
+      },
+      onRest: () => {
+        setIsFocused(isActive);
+      },
+  }, [ index,zIndex, scale, rotate])
 
   return (
     <animated.li
-      className={`${styles.slide} ${isActive ? styles.isActive : ''}`}
+      className={`${styles.slide} ${isFocused ? styles.isFocused : ''}`}
       key={slide.src}
-      style={spring as CSSProperties}
-    >
+      style={spring}
+      >
       <Image className={styles.image} src={`/work/${slide.src}`} alt={slide.name} width={slide.width} height={slide.height} />
-      <p className={styles.title}>‘Our System’ by Adam Ehrlich Sachs for New Yorker Mag (2022)</p>
+      <p className={styles.title}>{`"Slide ${index}" ${slide.caption} active: ${activeSlideIndex} index: ${index} total: ${SLIDES.length}`}</p>
     </animated.li>
   );
 }
