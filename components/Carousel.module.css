@@ -1,0 +1,18 @@
+.slide {
+  --scale: 0;
+
+  :global(img) {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(var(--scale));
+  }
+
+  &.isActive {
+    --scale: 1;
+  }
+
+  &.isActive + .slide {
+    --scale: 0.5;
+  }
+}

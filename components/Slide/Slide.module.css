@@ -1,0 +1,27 @@
+.slide {
+  --scale: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: grid;
+  grid-template-rows: 312fr 802fr 82fr 335fr;
+  grid-template-columns: 100fr 586fr 100fr;
+  width: 100vw;
+  height: 100vh;
+
+  .image {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    //transform: scale(var(--scale)) rotate(calc(var(--scale) * 720deg));
+  }
+
+  .title {
+    grid-row: 4 / 5;
+    text-align: center;
+    color: white;
+    grid-column: 2 / 3;
+  }
+}

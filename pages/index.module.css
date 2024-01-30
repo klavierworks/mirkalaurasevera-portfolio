@@ -1,0 +1,31 @@
+.info {
+  display: grid;
+  grid-template-rows: 20% min-content min-content min-content;
+  grid-template-columns: 100fr 586fr 100fr;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.title {
+  grid-row: 1 / 2;
+  align-self: end;
+  text-align: center;
+  grid-column: 2 / 3;
+  margin: 0 0 30px;
+}
+
+.bio {
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
+}
+
+.clients {
+  grid-row: 3 / 4;
+  grid-column: 2 / 3;
+}
+
+.exhibitions {
+  grid-row: 4 / 5;
+  grid-column: 2 / 3;
+}
