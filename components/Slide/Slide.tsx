@@ -1,6 +1,6 @@
 import Image from "next/image"
 import styles from './Slide.module.css';
-import { SLIDES, type SlideType } from "../Carousel";
+import { SLIDES, type SlideType } from "../Carousel/Carousel";
 import { CSSProperties, ChangeEvent, useCallback, useMemo, useState } from "react";
 import { animated, useSpring } from "@react-spring/web";
 

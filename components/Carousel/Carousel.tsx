@@ -2,7 +2,7 @@ import { MouseEvent, use, useCallback, useEffect, useState } from 'react';
 import styles from './Carousel.module.css';
 import Image from "next/image";
 import useWindowSize from '@/hooks/useWindowSize';
-import Slide from './Slide/Slide';
+import Slide from '../Slide/Slide';
 import { useSpring } from '@react-spring/web';
 import { useRouter, useSearchParams } from 'next/navigation';
 

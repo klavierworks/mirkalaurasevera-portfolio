@@ -1,0 +1,62 @@
+@define-mixin body {
+  font-size: 14px;
+  line-height: 16px;
+  font-family: "ABC Oracle", sans-serif;
+  font-weight: 400;
+  color: black;
+  font-smooth: always;
+  -webkit-font-smoothing: antialiased;
+
+  @media (min-width: 720px) {
+    font-size: 18px;
+    line-height: 21px;
+  }
+}
+
+@define-mixin heading {
+  @mixin body;
+  font-style: italic;
+}
+
+.info {
+  @mixin body;
+  display: grid;
+  grid-template-rows: 20% min-content min-content min-content;
+  grid-template-columns: 1fr min(75%, 586px) 1fr;
+  width: 100vw;
+  height: 100vh;
+  width: 100dvw;
+  height: 100dvh;
+  overflow-y: auto;
+}
+
+.heading {
+  @mixin heading;
+  margin: 0;
+  padding: 0;
+
+  + :global(p) {
+    margin-top: 0;
+  }
+}
+
+.bio {
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
+  margin-bottom: 1em;
+
+  .link {
+    margin-top: 0;
+    display: block;
+  }
+}
+
+.clients {
+  grid-row: 3 / 4;
+  grid-column: 2 / 3;
+}
+
+.exhibitions {
+  grid-row: 4 / 5;
+  grid-column: 2 / 3;
+}
