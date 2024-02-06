@@ -1,8 +1,8 @@
 import Image from "next/image"
 import styles from './Slide.module.css';
-import { SLIDES, type SlideType } from "../Carousel/Carousel";
 import { CSSProperties, ChangeEvent, useCallback, useMemo, useState } from "react";
 import { animated, useSpring } from "@react-spring/web";
+import { SLIDES, SlideType } from "@/pages";
 
 type SlideProps = {
   activeSlideIndex: number;
@@ -65,7 +65,8 @@ const Slide = ({ activeSlideIndex, index, slide}: SlideProps) => {
       key={slide.src}
       style={spring}
       >
-      <Image className={styles.image} src={`/work/${slide.src}`} alt={slide.name} width={slide.width} height={slide.height} />
+      <Image className={styles.image} src={`/work/${slide.src}`} alt={slide.name} width={slide.width} height={slide.height} loading="lazy" />
+
       <p className={styles.title}>{`"Slide ${index}" ${slide.caption} active: ${activeSlideIndex} index: ${index} total: ${SLIDES.length}`}</p>
     </animated.li>
   );
