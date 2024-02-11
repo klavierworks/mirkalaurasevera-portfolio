@@ -4,24 +4,33 @@ import useWindowSize from '@/hooks/useWindowSize';
 import Slide from '../Slide/Slide';
 import { useSpring } from '@react-spring/web';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { SLIDES, SlideType } from '@/pages';
+
+export type SlideType = {
+  aspectRatio: number;
+  caption?: string;
+  name: string;
+  src: string;
+  width: number;
+  height: number;
+}
 
 type CarouselProps = {
   isFocused: boolean;
+  slides: SlideType[];
 }
 
-const Carousel = ({ isFocused }: CarouselProps ) => {
+const Carousel = ({ isFocused, slides }: CarouselProps ) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const activeSlideIndex = Number(searchParams.get('slide') ?? "0");
 
   const changeSlide = useCallback((direction: number) => {
     const url = new URL(window.location.href);
-      const nextSlide = (activeSlideIndex + direction) % SLIDES.length;
+      const nextSlide = (activeSlideIndex + direction) % slides.length;
       url.searchParams.set('slide', String(nextSlide));
 
     router.replace(url.pathname + url.search);
-  }, [activeSlideIndex, router]);
+  }, [activeSlideIndex, router,slides]);
 
   const handleNext = useCallback((event: MouseEvent<HTMLUListElement>) => {
     changeSlide(1);
@@ -47,17 +56,20 @@ const Carousel = ({ isFocused }: CarouselProps ) => {
     return null;
   }
 
+  const lastSlide = slides[slides.length - 1];
+
   return (
     <article className={styles.frame}>
       <h2 className={styles.heading}>Selected Work</h2>
       <ul className={styles.carousel} onClick={handleNext}>
-        {SLIDES.map((slide, index) => (
+        {slides.map((slide, index) => (
           <Slide
             activeSlideIndex={activeSlideIndex}
             key={slide.src}
             index={index}
             slide={slide}
-            />
+            totalSlides={slides.length}
+          />
         ))}
       </ul>
     </article>

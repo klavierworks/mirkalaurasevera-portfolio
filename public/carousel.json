@@ -1,0 +1,114 @@
+[
+  {
+    "index": "001",
+    "name": "Oral Ocean",
+    "src": "001_Oral-Ocean.jpg",
+    "width": 2000,
+    "height": 2667,
+    "aspectRatio": 0.7499062617172854
+  },
+  {
+    "index": "002",
+    "name": "Cyclist",
+    "src": "002_Cyclist.jpg",
+    "width": 2000,
+    "height": 2726,
+    "aspectRatio": 0.7336757153338225
+  },
+  {
+    "index": "004",
+    "name": "Swallow",
+    "src": "004_Swallow.jpg",
+    "width": 2500,
+    "height": 3062,
+    "aspectRatio": 0.8164598301763554
+  },
+  {
+    "index": "005",
+    "name": "Worm",
+    "src": "005_Worm.jpeg",
+    "width": 1272,
+    "height": 1696,
+    "aspectRatio": 0.75
+  },
+  {
+    "index": "006",
+    "name": "UV Horse",
+    "src": "006_UV-Horse.jpg",
+    "width": 2000,
+    "height": 1537,
+    "aspectRatio": 1.3012361743656473
+  },
+  {
+    "index": "008",
+    "name": "Spring Feelings",
+    "src": "008_Spring-Feelings.jpg",
+    "width": 2500,
+    "height": 3218,
+    "aspectRatio": 0.7768800497203232
+  },
+  {
+    "index": "009",
+    "name": "The Bottle",
+    "src": "009_The-Bottle.jpg",
+    "width": 2000,
+    "height": 2646,
+    "aspectRatio": 0.7558578987150416
+  },
+  {
+    "index": "010",
+    "name": "Fashion Snowman",
+    "src": "010_Fashion-Snowman.jpeg",
+    "width": 2100,
+    "height": 2678,
+    "aspectRatio": 0.784167289021658
+  },
+  {
+    "index": "011",
+    "name": "Bready on Striped Towel",
+    "src": "011_Bready-on-Striped-Towel.jpg",
+    "width": 3510,
+    "height": 2068,
+    "aspectRatio": 1.6972920696324951
+  },
+  {
+    "index": "012",
+    "name": "Cyclist",
+    "src": "012_Cyclist.jpeg",
+    "width": 1586,
+    "height": 2163,
+    "aspectRatio": 0.7332408691631993
+  },
+  {
+    "index": "013",
+    "name": "Doglick",
+    "src": "013_Doglick.jpg",
+    "width": 3704,
+    "height": 4801,
+    "aspectRatio": 0.7715059362632785
+  },
+  {
+    "index": "014",
+    "name": "ysl",
+    "src": "014_ysl.jpeg",
+    "width": 1622,
+    "height": 2163,
+    "aspectRatio": 0.7498844197873324
+  },
+  {
+    "index": "015",
+    "name": "Sunny Side Up",
+    "src": "015_Sunny-Side-Up.jpeg",
+    "width": 3162,
+    "height": 2161,
+    "aspectRatio": 1.4632114761684405
+  },
+  {
+    "index": "016",
+    "name": "Security Check",
+    "src": "016_Security-Check.jpeg",
+    "width": 1193,
+    "height": 1670,
+    "aspectRatio": 0.7143712574850299
+  }
+]

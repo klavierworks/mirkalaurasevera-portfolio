@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "precompile": "node -r ts-node/register pipelines/main.ts",
     "lint": "next lint"
   },
   "dependencies": {
@@ -24,6 +25,8 @@
     "postcss-mixins": "^9.0.4",
     "postcss-nesting": "^12.0.2",
     "postcss-preset-env": "^9.3.0",
+    "sharp": "^0.33.2",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }
