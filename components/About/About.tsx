@@ -1,6 +1,10 @@
 import styles from './About.module.css';
 
-const About = ({ className }) => {
+type AboutProps = {
+  className: string;
+}
+
+const About = ({ className }: AboutProps) => {
   return (
     <main className={className}>
       <article className={styles.bio}>
