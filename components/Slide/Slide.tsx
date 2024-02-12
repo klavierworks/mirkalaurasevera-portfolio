@@ -19,7 +19,7 @@ const Slide = ({ activeSlideIndex, index, slide, totalSlides }: SlideProps) => {
   const imageRef = useRef<HTMLImageElement>(null);
   const spacerRef = useRef<HTMLDivElement>(null);
 
-  const { aspectRatio, name, caption, src, width, height } = slide;
+  const { name, caption, src, width, height } = slide;
 
   const isActive = activeSlideIndex === index;
   const isPreviouslyActive =
@@ -27,9 +27,14 @@ const Slide = ({ activeSlideIndex, index, slide, totalSlides }: SlideProps) => {
     || activeSlideIndex === index + 1
     || activeSlideIndex === 0 && index === totalSlides - 1;
   
-  const [isFocused, setIsFocused] = useState(isActive);
+  const [isFocused, setIsFocused] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  const zIndex = useMemo(() => {
+  const handleLoad = useCallback(() => {
+    setIsLoaded(true);
+  }, []);
+
+  const zIndex = useMemo(() => {  
     if (activeSlideIndex < 4 && index < 4) {
       return index + totalSlides;
     }
@@ -37,6 +42,9 @@ const Slide = ({ activeSlideIndex, index, slide, totalSlides }: SlideProps) => {
   }, [activeSlideIndex, index, totalSlides]);
 
   const rotate = useMemo(() => {
+    if (!isLoaded) {
+      return 0;
+    }
     if (isPreviouslyActive) {
       return 1080;
     }
@@ -44,7 +52,7 @@ const Slide = ({ activeSlideIndex, index, slide, totalSlides }: SlideProps) => {
       return 720;
     }
     return 0;
-  }, [isActive, isPreviouslyActive]);
+  }, [isActive, isLoaded, isPreviouslyActive]);
 
   const targetScale = useTargetScale({
     startSizeRef: imageRef,
@@ -52,6 +60,9 @@ const Slide = ({ activeSlideIndex, index, slide, totalSlides }: SlideProps) => {
   });
 
   const scale = useMemo(() => {
+    if (!isLoaded) {
+      return 0;
+    }
     if (isPreviouslyActive) {
       return 1;
     }
@@ -59,7 +70,7 @@ const Slide = ({ activeSlideIndex, index, slide, totalSlides }: SlideProps) => {
       return targetScale;
     }
     return 0;
-  }, [isActive, isPreviouslyActive,targetScale]);
+  }, [isActive, isLoaded, isPreviouslyActive,targetScale]);
 
   const [spring] = useSpring({
     delay: isActive ? 350 : 0,
@@ -88,8 +99,9 @@ const Slide = ({ activeSlideIndex, index, slide, totalSlides }: SlideProps) => {
           ref={imageRef}
           fill={false}
           width={width}
+          onLoad={handleLoad}
           height={height}
-          />
+        />
       </animated.div>
       <div className={styles.imageSpacer} ref={spacerRef} />
       <p className={styles.title}>{`${name} ${caption ? `– ${caption}` : ''}`}</p>

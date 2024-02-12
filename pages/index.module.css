@@ -37,6 +37,11 @@
   width: 100dvw;
   height: 100dvh;
   overflow-y: auto;
+  background-color: black;
+
+  &.isAbout {
+    background-color: white;
+  }
 }
 
 .title {
