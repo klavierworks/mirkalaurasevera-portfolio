@@ -87,7 +87,7 @@ const Slide = ({ activeSlideIndex, index, slide, totalSlides }: SlideProps) => {
   }, [index, zIndex, scale, rotate]);
 
   return (
-    <li className={`${styles.slide} ${isFocused ? styles.isFocused : ''}`} style={spring}>
+    <li className={`${styles.slide} ${isFocused ? styles.isFocused : ''}`} style={spring as unknown as CSSProperties}>
       <animated.div className={styles.imageWrapper} style={spring}>
         <Image
           className={styles.image}
