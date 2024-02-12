@@ -2,8 +2,11 @@ import Image from "next/image"
 import styles from './Slide.module.css';
 import { CSSProperties, ChangeEvent, useCallback, useMemo, useRef, useState } from "react";
 import { animated, useSpring } from "@react-spring/web";
-import { SlideType } from "../Carousel/Carousel";
 import useMaximumScalingFactor from "@/hooks/useMaximumScalingFactor";
+import useSlideSpring from "./useSlideSpring";
+import { SlideType } from "@/pages";
+import useMaximumScale from "./useTargetScale";
+import useTargetScale from "./useTargetScale";
 
 type SlideProps = {
   activeSlideIndex: number;
@@ -14,6 +17,7 @@ type SlideProps = {
 
 const Slide = ({ activeSlideIndex, index, slide, totalSlides }: SlideProps) => {
   const imageRef = useRef<HTMLImageElement>(null);
+  const spacerRef = useRef<HTMLDivElement>(null);
 
   const { aspectRatio, name, caption, src, width, height } = slide;
 
@@ -40,48 +44,56 @@ const Slide = ({ activeSlideIndex, index, slide, totalSlides }: SlideProps) => {
       return 720;
     }
     return 0;
-  }, [isActive, isPreviouslyActive]);  
+  }, [isActive, isPreviouslyActive]);
 
-  const fullScreenScalingFactor = useMaximumScalingFactor(aspectRatio);
+  const targetScale = useTargetScale({
+    startSizeRef: imageRef,
+    targetSizeRef: spacerRef
+  });
 
   const scale = useMemo(() => {
     if (isPreviouslyActive) {
-      return fullScreenScalingFactor;
-    }
-    if (isActive) {
       return 1;
     }
+    if (isActive) {
+      return targetScale;
+    }
     return 0;
-  }, [fullScreenScalingFactor, isActive, isPreviouslyActive]);
+  }, [isActive, isPreviouslyActive,targetScale]);
+
 
   const [spring] = useSpring({
-      delay: isActive ? 350 : 0,
-      zIndex,
-      scale,
-      rotate,
-      immediate: (key: string) => key === 'zIndex',
-      onStart: () => {
-        setIsFocused(false);
-      },
-      onRest: () => {
-        setIsFocused(isActive);
-      },
-  }, [ index,zIndex, scale, rotate]);
+    delay: isActive ? 350 : 0,
+    zIndex,
+    scale,
+    rotate,
+    immediate: (key: string) => key === 'zIndex',
+    onStart: () => {
+      setIsFocused(false);
+    },
+    onRest: () => {
+      setIsFocused(isActive);
+    },
+  }, [index, zIndex, scale, rotate]);
+
 
   return (
-    <li className={`${styles.slide} ${isFocused ? styles.isFocused : ''}`}>
-      <animated.div className={styles.imageContainer} style={spring}>
+    <li className={`${styles.slide} ${isFocused ? styles.isFocused : ''}`} style={spring}>
+      <animated.div className={styles.imageWrapper} style={spring}>
         <Image
           className={styles.image}
-          fill
           src={`/carousel/${src}`}
           alt={name}
           loading="lazy"
-          sizes="(max-width: 780px) 75vw, 586px"
+          sizes="100vw"
           quality={90}
           ref={imageRef}
-        />
+          fill={false}
+          width={width}
+          height={height}
+          />
       </animated.div>
+      <div className={styles.imageSpacer} ref={spacerRef} />
       <p className={styles.title}>{`${name} ${caption ? `– ${caption}` : ''}`}</p>
     </li>
   );

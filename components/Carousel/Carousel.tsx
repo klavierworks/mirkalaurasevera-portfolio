@@ -4,15 +4,7 @@ import useWindowSize from '@/hooks/useWindowSize';
 import Slide from '../Slide/Slide';
 import { useSpring } from '@react-spring/web';
 import { useRouter, useSearchParams } from 'next/navigation';
-
-export type SlideType = {
-  aspectRatio: number;
-  caption?: string;
-  name: string;
-  src: string;
-  width: number;
-  height: number;
-}
+import { SlideType } from '@/pages';
 
 type CarouselProps = {
   isFocused: boolean;
@@ -55,8 +47,6 @@ const Carousel = ({ isFocused, slides }: CarouselProps ) => {
   if (!isFocused ) {
     return null;
   }
-
-  const lastSlide = slides[slides.length - 1];
 
   return (
     <article className={styles.frame}>
