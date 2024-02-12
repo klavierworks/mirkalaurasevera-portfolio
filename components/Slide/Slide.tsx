@@ -61,7 +61,6 @@ const Slide = ({ activeSlideIndex, index, slide, totalSlides }: SlideProps) => {
     return 0;
   }, [isActive, isPreviouslyActive,targetScale]);
 
-
   const [spring] = useSpring({
     delay: isActive ? 350 : 0,
     zIndex,
@@ -75,7 +74,6 @@ const Slide = ({ activeSlideIndex, index, slide, totalSlides }: SlideProps) => {
       setIsFocused(isActive);
     },
   }, [index, zIndex, scale, rotate]);
-
 
   return (
     <li className={`${styles.slide} ${isFocused ? styles.isFocused : ''}`} style={spring}>
