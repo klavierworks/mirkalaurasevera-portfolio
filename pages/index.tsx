@@ -43,7 +43,7 @@ export default function Home({ slides }: { slides: SlideType[] }) {
   return (
     <main className={`${styles.layout} ${isAboutVisible ? styles.isAbout : ''}`}>
       <h1 className={styles.title} onClick={handleToggleAbout}>Mirka Laura Severa</h1>
-      <About />
+      <About className={styles.info} />
       <Carousel isFocused={!isAboutVisible} slides={slides}  />
     </main>
   );

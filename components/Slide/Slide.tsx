@@ -68,11 +68,19 @@ const Slide = ({ activeSlideIndex, index, slide, totalSlides }: SlideProps) => {
       },
   }, [ index,zIndex, scale, rotate]);
 
-
   return (
     <li className={`${styles.slide} ${isFocused ? styles.isFocused : ''}`}>
       <animated.div className={styles.imageContainer} style={spring}>
-        <Image className={styles.image} fill src={`/carousel/${src}`} alt={name} loading="lazy" sizes="100vh" quality={100} ref={imageRef} />
+        <Image
+          className={styles.image}
+          fill
+          src={`/carousel/${src}`}
+          alt={name}
+          loading="lazy"
+          sizes="(max-width: 780px) 75vw, 586px"
+          quality={90}
+          ref={imageRef}
+        />
       </animated.div>
       <p className={styles.title}>{`${name} ${caption ? `– ${caption}` : ''}`}</p>
     </li>

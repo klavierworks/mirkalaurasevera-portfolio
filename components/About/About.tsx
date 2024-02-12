@@ -1,8 +1,8 @@
 import styles from './About.module.css';
 
-const About = () => {
+const About = ({ className }) => {
   return (
-    <main className={styles.info}>
+    <main className={className}>
       <article className={styles.bio}>
         <p>...is a conceptual artist working across Photography, Video and Creative Direction.</p>
         <p>She is based in Amsterdam / Paris and is represented globally by DMB.</p>
