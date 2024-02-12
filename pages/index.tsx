@@ -25,7 +25,7 @@ export default function  Home({ slides }: { slides: SlideType[] }) {
     <main className={`${styles.layout} ${isAboutVisible ? styles.isAbout : ''}`}>
       <h1 className={styles.title} onClick={handleToggleAbout}>Mirka Laura Severa</h1>
       <Preloader slides={slides}>
-        <About className={styles.info} />
+        {isAboutVisible && <About className={styles.info} />}
         <Carousel isFocused={!isAboutVisible} slides={slides}  />
       </Preloader>
     </main>
