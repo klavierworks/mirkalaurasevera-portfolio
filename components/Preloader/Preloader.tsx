@@ -25,6 +25,10 @@ const Preloader = ({ children, slides }: PreloaderProps) => {
     }))
   }, [hasPreloaded, setPreloaded, slides]);
 
-  return hasPreloaded ? children : <div className={styles.preloader}>Loading...</div>;
+  return hasPreloaded ? children : (
+    <div className={styles.preloader}>
+      <div className={styles.loading}>Loading...</div>
+    </div>
+  );
 }
 export default Preloader;
