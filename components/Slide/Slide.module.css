@@ -1,5 +1,4 @@
 .slide {
-  --image-scale: 1;
   position: fixed;
   top: 0;
   left: 0;
@@ -10,6 +9,7 @@
   height: 100vh;
   contain: content;
   will-change: transform;
+  z-index: var(--z-index);
 }
 
 .title {
@@ -20,14 +20,14 @@
   color: white;
   opacity: 0;
   translate: 0 10%;
-  transition: all 0.1s ease-in-out;
   max-width: 360px;
   justify-self: center;
+  transition: all 0.1s ease-in-out;
 
-  .isFocused & {
+  .isActive & {
     opacity: 1;
+    transition: all 0.5s ease-in-out 0.6s;
     translate: 0 0%;
-    transition: all 0.5s ease-in-out;
   }
 }
 
@@ -36,18 +36,19 @@
   grid-column: 2 / 3;
 }
 
-.imageWrapper {
-  position: fixed;
-  inset: 0;
-}
-
 .image {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  translate: -50% -50%;
   min-width: 100%;
   min-height: 100%;
+  scale: 0;
+  rotate: -90deg;
+  transform-origin: center;
+  transition: scale 0.5s ease-in-out, rotate 0.5s ease-in-out;
+  contain: strict;
+  will-change: transform;
 
   @media (orientation: portrait) {
     height: 100%;
@@ -57,5 +58,16 @@
   @media (orientation: landscape) {
     width: 100%;
     height: auto;
+  }
+
+  .isActive & {
+    scale: var(--target-scale);
+    rotate: 0deg;
+    transition-delay: 0.3s;
+  }
+
+  .isPreviouslyActive & {
+    scale: 1;
+    rotate: 360deg;
   }
 }

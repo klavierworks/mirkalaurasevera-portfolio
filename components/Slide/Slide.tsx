@@ -7,6 +7,7 @@ import useSlideSpring from "./useSlideSpring";
 import { SlideType } from "@/pages";
 import useMaximumScale from "./useTargetScale";
 import useTargetScale from "./useTargetScale";
+import classNames from "classnames";
 
 type SlideProps = {
   activeSlideIndex: number;
@@ -25,84 +26,49 @@ const Slide = ({ activeSlideIndex, index, slide, totalSlides }: SlideProps) => {
   const isPreviouslyActive =
     activeSlideIndex === index + 2
     || activeSlideIndex === index + 1
-    || activeSlideIndex === 0 && index === totalSlides - 1;
+    || activeSlideIndex === 0 && index === totalSlides - 2
+    || activeSlideIndex === 0 && index === totalSlides - 1
+    || activeSlideIndex === 1 && index === totalSlides - 1
   
-  const [isFocused, setIsFocused] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
   const handleLoad = useCallback(() => {
     setIsLoaded(true);
   }, []);
 
-  const zIndex = useMemo(() => {  
-    if (activeSlideIndex < 4 && index < 4) {
-      return index + totalSlides;
-    }
-    return index;
-  }, [activeSlideIndex, index, totalSlides]);
-
-  const rotate = useMemo(() => {
-    if (!isLoaded) {
-      return 0;
-    }
-    if (isPreviouslyActive) {
-      return 1080;
-    }
-    if (isActive) {
-      return 720;
-    }
-    return 0;
-  }, [isActive, isLoaded, isPreviouslyActive]);
+  const isZIndexLifted = activeSlideIndex < 4 && index < 4;
 
   const targetScale = useTargetScale({
     startSizeRef: imageRef,
     targetSizeRef: spacerRef
   });
 
-  const scale = useMemo(() => {
-    if (!isLoaded) {
-      return 0;
-    }
-    if (isPreviouslyActive) {
-      return 1;
-    }
-    if (isActive) {
-      return targetScale;
-    }
-    return 0;
-  }, [isActive, isLoaded, isPreviouslyActive,targetScale]);
+  const slideClassNames = classNames(styles.slide, {
+    [styles.isLoaded]: isLoaded,
+    [styles.isPreviouslyActive]: isPreviouslyActive,
+    [styles.isActive]: isActive,
+  });
 
-  const [spring] = useSpring({
-    delay: isActive ? 350 : 0,
-    zIndex,
-    scale,
-    rotate,
-    immediate: (key: string) => key === 'zIndex',
-    onStart: () => {
-      setIsFocused(false);
-    },
-    onRest: () => {
-      setIsFocused(isActive);
-    },
-  }, [index, zIndex, scale, rotate]);
+  const style = {
+    '--target-scale': targetScale,
+    '--z-index': isZIndexLifted ? index + totalSlides : index,
+  } as CSSProperties
 
   return (
-    <li className={`${styles.slide} ${isFocused ? styles.isFocused : ''}`} style={spring as unknown as CSSProperties}>
-      <animated.div className={styles.imageWrapper} style={spring}>
-        <Image
-          className={styles.image}
-          src={`/carousel/${src}`}
-          alt={name}
-          loading="lazy"
-          sizes="100vw"
-          quality={90}
-          ref={imageRef}
-          fill={false}
-          width={width}
-          onLoad={handleLoad}
-          height={height}
-        />
-      </animated.div>
+    <li className={slideClassNames} style={style}>
+      <Image
+        className={styles.image}
+        src={`/carousel/${src}`}
+        alt={name}
+        loading="lazy"
+        sizes="100vw"
+        quality={90}
+        ref={imageRef}
+        fill={false}
+        width={width}
+        onLoad={handleLoad}
+        height={height}
+      />
       <div className={styles.imageSpacer} ref={spacerRef} />
       <p className={styles.title}>{`${name} ${caption ? `– ${caption}` : ''}`}</p>
     </li>
