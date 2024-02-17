@@ -4,6 +4,7 @@ import Carousel from "../components/Carousel/Carousel";
 import styles from './index.module.css';
 import { useCallback } from "react";
 import Preloader from "@/components/Preloader/Preloader";
+import classNames from "classnames";
 
 export type SlideType = {
   caption?: string;

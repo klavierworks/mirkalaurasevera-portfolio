@@ -46,9 +46,11 @@
   scale: 0;
   rotate: -90deg;
   transform-origin: center;
-  transition: scale 0.5s ease-in-out, rotate 0.5s ease-in-out;
+  transition: scale 0.5s ease-in-out, rotate 0.5s ease-in-out,
+    filter 0.5s ease-in-out;
   contain: strict;
   will-change: transform;
+  filter: brightness(1);
 
   @media (orientation: portrait) {
     height: 100%;
@@ -60,14 +62,15 @@
     height: auto;
   }
 
-  .isActive & {
+  :global(.hasPreloaded) .isActive & {
     scale: var(--target-scale);
     rotate: 0deg;
     transition-delay: 0.3s;
   }
 
-  .isPreviouslyActive & {
+  :global(.hasPreloaded) .isPreviouslyActive & {
     scale: 1;
     rotate: 360deg;
+    filter: brightness(0.8);
   }
 }

@@ -1,5 +1,6 @@
 import styles from './Preloader.module.css';
 import { SlideType } from "@/pages";
+import classNames from 'classnames';
 import { useEffect, useState } from "react";
 
 type PreloaderProps = {
@@ -25,9 +26,14 @@ const Preloader = ({ children, slides }: PreloaderProps) => {
     }))
   }, [hasPreloaded, setPreloaded, slides]);
 
-  return hasPreloaded ? children : (
-    <div className={styles.preloader}>
-      <div className={styles.loading}>Loading...</div>
+  const preloaderClassNames = classNames(styles.preloader, {
+    hasPreloaded: hasPreloaded,
+  });
+
+  return (
+    <div className={preloaderClassNames}>
+      {children}
+      {!hasPreloaded && <div className={styles.loading}>Loading...</div>}
     </div>
   );
 }
