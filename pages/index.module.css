@@ -17,7 +17,6 @@
   line-height: 16px;
   font-family: "ABC Oracle", sans-serif;
   font-weight: 400;
-  color: black;
   font-smooth: always;
   -webkit-font-smoothing: antialiased;
 
@@ -38,9 +37,12 @@
   height: 100dvh;
   overflow-y: auto;
   background-color: black;
+  color: white;
 
-  &.isAbout {
+  &.isAbout,
+  &.isLoaded {
     background-color: white;
+    color: black;
   }
 }
 
@@ -56,6 +58,7 @@
   position: relative;
   margin: 0 0 30px;
   color: white;
+  transition: color 0.5s;
 
   .isAbout & {
     color: black;
@@ -65,4 +68,10 @@
 .info {
   grid-row: 2 / 3;
   grid-column: 2 / 3;
+  opacity: 0;
+  transition: opacity 0.5s;
+
+  .isLoaded & {
+    opacity: 1;
+  }
 }

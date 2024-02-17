@@ -5,36 +5,39 @@ import { useEffect, useState } from "react";
 
 type PreloaderProps = {
   children: React.ReactNode;
+  onPreloadComplete?: (isLoaded: boolean) => void;
   slides: SlideType[];
 }
 
-const Preloader = ({ children, slides }: PreloaderProps) => {
-  const [preloaded, setPreloaded] = useState(0);
-  const hasPreloaded = preloaded === slides.length;
+const Preloader = ({ children, onPreloadComplete, slides }: PreloaderProps) => {
+  const [hasPreloaded, setHasPreloaded] = useState(false);
 
   useEffect(() => {
-    if (hasPreloaded) {
+    if (hasPreloaded || typeof window === 'undefined') {
       return;
     }
-    Promise.all(slides.map(async (slide: SlideType) => {
-      const img = new Image();
-      img.src = `/carousel/${slide.src}`;
-      img.decoding = 'async';
-      await img.decode();
+    
+    const interval = setInterval(() => {
+      const hasCompletedPreload = slides.every((slide) => window.hasPreloaded[slide.src]);
 
-      setPreloaded((preloaded: number) => preloaded + 1);
-    }))
-  }, [hasPreloaded, setPreloaded, slides]);
+      if (hasCompletedPreload) {
+        clearInterval(interval);
+        setHasPreloaded(true);
+      }
+    }, 100);
 
-  const preloaderClassNames = classNames(styles.preloader, {
-    hasPreloaded: hasPreloaded,
-  });
+    return () => clearInterval(interval);
+  }, [hasPreloaded, slides]);
+
+  useEffect(() => {
+    onPreloadComplete?.(hasPreloaded);
+  }, [hasPreloaded, onPreloadComplete]);
 
   return (
-    <div className={preloaderClassNames}>
+    <>
       {children}
       {!hasPreloaded && <div className={styles.loading}>Loading...</div>}
-    </div>
+    </>
   );
 }
 export default Preloader;

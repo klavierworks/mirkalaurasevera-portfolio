@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import About from "../components/About/About";
 import Carousel from "../components/Carousel/Carousel";
 import styles from './index.module.css';
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import Preloader from "@/components/Preloader/Preloader";
 import classNames from "classnames";
 
@@ -22,12 +22,19 @@ export default function  Home({ slides }: { slides: SlideType[] }) {
     router.push(isAboutVisible ? '/' : '/about');
   }, [isAboutVisible, router]);
 
+  const [isLoaded, setIsLoaded] = useState(false);
+  const layoutClassNames = classNames(styles.layout, {
+    [styles.isAbout]: isAboutVisible,
+    [styles.isLoaded]: isLoaded,
+    isViewingCarousel: isLoaded && !isAboutVisible,
+  });
+
   return (
-    <main className={`${styles.layout} ${isAboutVisible ? styles.isAbout : ''}`}>
+    <main className={layoutClassNames}>
       <h1 className={styles.title} onClick={handleToggleAbout}>Mirka Laura Severa</h1>
-      <Preloader slides={slides}>
-        {isAboutVisible && <About className={styles.info} />}
-        <Carousel isFocused={!isAboutVisible} slides={slides}  />
+      <Preloader onPreloadComplete={setIsLoaded} slides={slides}>
+        <About className={styles.info} />
+        <Carousel slides={slides}  />
       </Preloader>
     </main>
   );

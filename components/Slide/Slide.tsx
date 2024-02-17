@@ -1,6 +1,6 @@
-import Image from "next/image"
+import  { getImageProps } from "next/image"
 import styles from './Slide.module.css';
-import { CSSProperties, ChangeEvent, useCallback, useMemo, useRef, useState } from "react";
+import { CSSProperties, ChangeEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { animated, useSpring } from "@react-spring/web";
 import useMaximumScalingFactor from "@/hooks/useMaximumScalingFactor";
 import useSlideSpring from "./useSlideSpring";
@@ -19,8 +19,22 @@ type SlideProps = {
 const Slide = ({ activeSlideIndex, index, slide, totalSlides }: SlideProps) => {
   const imageRef = useRef<HTMLImageElement>(null);
   const spacerRef = useRef<HTMLDivElement>(null);
+  const { caption, name, src, width, height } = slide;
 
-  const { name, caption, src, width, height } = slide;
+  const imageProps = useMemo(() => {
+ 
+    const { props } = getImageProps({
+      src: `/carousel/${src}`,
+      width,
+      height,
+      alt: name,
+      quality: 90,
+      sizes: '100vw',
+      loading: 'eager',
+    })
+  
+    return props
+  }, [src, width, height, name])
 
   const isActive = activeSlideIndex === index;
   const isPreviouslyActive =
@@ -32,9 +46,35 @@ const Slide = ({ activeSlideIndex, index, slide, totalSlides }: SlideProps) => {
   
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const handleLoad = useCallback(() => {
-    setIsLoaded(true);
-  }, []);
+  useEffect(() => {
+    if (isLoaded || typeof window === 'undefined') {
+      return;
+    }
+  
+
+    if (window.hasPreloaded[src]) {
+      setIsLoaded(true);
+      return;
+    }
+
+
+    window.hasPreloaded[src] = false;
+
+
+    const preload = async () => {
+      const image = new Image();
+      image.src = imageProps.src;
+      image.srcset = imageProps.srcSet as string;
+      image.sizes = imageProps.sizes as string;
+      image.decoding = 'async';
+      await image.decode();
+      window.hasPreloaded[src] = true;
+
+      setIsLoaded(true);
+    } 
+  
+    preload();
+  }, [imageProps, isLoaded, src]);
 
   const isZIndexLifted = activeSlideIndex < 4 && index < 4;
 
@@ -51,24 +91,14 @@ const Slide = ({ activeSlideIndex, index, slide, totalSlides }: SlideProps) => {
 
   const style = {
     '--target-scale': targetScale,
+    '--aspect-ratio': `${width} / ${height}`,
     '--z-index': isZIndexLifted ? index + totalSlides : index,
   } as CSSProperties
 
   return (
     <li className={slideClassNames} style={style}>
-      <Image
-        className={styles.image}
-        src={`/carousel/${src}`}
-        alt={name}
-        loading="lazy"
-        sizes="100vw"
-        quality={90}
-        ref={imageRef}
-        fill={false}
-        width={width}
-        onLoad={handleLoad}
-        height={height}
-      />
+      {/* eslint-disable-next-line jsx-a11y/alt-text */}
+      {isLoaded && <img className={styles.image} ref={imageRef} {...imageProps} />}
       <div className={styles.imageSpacer} ref={spacerRef} />
       <p className={styles.title}>{`${name} ${caption ? `– ${caption}` : ''}`}</p>
     </li>

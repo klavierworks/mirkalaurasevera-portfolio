@@ -7,11 +7,10 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { SlideType } from '@/pages';
 
 type CarouselProps = {
-  isFocused: boolean;
   slides: SlideType[];
 }
 
-const Carousel = ({ isFocused, slides }: CarouselProps ) => {
+const Carousel = ({ slides }: CarouselProps ) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const activeSlideIndex = Number(searchParams.get('slide') ?? "0");
@@ -43,10 +42,6 @@ const Carousel = ({ isFocused, slides }: CarouselProps ) => {
 
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [changeSlide]);
-  
-  if (!isFocused ) {
-    return null;
-  }
 
   return (
     <article className={styles.frame}>
