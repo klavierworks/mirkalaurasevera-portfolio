@@ -44,7 +44,7 @@
   min-width: 100%;
   min-height: 100%;
   scale: 0;
-  rotate: -90deg;
+  rotate: 0deg;
   transform-origin: center;
   transition: scale 0.5s ease-in-out, rotate 0.5s ease-in-out,
     filter 0.5s ease-in-out;
@@ -65,13 +65,13 @@
 
   :global(.isViewingCarousel) .isActive & {
     scale: var(--target-scale);
-    rotate: 0deg;
-    transition-delay: 0.3s;
+    rotate: 360deg;
+    transition-delay: 0.5s;
   }
 
   :global(.isViewingCarousel) .isPreviouslyActive & {
     scale: 1;
-    rotate: 360deg;
+    rotate: 720deg;
     filter: brightness(0.8);
   }
 }
