@@ -1,11 +1,7 @@
 import  { getImageProps } from "next/image"
 import styles from './Slide.module.css';
-import { CSSProperties, ChangeEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { animated, useSpring } from "@react-spring/web";
-import useMaximumScalingFactor from "@/hooks/useMaximumScalingFactor";
-import useSlideSpring from "./useSlideSpring";
+import { CSSProperties, useEffect, useMemo, useRef, useState } from "react";
 import { SlideType } from "@/pages";
-import useMaximumScale from "./useTargetScale";
 import useTargetScale from "./useTargetScale";
 import classNames from "classnames";
 

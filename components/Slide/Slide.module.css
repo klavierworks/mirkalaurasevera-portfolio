@@ -43,14 +43,11 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  translate: -50% -50%;
   min-width: 100%;
   min-height: 100%;
-  scale: 0;
-  rotate: 0deg;
+  transform: translate(-50%, -50%) scale(0.0001) rotate(0deg);
   transform-origin: center;
-  transition: scale 0.5s ease-in-out, rotate 0.5s ease-in-out,
-    filter 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out, filter 0.5s ease-in-out;
   contain: strict;
   will-change: transform;
   filter: brightness(1);
@@ -67,14 +64,12 @@
   }
 
   :global(.isViewingCarousel) .isActive & {
-    scale: var(--target-scale);
-    rotate: 360deg;
+    transform: translate(-50%, -50%) scale(var(--target-scale)) rotate(360deg);
     transition-delay: 0.5s;
   }
 
   :global(.isViewingCarousel) .isPreviouslyActive & {
-    scale: 1;
-    rotate: 720deg;
+    transform: translate(-50%, -50%) scale(1) rotate(720deg);
     filter: brightness(0.8);
   }
 }
