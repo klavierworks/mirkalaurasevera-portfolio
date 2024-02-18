@@ -1,10 +1,9 @@
-import { Dispatch, MouseEvent, SetStateAction, use, useCallback, useEffect, useState } from 'react';
+import { MouseEvent, useCallback, useEffect, useRef } from 'react';
 import styles from './Carousel.module.css';
-import useWindowSize from '@/hooks/useWindowSize';
 import Slide from '../Slide/Slide';
-import { useSpring } from '@react-spring/web';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { SlideType } from '@/pages';
+import { FullGestureState, useGesture } from '@use-gesture/react';
 
 type CarouselProps = {
   slides: SlideType[];
@@ -28,6 +27,26 @@ const Carousel = ({ slides }: CarouselProps ) => {
     event.preventDefault();
   }, [changeSlide]);
 
+  const hasSwiped = useRef(false);
+  const handleGesture = useCallback(({last, movement: [_1, movementY] }: FullGestureState<'drag' | 'wheel'>) => {
+    if (last) {
+      hasSwiped.current = false;
+      return;
+    }
+  
+    if (hasSwiped.current || Math.abs(movementY) > window.innerHeight / 8) {
+      return;
+    }
+
+    hasSwiped.current = true;
+    changeSlide(Math.sign(movementY));
+  }, [changeSlide]);
+
+  const bind = useGesture({
+    onDrag: handleGesture,
+    onWheel: handleGesture
+  })
+
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'ArrowRight') {
@@ -44,7 +63,7 @@ const Carousel = ({ slides }: CarouselProps ) => {
   }, [changeSlide]);
 
   return (
-    <article className={styles.frame}>
+    <article className={styles.frame} {...bind()}>
       <h2 className={styles.heading}>Selected Work</h2>
       <ul className={styles.carousel} onClick={handleNext}>
         {slides.map((slide, index) => (

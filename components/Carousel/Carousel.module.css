@@ -1,3 +1,7 @@
+.frame {
+  touch-action: none;
+}
+
 .heading {
   display: none;
 }
