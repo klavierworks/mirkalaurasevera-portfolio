@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import About from "../components/About/About";
 import Carousel from "../components/Carousel/Carousel";
 import styles from './index.module.css';
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Preloader from "@/components/Preloader/Preloader";
 import classNames from "classnames";
 
@@ -18,16 +18,29 @@ export default function  Home({ slides }: { slides: SlideType[] }) {
   const router = useRouter();
   const isAboutVisible = router.pathname === '/about';
 
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [hasCompletedIntro, setHasCompletedIntro] = useState(false);
+
   const handleToggleAbout = useCallback(() => {
     router.push(isAboutVisible ? '/' : '/about');
   }, [isAboutVisible, router]);
 
-  const [isLoaded, setIsLoaded] = useState(false);
   const layoutClassNames = classNames(styles.layout, {
     [styles.isAbout]: isAboutVisible,
     [styles.isLoaded]: isLoaded,
+    [styles.hasCompletedIntro]: hasCompletedIntro,
     isViewingCarousel: isLoaded && !isAboutVisible,
   });
+
+  useEffect(() => {
+    if (!isLoaded) {
+      return;
+    }
+
+    window.setTimeout(() => {
+      setHasCompletedIntro(true);
+    }, 600);
+  }, [isLoaded]);
 
   return (
     <main className={layoutClassNames}>
