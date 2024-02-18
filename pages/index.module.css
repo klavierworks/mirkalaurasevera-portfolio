@@ -77,4 +77,12 @@
   .hasCompletedIntro & {
     opacity: 1;
   }
+
+  a {
+    margin-bottom: 0.5em;
+  }
+}
+
+.isAbout .carousel {
+  pointer-events: none;
 }

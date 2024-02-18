@@ -47,7 +47,7 @@ export default function  Home({ slides }: { slides: SlideType[] }) {
       <h1 className={styles.title} onClick={handleToggleAbout}>Mirka Laura Severa</h1>
       <Preloader onPreloadComplete={setIsLoaded} slides={slides}>
         <About className={styles.info} />
-        <Carousel slides={slides}  />
+        <Carousel className={styles.carousel} slides={slides}  />
       </Preloader>
     </main>
   );

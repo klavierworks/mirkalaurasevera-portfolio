@@ -35,6 +35,7 @@
 
 .imageSpacer {
   grid-row: 2 / 3;
+  pointer-events: none;
   grid-column: 2 / 3;
 }
 

@@ -6,10 +6,11 @@ import { SlideType } from '@/pages';
 import { FullGestureState, useGesture } from '@use-gesture/react';
 
 type CarouselProps = {
+  className: string;
   slides: SlideType[];
 }
 
-const Carousel = ({ slides }: CarouselProps ) => {
+const Carousel = ({ className, slides }: CarouselProps ) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const activeSlideIndex = Number(searchParams.get('slide') ?? "0");
@@ -63,7 +64,7 @@ const Carousel = ({ slides }: CarouselProps ) => {
   }, [changeSlide]);
 
   return (
-    <article className={styles.frame} {...bind()}>
+    <article className={`${styles.frame} ${className}`} {...bind()}>
       <h2 className={styles.heading}>Selected Work</h2>
       <ul className={styles.carousel} onClick={handleNext}>
         {slides.map((slide, index) => (
