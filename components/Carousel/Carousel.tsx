@@ -29,19 +29,25 @@ const Carousel = ({ className, slides }: CarouselProps ) => {
   }, [changeSlide]);
 
   const hasSwiped = useRef(false);
-  const handleGesture = useCallback(({last, movement: [_1, movementY] }: FullGestureState<'drag' | 'wheel'>) => {
+  const startIndex = useRef(activeSlideIndex);
+  const handleGesture = useCallback(({ first, last, movement: [_1, movementY] }: FullGestureState<'drag' | 'wheel'>) => {
+    if (first) {
+      startIndex.current = activeSlideIndex;
+      hasSwiped.current = false;
+    }
+  
     if (last) {
       hasSwiped.current = false;
       return;
     }
   
-    if (hasSwiped.current || Math.abs(movementY) > window.innerHeight / 8) {
+    if (hasSwiped.current || Math.abs(movementY) < window.innerHeight / 8 || activeSlideIndex !== startIndex.current) {
       return;
     }
 
     hasSwiped.current = true;
     changeSlide(Math.sign(movementY));
-  }, [changeSlide]);
+  }, [activeSlideIndex, changeSlide]);
 
   const bind = useGesture({
     onDrag: handleGesture,
