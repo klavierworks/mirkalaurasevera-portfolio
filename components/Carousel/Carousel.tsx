@@ -17,10 +17,10 @@ const Carousel = ({ className, slides }: CarouselProps ) => {
 
   const changeSlide = useCallback((direction: number) => {
     const url = new URL(window.location.href);
-      const nextSlide = (activeSlideIndex + direction) % slides.length;
-      url.searchParams.set('slide', String(nextSlide));
+    const nextSlide = (activeSlideIndex + direction) % slides.length;
+    url.searchParams.set('slide', String(nextSlide));
 
-    router.replace(url.pathname + url.search);
+    router.replace(url.href);
   }, [activeSlideIndex, router,slides]);
 
   const handleNext = useCallback((event: MouseEvent<HTMLUListElement>) => {
