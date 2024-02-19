@@ -11,7 +11,6 @@ type CarouselProps = {
 }
 
 const Carousel = ({ className, slides }: CarouselProps ) => {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const activeSlideIndex = Number(searchParams.get('slide') ?? "0");
 
@@ -20,8 +19,8 @@ const Carousel = ({ className, slides }: CarouselProps ) => {
     const nextSlide = (activeSlideIndex + direction) % slides.length;
     url.searchParams.set('slide', String(nextSlide));
 
-    router.replace(url.href);
-  }, [activeSlideIndex, router,slides]);
+    window.history.replaceState(null, '', url.href)
+  }, [activeSlideIndex, slides]);
 
   const handleNext = useCallback((event: MouseEvent<HTMLUListElement>) => {
     changeSlide(1);
