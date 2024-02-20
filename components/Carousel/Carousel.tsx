@@ -3,14 +3,15 @@ import styles from './Carousel.module.css';
 import Slide from '../Slide/Slide';
 import { useParams, usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { FullGestureState, useGesture } from '@use-gesture/react';
-import slides from '../../public/carousel.json';
+import { SlideType } from '@/pages';
 
 type CarouselProps = {
   activeSlideIndex: number;
   className: string;
+  slides: SlideType[];
 }
 
-const Carousel = ({ activeSlideIndex,  className }: CarouselProps ) => {
+const Carousel = ({ activeSlideIndex,  className, slides }: CarouselProps ) => {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -19,7 +20,7 @@ const Carousel = ({ activeSlideIndex,  className }: CarouselProps ) => {
     const nextSlide = (activeSlideIndex + direction) % slides.length;
     url.pathname = nextSlide.toString();
     router.push(url.href);
-  }, [activeSlideIndex, router]);
+  }, [activeSlideIndex, router, slides.length]);
 
   const handleNext = useCallback((event: MouseEvent<HTMLUListElement>) => {
     changeSlide(1);

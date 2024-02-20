@@ -3,11 +3,14 @@ import slides from '../public/carousel.json';
 
 export default Index;
 
-export async function getStaticProps({ params }: { params: { slide: string } }) {
+export async function getStaticProps() {
+  const slides = await import('../public/carousel.json');
   return {
-    props: {}
+    props: {
+      slides: slides.default,
+    },
   };
-} 
+}
 
 export async function getStaticPaths() {
   const paths = slides.map((slide: SlideType, index: number) => ({

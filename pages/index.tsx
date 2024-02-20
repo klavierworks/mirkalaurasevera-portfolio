@@ -4,7 +4,6 @@ import styles from './index.module.css';
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Preloader from "@/components/Preloader/Preloader";
 import classNames from "classnames";
-import slides from '../public/carousel.json';
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export type SlideType = {
@@ -15,7 +14,7 @@ export type SlideType = {
   height: number;
 }
 
-export default function  Home() {
+export default function Home({ slides }: { slides: SlideType[] }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -56,7 +55,7 @@ export default function  Home() {
       </div>
       <Preloader onPreloadComplete={setIsLoaded} slides={slides}>
         <About className={styles.info} />
-        <Carousel activeSlideIndex={activeSlideIndex} className={styles.carousel} />
+        <Carousel activeSlideIndex={activeSlideIndex} className={styles.carousel} slides={slides} />
       </Preloader>
     </main>
   );
