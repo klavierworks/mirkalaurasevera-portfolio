@@ -44,7 +44,9 @@ export default function  Home({ slides }: { slides: SlideType[] }) {
 
   return (
     <main className={layoutClassNames}>
-      <h1 className={styles.title} onClick={handleToggleAbout}>Mirka Laura Severa</h1>
+      <div className={styles.titleContainer}>
+        <h1 className={styles.title} onClick={handleToggleAbout}>Mirka Laura Severa</h1>
+      </div>
       <Preloader onPreloadComplete={setIsLoaded} slides={slides}>
         <About className={styles.info} />
         <Carousel className={styles.carousel} slides={slides}  />

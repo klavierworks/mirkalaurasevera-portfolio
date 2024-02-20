@@ -69,6 +69,7 @@ const Carousel = ({ className, slides }: CarouselProps ) => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [changeSlide]);
 
+  const totalSlides = slides.length;
   return (
     <article className={`${styles.frame} ${className}`} {...bind()}>
       <h2 className={styles.heading}>Selected Work</h2>
@@ -77,9 +78,15 @@ const Carousel = ({ className, slides }: CarouselProps ) => {
           <Slide
             activeSlideIndex={activeSlideIndex}
             key={slide.src}
-            index={index}
             slide={slide}
-            totalSlides={slides.length}
+            isActive={activeSlideIndex === index}
+            isPreviouslyActive={
+              activeSlideIndex === index + 2
+              || activeSlideIndex === index + 1
+              || activeSlideIndex === 0 && index === totalSlides - 2
+              || activeSlideIndex === 0 && index === totalSlides - 1
+              || activeSlideIndex === 1 && index === totalSlides - 1}
+            zIndex={activeSlideIndex < 4 && index < 4 ? index + totalSlides : index}
           />
         ))}
       </ul>

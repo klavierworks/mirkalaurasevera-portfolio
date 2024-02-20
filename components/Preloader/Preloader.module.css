@@ -5,8 +5,8 @@
   display: grid;
   grid-template-columns: 1fr min(75%, 586px) 1fr;
   grid-template-rows: 25% 50% 25%;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 
 .loading {

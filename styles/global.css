@@ -1,3 +1,11 @@
+* {
+  /* Lord God forgive me all my sins */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
 body {
   background-color: white;
   padding: 0;

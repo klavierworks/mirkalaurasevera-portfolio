@@ -7,12 +7,13 @@ import classNames from "classnames";
 
 type SlideProps = {
   activeSlideIndex: number;
-  index: number;
+  isActive: boolean;
+  isPreviouslyActive: boolean;
   slide: SlideType;
-  totalSlides: number;
+  zIndex: number;
 }
 
-const Slide = ({ activeSlideIndex, index, slide, totalSlides }: SlideProps) => {
+const Slide = ({ isActive, isPreviouslyActive, slide, zIndex }: SlideProps) => {
   const imageRef = useRef<HTMLImageElement>(null);
   const spacerRef = useRef<HTMLDivElement>(null);
   const { caption, name, src, width, height } = slide;
@@ -32,14 +33,6 @@ const Slide = ({ activeSlideIndex, index, slide, totalSlides }: SlideProps) => {
     return props
   }, [src, width, height, name])
 
-  const isActive = activeSlideIndex === index;
-  const isPreviouslyActive =
-    activeSlideIndex === index + 2
-    || activeSlideIndex === index + 1
-    || activeSlideIndex === 0 && index === totalSlides - 2
-    || activeSlideIndex === 0 && index === totalSlides - 1
-    || activeSlideIndex === 1 && index === totalSlides - 1
-  
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -72,7 +65,6 @@ const Slide = ({ activeSlideIndex, index, slide, totalSlides }: SlideProps) => {
     preload();
   }, [imageProps, isLoaded, src]);
 
-  const isZIndexLifted = activeSlideIndex < 4 && index < 4;
 
   const targetScale = useTargetScale({
     startSizeRef: imageRef,
@@ -88,7 +80,7 @@ const Slide = ({ activeSlideIndex, index, slide, totalSlides }: SlideProps) => {
   const style = {
     '--target-scale': targetScale,
     '--aspect-ratio': `${width} / ${height}`,
-    '--z-index': isZIndexLifted ? index + totalSlides : index,
+    '--z-index': zIndex,
   } as CSSProperties
 
   return (
@@ -96,7 +88,11 @@ const Slide = ({ activeSlideIndex, index, slide, totalSlides }: SlideProps) => {
       {/* eslint-disable-next-line jsx-a11y/alt-text */}
       {isLoaded && <img className={styles.image} ref={imageRef} {...imageProps} />}
       <div className={styles.imageSpacer} ref={spacerRef} />
-      <p className={styles.title}>{`${name} ${caption ? `– ${caption}` : ''}`}</p>
+      <div className={styles.title}>
+        <p className={styles.content}>
+          {`${name} ${caption ? `– ${caption}` : ''}`}
+        </p>
+      </div>
     </li>
   );
 }
