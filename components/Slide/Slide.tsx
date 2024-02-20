@@ -19,7 +19,8 @@ const Slide = ({ isActive, isPreviouslyActive, slide, zIndex }: SlideProps) => {
   const { caption, name, src, width, height } = slide;
 
   const imageProps = useMemo(() => {
- 
+ console.log('src', src)
+ console.log(`/carousel/${src}`)
     const { props } = getImageProps({
       src: `/carousel/${src}`,
       width,
