@@ -1,11 +1,11 @@
-import { useRouter } from "next/router";
 import About from "../components/About/About";
 import Carousel from "../components/Carousel/Carousel";
 import styles from './index.module.css';
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Preloader from "@/components/Preloader/Preloader";
 import classNames from "classnames";
 import slides from '../public/carousel.json';
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export type SlideType = {
   caption?: string;
@@ -17,14 +17,20 @@ export type SlideType = {
 
 export default function  Home() {
   const router = useRouter();
-  const isAboutVisible = router.pathname === '/about';
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  
+  const previousSlideIndex = searchParams.get('previousSlideIndex');
+  const activeSlideIndex = useMemo(() => Number(pathname.replace('/', '') ?? "0"), [pathname]);
+
+  const isAboutVisible = pathname === '/about';
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasCompletedIntro, setHasCompletedIntro] = useState(false);
 
   const handleToggleAbout = useCallback(() => {
-    router.push(isAboutVisible ? '/' : '/about');
-  }, [isAboutVisible, router]);
+    router.push(isAboutVisible ? `/${previousSlideIndex ?? 0}` : `/about?previousSlideIndex=${activeSlideIndex}`);
+  }, [activeSlideIndex, isAboutVisible, previousSlideIndex, router]);
 
   const layoutClassNames = classNames(styles.layout, {
     [styles.isAbout]: isAboutVisible,
@@ -50,7 +56,7 @@ export default function  Home() {
       </div>
       <Preloader onPreloadComplete={setIsLoaded} slides={slides}>
         <About className={styles.info} />
-        <Carousel className={styles.carousel} slides={slides}  />
+        <Carousel activeSlideIndex={activeSlideIndex} className={styles.carousel} />
       </Preloader>
     </main>
   );
