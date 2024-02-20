@@ -1,7 +1,7 @@
-import { MouseEvent, useCallback, useEffect, useRef } from 'react';
+import { MouseEvent, useCallback, useEffect, useMemo, useRef } from 'react';
 import styles from './Carousel.module.css';
 import Slide from '../Slide/Slide';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useParams, usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { SlideType } from '@/pages';
 import { FullGestureState, useGesture } from '@use-gesture/react';
 
@@ -12,14 +12,14 @@ type CarouselProps = {
 
 const Carousel = ({ className, slides }: CarouselProps ) => {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const activeSlideIndex = Number(searchParams.get('slide') ?? "0");
+  const pathname = usePathname();
+  
+  const activeSlideIndex = useMemo(() => Number(pathname.replace('/', '') ?? "0"), [pathname]);
 
   const changeSlide = useCallback((direction: number) => {
     const url = new URL(window.location.href);
     const nextSlide = (activeSlideIndex + direction) % slides.length;
-    url.searchParams.set('slide', String(nextSlide));
-
+    url.pathname = nextSlide.toString();
     router.push(url.href);
   }, [activeSlideIndex, router,slides]);
 
@@ -70,6 +70,7 @@ const Carousel = ({ className, slides }: CarouselProps ) => {
   }, [changeSlide]);
 
   const totalSlides = slides.length;
+
   return (
     <article className={`${styles.frame} ${className}`} {...bind()}>
       <h2 className={styles.heading}>Selected Work</h2>

@@ -5,6 +5,7 @@ import styles from './index.module.css';
 import { useCallback, useEffect, useState } from "react";
 import Preloader from "@/components/Preloader/Preloader";
 import classNames from "classnames";
+import slides from '../public/carousel.json';
 
 export type SlideType = {
   caption?: string;
@@ -14,7 +15,7 @@ export type SlideType = {
   height: number;
 }
 
-export default function  Home({ slides }: { slides: SlideType[] }) {
+export default function  Home() {
   const router = useRouter();
   const isAboutVisible = router.pathname === '/about';
 
