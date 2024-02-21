@@ -16,21 +16,21 @@ type SlideProps = {
 const Slide = ({ isActive, isPreviouslyActive, slide, zIndex }: SlideProps) => {
   const imageRef = useRef<HTMLImageElement>(null);
   const spacerRef = useRef<HTMLDivElement>(null);
-  const { caption, name, src, width, height } = slide;
+  const { line1, line2, line3, src, width, height } = slide;
 
   const imageProps = useMemo(() => {
     const { props } = getImageProps({
       src: `/carousel/${src}`,
       width,
       height,
-      alt: name,
+      alt: line1,
       quality: 90,
       sizes: '100vw',
       loading: 'eager',
     })
   
     return props
-  }, [src, width, height, name])
+  }, [line1, src, width, height])
 
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -89,7 +89,9 @@ const Slide = ({ isActive, isPreviouslyActive, slide, zIndex }: SlideProps) => {
       <div className={styles.imageSpacer} ref={spacerRef} />
       <div className={styles.title}>
         <p className={styles.content}>
-          {`${name} ${caption ? `– ${caption}` : ''}`}
+          {line1 && <>{line1}<br /></>}
+          {line2 && <>{line2}<br /></>}
+          {line3 && <span className={styles.italics}>{line3}</span>}
         </p>
       </div>
     </li>

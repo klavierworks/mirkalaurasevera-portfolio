@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "precompile": "node -r ts-node/register pipelines/main.ts",
+    "images": "node -r ts-node/register pipelines/main.ts",
     "lint": "next lint"
   },
   "dependencies": {

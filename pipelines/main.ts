@@ -1,70 +1,48 @@
-const fs = require('fs/promises');
-const path = require('path');
+const fs = require('fs');
 const sharp = require('sharp');
 
-const directoryPath: string = path.join('public', 'carousel');
-const outputPath: string = path.join('public', 'carousel.json');
-
-const getImageMetadata = async (filePath: string) => {
-  try {
-    return await sharp(filePath).metadata();
-  } catch (error) {
-    console.error(`Error getting metadata for file ${filePath}: `, error);
-    throw error; // Rethrow to handle it in the calling function
-  }
-};
-
-type ImageMetaData = {
-  index: string;
-  name: string;
+interface CarouselItem {
+  number: number;
+  line1: string;
+  line2: string;
+  line3?: string;
   src: string;
-  width: number;
-  height: number;
-  aspectRatio: number;
+  width?: number;
+  height?: number;
+  aspectRatio?: number;
 }
 
-const processImageFile = async (file: string, directoryPath: string): Promise<ImageMetaData | null> => {
-  const filePath = path.join(directoryPath, file);
-  const metadata = await getImageMetadata(filePath);
+// Reads the JSON file and parses its content.
+const readJsonFile = async (filePath: string): Promise<CarouselItem[]> => {
+  const data = await fs.promises.readFile(filePath, 'utf8');
+  return JSON.parse(data);
+};
 
-  const indexMatch = file.match(/^(\d+)/);
-  const nameMatch = file.match(/^\d+_(.+)\.\w+$/);
-
-  if (!indexMatch || !nameMatch || !metadata || !metadata.width || !metadata.height) {
-    console.error(`Invalid image file: ${file}`);
-    return null;
-  }
-
-
-  const index = indexMatch[1];
-  const name = nameMatch[1].replace(/-/g, ' ');
-  const { width, height } = metadata;
-  const aspectRatio = width / height;
+// Updates the JSON object with image dimensions and aspect ratio.
+const updateImageDetails = async (item: CarouselItem): Promise<CarouselItem> => {
+  const metadata = await sharp(`./public/carousel/${item.src}`).metadata();
+  const [line1, ...rest] = item.line1.split(',');
 
   return {
-    index,
-    name,
-    src: file,
-    width,
-    height,
-    aspectRatio
+    ...item,
+    line1,
+    line2: rest.join(',').trim(),
+    line3: item.line2,
+    width: metadata.width,
+    height: metadata.height,
+    aspectRatio: metadata.width && metadata.height ? metadata.width / metadata.height : undefined,
   };
 };
 
-
-const processFiles = async (): Promise<void> => {
-  try {
-    const files: string[] = await fs.readdir(directoryPath);
-    const imageFiles = files.filter(file => file.match(/\.(jpg|jpeg|png)$/i));
-
-    const imageDataPromises: Promise<ImageMetaData | null>[] = imageFiles.map(file => processImageFile(file, directoryPath));
-    const imagesData: ImageMetaData[] = (await Promise.all(imageDataPromises)).filter((data): data is ImageMetaData => data !== null);
-
-    await fs.writeFile(outputPath, JSON.stringify(imagesData, null, 2), 'utf8');
-    console.log('Carousel data has been written to JSON file successfully.');
-  } catch (err) {
-    console.error('Error processing files:', err);
-  }
+// Processes the images and updates the JSON file.
+const processImagesAndUpdateJson = async (filePath: string) => {
+  const items = await readJsonFile(filePath);
+  const updatedItems = await Promise.all(items.map(updateImageDetails));
+  await fs.promises.writeFile(filePath, JSON.stringify(updatedItems, null, 2), 'utf8');
 };
 
-processFiles();
+// Example usage
+const filePath = './carousel.json';
+processImagesAndUpdateJson(filePath).then(() => {
+  console.log('Updated carousel.json with image dimensions and aspect ratios.');
+}).catch(console.error);
