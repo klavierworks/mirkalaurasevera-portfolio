@@ -1,7 +1,7 @@
 import { MouseEvent, useCallback, useEffect, useMemo, useRef } from 'react';
 import styles from './Carousel.module.css';
 import Slide from '../Slide/Slide';
-import { useParams, usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { FullGestureState, useGesture } from '@use-gesture/react';
 import { SlideType } from '@/pages';
 
