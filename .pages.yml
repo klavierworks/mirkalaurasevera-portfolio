@@ -1,4 +1,4 @@
-media: src/media
+media: public/carousel
 content:
   - name: carousel
     label: Carousel
