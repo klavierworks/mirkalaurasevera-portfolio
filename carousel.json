@@ -1,1 +1,192 @@
-[{"number":1,"line1":"nicchi","line2":"Oral Ocean","src":"MLS_001.jpg","width":2000,"height":2667,"aspectRatio":0.7499062617172854,"line3":"Creative Direction, Set Design & Photography"},{"number":2,"line1":"Dropbox x It's Nice That","line2":"Cyclists","src":"MLS_002.jpg","width":2000,"height":2726,"aspectRatio":0.7336757153338225,"line3":"Concept & Photography"},{"number":3,"line1":"Chanel","line2":"Brush","src":"MLS_003.jpg","width":1875,"height":2500,"aspectRatio":0.75,"line3":""},{"number":4,"line1":"SZ Magazine","line2":"Fashion Snowman","src":"MLS_004.jpg","width":2100,"height":2678,"aspectRatio":0.784167289021658,"line3":"Concept, Set Design & Photography"},{"number":5,"line1":"ZEIT Crime Magazine","line2":"Spring Feelings","src":"MLS_005.jpg","width":2500,"height":3218,"aspectRatio":0.7768800497203232,"line3":"Concept, Set Design & Photography"},{"number":6,"line1":"M Le Magazine du Monde","line2":"Security Check","src":"MLS_006.jpg","width":1193,"height":1670,"aspectRatio":0.7143712574850299,"line3":"Concept & Photography"},{"number":7,"line1":"The New Yorker","line2":"Fiction Cover","src":"MLS_007.jpg","width":3050,"height":4000,"aspectRatio":0.7625,"line3":"Concept, Set Design & Photography"},{"number":8,"line1":"Bibi Van Der Velden","line2":"Smoke Diamond Chandelier","src":"MLS_008.jpg","width":3000,"height":4000,"aspectRatio":0.75,"line3":"Creative Direction & Photography"},{"number":9,"line1":"nicchi","line2":"Dog Lick","src":"MLS_009.jpg","width":3704,"height":4801,"aspectRatio":0.7715059362632785,"line3":"Creative Direction & Photography"},{"number":10,"line1":"YSL","line2":"Sticky Touch","src":"MLS_010.jpg","width":1622,"height":2163,"aspectRatio":0.7498844197873324,"line3":"Artwork"},{"number":11,"line1":"Wetransfer","line2":"Sunny Side Up","src":"MLS_011.jpg","width":3162,"height":2161,"aspectRatio":1.4632114761684405,"line3":"Concept & Photography"},{"number":12,"line1":"Splash","line2":"","src":"MLS_012.jpg","width":2500,"height":3333,"aspectRatio":0.7500750075007501,"line3":"Artwork"},{"number":13,"line1":"Vogue","line2":"Cartier Watch","src":"MLS_013.jpg","width":1158,"height":1500,"aspectRatio":0.772,"line3":"Concept, Set Design & Photography"},{"number":14,"line1":"Swallow","line2":"Lightinstallation in Cave","src":"MLS_014.jpg","width":2500,"height":3062,"aspectRatio":0.8164598301763554,"line3":"Artwork"},{"number":15,"line1":"Dior","line2":"The Worm","src":"MLS_015.jpg","width":1272,"height":1696,"aspectRatio":0.75,"line3":"Artwork"},{"number":16,"line1":"Dropbox x It's Nice That","line2":"Cyclists","src":"MLS_016.jpg","width":2165,"height":2952,"aspectRatio":0.7334010840108401,"line3":"Concept & Photography"},{"number":17,"line1":"Another Magazine","line2":"Healthy Body","src":"MLS_017.jpg","width":2500,"height":3125,"aspectRatio":0.8,"line3":"Concept, Set Design & Photography"},{"number":18,"line1":"Prada x SZ Magazine","line2":"Prada Signals","src":"MLS_018.jpg","width":1728,"height":2160,"aspectRatio":0.8,"line3":"Concept, Set Design & Photography"},{"number":19,"line1":"UV Horse test2","line2":"The Solar Project","src":"MLS_019.jpg","width":2000,"height":1537,"aspectRatio":1.3012361743656473,"line3":"Concept & Photography"}]
+[
+  {
+    "number": 1,
+    "line1": "nicchi",
+    "line2": "Oral Ocean",
+    "src": "MLS_001.jpg",
+    "width": 2000,
+    "height": 2667,
+    "aspectRatio": 0.7499062617172854,
+    "line3": "Creative Direction, Set Design & Photography"
+  },
+  {
+    "number": 2,
+    "line1": "Dropbox x It's Nice That",
+    "line2": "Cyclists",
+    "src": "MLS_002.jpg",
+    "width": 2000,
+    "height": 2726,
+    "aspectRatio": 0.7336757153338225,
+    "line3": "Concept & Photography"
+  },
+  {
+    "number": 3,
+    "line1": "Chanel",
+    "line2": "Brush",
+    "src": "MLS_003.jpg",
+    "width": 1875,
+    "height": 2500,
+    "aspectRatio": 0.75,
+    "line3": ""
+  },
+  {
+    "number": 4,
+    "line1": "SZ Magazine",
+    "line2": "Fashion Snowman",
+    "src": "MLS_004.jpg",
+    "width": 2100,
+    "height": 2678,
+    "aspectRatio": 0.784167289021658,
+    "line3": "Concept, Set Design & Photography"
+  },
+  {
+    "number": 5,
+    "line1": "ZEIT Crime Magazine",
+    "line2": "Spring Feelings",
+    "src": "MLS_005.jpg",
+    "width": 2500,
+    "height": 3218,
+    "aspectRatio": 0.7768800497203232,
+    "line3": "Concept, Set Design & Photography"
+  },
+  {
+    "number": 6,
+    "line1": "M Le Magazine du Monde",
+    "line2": "Security Check",
+    "src": "MLS_006.jpg",
+    "width": 1193,
+    "height": 1670,
+    "aspectRatio": 0.7143712574850299,
+    "line3": "Concept & Photography"
+  },
+  {
+    "number": 7,
+    "line1": "The New Yorker",
+    "line2": "Fiction Cover",
+    "src": "MLS_007.jpg",
+    "width": 3050,
+    "height": 4000,
+    "aspectRatio": 0.7625,
+    "line3": "Concept, Set Design & Photography"
+  },
+  {
+    "number": 8,
+    "line1": "Bibi Van Der Velden",
+    "line2": "Smoke Diamond Chandelier",
+    "src": "MLS_008.jpg",
+    "width": 3000,
+    "height": 4000,
+    "aspectRatio": 0.75,
+    "line3": "Creative Direction & Photography"
+  },
+  {
+    "number": 9,
+    "line1": "nicchi",
+    "line2": "Dog Lick",
+    "src": "MLS_009.jpg",
+    "width": 3704,
+    "height": 4801,
+    "aspectRatio": 0.7715059362632785,
+    "line3": "Creative Direction & Photography"
+  },
+  {
+    "number": 10,
+    "line1": "YSL",
+    "line2": "Sticky Touch",
+    "src": "MLS_010.jpg",
+    "width": 1622,
+    "height": 2163,
+    "aspectRatio": 0.7498844197873324,
+    "line3": "Artwork"
+  },
+  {
+    "number": 11,
+    "line1": "Wetransfer",
+    "line2": "Sunny Side Up",
+    "src": "MLS_011.jpg",
+    "width": 3162,
+    "height": 2161,
+    "aspectRatio": 1.4632114761684405,
+    "line3": "Concept & Photography"
+  },
+  {
+    "number": 12,
+    "line1": "Splash",
+    "line2": "",
+    "src": "MLS_012.jpg",
+    "width": 2500,
+    "height": 3333,
+    "aspectRatio": 0.7500750075007501,
+    "line3": "Artwork"
+  },
+  {
+    "number": 13,
+    "line1": "Vogue",
+    "line2": "Cartier Watch",
+    "src": "MLS_013.jpg",
+    "width": 1158,
+    "height": 1500,
+    "aspectRatio": 0.772,
+    "line3": "Concept, Set Design & Photography"
+  },
+  {
+    "number": 14,
+    "line1": "Swallow",
+    "line2": "Lightinstallation in Cave",
+    "src": "MLS_014.jpg",
+    "width": 2500,
+    "height": 3062,
+    "aspectRatio": 0.8164598301763554,
+    "line3": "Artwork"
+  },
+  {
+    "number": 15,
+    "line1": "Dior",
+    "line2": "The Worm",
+    "src": "MLS_015.jpg",
+    "width": 1272,
+    "height": 1696,
+    "aspectRatio": 0.75,
+    "line3": "Artwork"
+  },
+  {
+    "number": 16,
+    "line1": "Dropbox x It's Nice That",
+    "line2": "Cyclists",
+    "src": "MLS_016.jpg",
+    "width": 2165,
+    "height": 2952,
+    "aspectRatio": 0.7334010840108401,
+    "line3": "Concept & Photography"
+  },
+  {
+    "number": 17,
+    "line1": "Another Magazine",
+    "line2": "Healthy Body",
+    "src": "MLS_017.jpg",
+    "width": 2500,
+    "height": 3125,
+    "aspectRatio": 0.8,
+    "line3": "Concept, Set Design & Photography"
+  },
+  {
+    "number": 18,
+    "line1": "Prada x SZ Magazine",
+    "line2": "Prada Signals",
+    "src": "MLS_018.jpg",
+    "width": 1728,
+    "height": 2160,
+    "aspectRatio": 0.8,
+    "line3": "Concept, Set Design & Photography"
+  },
+  {
+    "number": 19,
+    "line1": "UV Horse",
+    "line2": "The Solar Project",
+    "src": "MLS_019.jpg",
+    "width": 2000,
+    "height": 1537,
+    "aspectRatio": 1.3012361743656473,
+    "line3": "Concept & Photography"
+  }
+]
