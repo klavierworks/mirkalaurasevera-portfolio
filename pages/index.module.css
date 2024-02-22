@@ -52,6 +52,7 @@
   width: 100%;
   text-align: center;
   display: grid;
+  justify-content: center;
   grid-template-rows: 2fr max-content 1fr;
 
   @media (orientation: landscape) {
