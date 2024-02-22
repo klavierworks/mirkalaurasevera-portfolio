@@ -3,7 +3,7 @@ content:
   - name: carousel
     label: Carousel
     type: collection
-    path: src/carousel
+    path: src/slides
     view:
       fields: [ title, order ]
       primary: title
@@ -12,7 +12,6 @@ content:
         sort: order
         order: asc
     fields:
-      - { name: title, label: Title, type: string, required: true }
       - { name: title, label: Title, type: string, required: true }
       - { name: description, label: Description, type: string, options: { maxlength: 180 }}
       - { name: order, label: Order, type: number }
