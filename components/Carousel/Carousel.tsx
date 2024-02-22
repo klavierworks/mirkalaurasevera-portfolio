@@ -9,18 +9,17 @@ type CarouselProps = {
   activeSlideIndex: number;
   className: string;
   slides: SlideType[];
+  setActiveSlideIndex: (index: number) => void;
 }
 
-const Carousel = ({ activeSlideIndex,  className, slides }: CarouselProps ) => {
-  const router = useRouter();
-  const pathname = usePathname();
-
+const Carousel = ({ activeSlideIndex,  className, setActiveSlideIndex, slides }: CarouselProps ) => {
   const changeSlide = useCallback((direction: number) => {
     const url = new URL(window.location.href);
     const nextSlide = (activeSlideIndex + direction) % slides.length;
     url.pathname = nextSlide.toString();
-    router.push(url.href);
-  }, [activeSlideIndex, router, slides.length]);
+    setActiveSlideIndex(nextSlide);
+    window.history.pushState({}, '', url.href);
+  }, [activeSlideIndex, slides.length, setActiveSlideIndex]);
 
   const handleNext = useCallback((event: MouseEvent<HTMLUListElement>) => {
     changeSlide(1);

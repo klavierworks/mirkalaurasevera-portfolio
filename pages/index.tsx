@@ -23,8 +23,8 @@ export default function Home({ slides }: { slides: SlideType[] }) {
   const searchParams = useSearchParams();
   
   const previousSlideIndex = searchParams.get('previousSlideIndex');
-  const activeSlideIndex = useMemo(() => Number(pathname.replace('/', '') ?? "0"), [pathname]);
-
+  const [activeSlideIndex, setActiveSlideIndex] = useState(Number(pathname.replace('/', '') ?? "0"));
+  
   const isAboutVisible = pathname === '/about';
 
   const [isLoaded, setIsLoaded] = useState(false);
@@ -58,7 +58,7 @@ export default function Home({ slides }: { slides: SlideType[] }) {
       </div>
       <Preloader onPreloadComplete={setIsLoaded} slides={slides}>
         <About className={styles.info} />
-        <Carousel activeSlideIndex={activeSlideIndex} className={styles.carousel} slides={slides} />
+        <Carousel activeSlideIndex={activeSlideIndex} className={styles.carousel} setActiveSlideIndex={setActiveSlideIndex} slides={slides} />
       </Preloader>
     </main>
   );
