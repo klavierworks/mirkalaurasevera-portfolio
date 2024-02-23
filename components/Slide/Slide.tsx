@@ -20,7 +20,7 @@ const Slide = ({ isActive, isPreviouslyActive, slide, zIndex }: SlideProps) => {
 
   const imageProps = useMemo(() => {
     const { props } = getImageProps({
-      src: `/carousel/${src}`,
+      src,
       width,
       height,
       alt: line1,

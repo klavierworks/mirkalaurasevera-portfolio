@@ -26,7 +26,7 @@ const loadAndMergeJsonFiles = async (directory: string): Promise<CarouselItem[]>
 
 // Updates the JSON object with image dimensions and aspect ratio.
 const updateImageDetails = async (item: CarouselItem): Promise<CarouselItem> => {
-  const metadata = await sharp(`./public/carousel/${item.src}`).metadata();
+  const metadata = await sharp(`./public${item.src}`).metadata();
   const [line1, ...rest] = item.line1.split(',');
 
   return {
