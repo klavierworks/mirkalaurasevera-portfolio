@@ -17,6 +17,6 @@ content:
     fields:
       - { name: order, label: Order, type: number }
       - { name: line1, label: First Line, type: string }
-      - { name: line2, label: First Line, type: string }
-      - { name: line3, label: First Line, type: string }
+      - { name: line2, label: Second Line, type: string }
+      - { name: line3, label: Third Line, type: string }
       - { name: src, label: Image, type: image, list: false, options: { path: public/carousel, extensions: jpg, jpeg, png} }
