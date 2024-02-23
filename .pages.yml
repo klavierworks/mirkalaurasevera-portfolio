@@ -4,14 +4,18 @@ content:
     label: Carousel
     type: collection
     path: content/slides
+    filename: slide-{primary}.json
+    format: json
+    subfolders: false
     view:
-      fields: [ title, order ]
-      primary: title
+      fields: [ order, line1 ]
+      primary: order
       sort: [ order, title ]
       default:
         sort: order
         order: asc
     fields:
+      - { name: order, label: Order, type: number }
       - { name: line1, label: First Line, type: string }
       - { name: line2, label: First Line, type: string }
       - { name: line3, label: First Line, type: string }
