@@ -3,7 +3,7 @@ content:
   - name: carousel
     label: Carousel
     type: collection
-    path: src/slides
+    path: content/slides
     view:
       fields: [ title, order ]
       primary: title
