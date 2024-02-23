@@ -55,9 +55,13 @@ const Slide = ({ isActive, isPreviouslyActive, slide, zIndex }: SlideProps) => {
       image.srcset = imageProps.srcSet as string;
       image.sizes = imageProps.sizes as string;
       image.decoding = 'async';
-      await image.decode();
-      window.hasPreloaded[src] = true;
+      try {
+        await image.decode();
+      } catch (e) {
+        console.error(e);
+      }
 
+      window.hasPreloaded[src] = true;
       setIsLoaded(true);
     } 
   
