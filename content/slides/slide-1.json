@@ -1,9 +1,7 @@
 {
-  "order": "1",
-  "line1": "Test",
-  "line2": "test2",
-  "line3": "test3",
-  "src": [
-    "/public/carousel/MLS_011.jpg"
-  ]
+  "line1": "nicchi",
+  "line2": "Oral Ocean",
+  "src": "MLS_001.jpg",
+  "line3": "Creative Direction, Set Design & Photography",
+  "order": 1
 }

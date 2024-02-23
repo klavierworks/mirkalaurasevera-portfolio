@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run preprocess && next build",
     "start": "next start",
-    "images": "node -r ts-node/register pipelines/main.ts",
+    "preprocess": "node -r ts-node/register pipelines/main.ts",
     "lint": "next lint"
   },
   "dependencies": {

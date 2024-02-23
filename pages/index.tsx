@@ -7,7 +7,7 @@ import classNames from "classnames";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export type SlideType = {
-  number: number;
+  order: number;
   line1: string;
   line2: string;
   line3: string;
