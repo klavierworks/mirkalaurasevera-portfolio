@@ -6,6 +6,7 @@ content:
     path: content/slides
     filename: slide-{primary}.json
     format: json
+    extension: json
     subfolders: false
     view:
       fields: [ order, line1 ]
