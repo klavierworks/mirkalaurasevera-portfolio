@@ -15,18 +15,4 @@ content:
       - { name: line1, label: First Line, type: string }
       - { name: line2, label: First Line, type: string }
       - { name: line3, label: First Line, type: string }
-      - { name: src, label: Image, list: true, options: { path: public/carousel, extensions: jpg, jpeg, png} }
-  {
-    "number": 1,
-    "line1": "nicchi",
-    "line2": "Oral Ocean",
-    "src": "MLS_001.jpg",
-    "width": 2000,
-    "height": 2667,
-    "aspectRatio": 0.7499062617172854,
-    "line3": "Creative Direction, Set Design & Photography"
-  },
-      - { name: title, label: Title, type: string, required: true }
-      - { name: description, label: Description, type: string, options: { maxlength: 180 }}
-      - { name: order, label: Order, type: number }
-      - { name: body, label: Body, type: rich-text }
+      - { name: src, label: Image, type: image, list: true, options: { path: public/carousel, extensions: jpg, jpeg, png} }
