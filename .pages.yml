@@ -10,7 +10,7 @@ content:
     view:
       fields: [ order ]
       primary: order
-      sort: [ order, line1 ]
+      sort: [ order ]
       default:
         sort: order
         order: asc
