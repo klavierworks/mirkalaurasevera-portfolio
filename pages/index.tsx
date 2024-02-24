@@ -23,8 +23,8 @@ export default function Home({ slides }: { slides: SlideType[] }) {
   const searchParams = useSearchParams();
   
   const previousSlideIndex = searchParams.get('previousSlideIndex');
-  const [activeSlideIndex, setActiveSlideIndex] = useState(Number(pathname.replace('/', '') ?? "0"));
-  
+  const initialSlide = Number(pathname.replace('/', ''));
+  const [activeSlideIndex, setActiveSlideIndex] = useState(Number.isInteger(initialSlide) ? initialSlide : 0);
   const isAboutVisible = pathname === '/about';
 
   const [isLoaded, setIsLoaded] = useState(false);

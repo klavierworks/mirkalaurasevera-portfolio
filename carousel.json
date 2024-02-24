@@ -2,7 +2,7 @@
   {
     "line1": "nicchi",
     "line2": "",
-    "src": "MLS_001.jpg",
+    "src": "/carousel/MLS_001.jpg",
     "line3": "Oral Ocean",
     "order": 1,
     "width": 2000,
@@ -12,7 +12,7 @@
   {
     "line1": "YSL",
     "line2": "",
-    "src": "MLS_010.jpg",
+    "src": "/carousel/MLS_010.jpg",
     "line3": "Sticky Touch",
     "order": 10,
     "width": 1622,
@@ -20,11 +20,11 @@
     "aspectRatio": 0.7498844197873324
   },
   {
+    "order": 11,
     "line1": "Wetransfer",
     "line2": "",
-    "src": "MLS_011.jpg",
     "line3": "Sunny Side Up",
-    "order": 11,
+    "src": "/carousel/MLS_011.jpg",
     "width": 3162,
     "height": 2161,
     "aspectRatio": 1.4632114761684405
@@ -32,7 +32,7 @@
   {
     "line1": "Splash",
     "line2": "",
-    "src": "MLS_012.jpg",
+    "src": "/carousel/MLS_012.jpg",
     "line3": "",
     "order": 12,
     "width": 2500,
@@ -40,11 +40,11 @@
     "aspectRatio": 0.7500750075007501
   },
   {
+    "order": 13,
     "line1": "Vogue",
     "line2": "",
-    "src": "MLS_013.jpg",
     "line3": "Cartier Watch",
-    "order": 13,
+    "src": "/carousel/MLS_013.jpg",
     "width": 1158,
     "height": 1500,
     "aspectRatio": 0.772
@@ -52,7 +52,7 @@
   {
     "line1": "Swallow",
     "line2": "",
-    "src": "MLS_014.jpg",
+    "src": "/carousel/MLS_014.jpg",
     "line3": "Lightinstallation in Cave",
     "order": 14,
     "width": 2500,
@@ -62,7 +62,7 @@
   {
     "line1": "Dior",
     "line2": "",
-    "src": "MLS_015.jpg",
+    "src": "/carousel/MLS_015.jpg",
     "line3": "The Worm",
     "order": 15,
     "width": 1272,
@@ -72,7 +72,7 @@
   {
     "line1": "Dropbox x It's Nice That",
     "line2": "",
-    "src": "MLS_016.jpg",
+    "src": "/carousel/MLS_016.jpg",
     "line3": "Cyclists",
     "order": 16,
     "width": 2165,
@@ -82,7 +82,7 @@
   {
     "line1": "Another Magazine",
     "line2": "",
-    "src": "MLS_017.jpg",
+    "src": "/carousel/MLS_017.jpg",
     "line3": "Healthy Body",
     "order": 17,
     "width": 2500,
@@ -92,7 +92,7 @@
   {
     "line1": "Prada x SZ Magazine",
     "line2": "",
-    "src": "MLS_018.jpg",
+    "src": "/carousel/MLS_018.jpg",
     "line3": "Prada Signals",
     "order": 18,
     "width": 1728,
@@ -102,7 +102,7 @@
   {
     "line1": "UV Horse",
     "line2": "",
-    "src": "MLS_019.jpg",
+    "src": "/carousel/MLS_019.jpg",
     "line3": "The Solar Project",
     "order": 19,
     "width": 2000,
@@ -112,7 +112,7 @@
   {
     "line1": "Dropbox x It's Nice That",
     "line2": "",
-    "src": "MLS_002.jpg",
+    "src": "/carousel/MLS_002.jpg",
     "line3": "Cyclists",
     "order": 2,
     "width": 2000,
@@ -122,7 +122,7 @@
   {
     "line1": "Chanel",
     "line2": "",
-    "src": "MLS_003.jpg",
+    "src": "/carousel/MLS_003.jpg",
     "line3": "Brush",
     "order": 3,
     "width": 1875,
@@ -132,7 +132,7 @@
   {
     "line1": "SZ Magazine",
     "line2": "",
-    "src": "MLS_004.jpg",
+    "src": "/carousel/MLS_004.jpg",
     "line3": "Fashion Snowman",
     "order": 4,
     "width": 2100,
@@ -142,7 +142,7 @@
   {
     "line1": "ZEIT Crime Magazine",
     "line2": "",
-    "src": "MLS_005.jpg",
+    "src": "/carousel/MLS_005.jpg",
     "line3": "Spring Feelings",
     "order": 5,
     "width": 2500,
@@ -152,7 +152,7 @@
   {
     "line1": "M Le Magazine du Monde",
     "line2": "",
-    "src": "MLS_006.jpg",
+    "src": "/carousel/MLS_006.jpg",
     "line3": "Security Check",
     "order": 6,
     "width": 1193,
@@ -162,7 +162,7 @@
   {
     "line1": "The New Yorker",
     "line2": "",
-    "src": "MLS_007.jpg",
+    "src": "/carousel/MLS_007.jpg",
     "line3": "Fiction Cover",
     "order": 7,
     "width": 3050,
@@ -172,7 +172,7 @@
   {
     "line1": "Bibi Van Der Velden",
     "line2": "",
-    "src": "MLS_008.jpg",
+    "src": "/carousel/MLS_008.jpg",
     "line3": "Smoke Diamond Chandelier",
     "order": 8,
     "width": 3000,
@@ -182,7 +182,7 @@
   {
     "line1": "nicchi",
     "line2": "",
-    "src": "MLS_009.jpg",
+    "src": "/carousel/MLS_009.jpg",
     "line3": "Dog Lick",
     "order": 9,
     "width": 3704,

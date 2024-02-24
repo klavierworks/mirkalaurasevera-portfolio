@@ -30,15 +30,16 @@
   height: 100dvh;
   overflow-y: auto;
   background-color: black;
-  color: white;
+  color: black;
   position: fixed;
   top: 0;
   left: 0;
+  transition: background-color 0s;
+  transition-delay: 0.5s;
 
-  &.isAbout,
-  &.hasCompletedIntro {
+  &.isAbout {
     background-color: white;
-    color: black;
+    transition-delay: 0s;
   }
 }
 
