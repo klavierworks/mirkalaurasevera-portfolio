@@ -4,16 +4,17 @@ import { CSSProperties, useEffect, useMemo, useRef, useState } from "react";
 import { SlideType } from "@/pages";
 import useTargetScale from "./useTargetScale";
 import classNames from "classnames";
+import { CYPRESS } from "@/pages/cypress";
 
 type SlideProps = {
-  activeSlideIndex: number;
+  index: number;
   isActive: boolean;
   isPreviouslyActive: boolean;
   slide: SlideType;
   zIndex: number;
 }
 
-const Slide = ({ isActive, isPreviouslyActive, slide, zIndex }: SlideProps) => {
+const Slide = ({ index, isActive, isPreviouslyActive, slide, zIndex }: SlideProps) => {
   const imageRef = useRef<HTMLImageElement>(null);
   const spacerRef = useRef<HTMLDivElement>(null);
   const { line1, line2, line3, src, width, height } = slide;
@@ -38,16 +39,13 @@ const Slide = ({ isActive, isPreviouslyActive, slide, zIndex }: SlideProps) => {
     if (isLoaded || typeof window === 'undefined') {
       return;
     }
-  
 
     if (window.hasPreloaded[src]) {
       setIsLoaded(true);
       return;
     }
 
-
     window.hasPreloaded[src] = false;
-
 
     const preload = async () => {
       const image = new Image();
@@ -86,8 +84,18 @@ const Slide = ({ isActive, isPreviouslyActive, slide, zIndex }: SlideProps) => {
     '--z-index': zIndex,
   } as CSSProperties
 
+  const cyAttribute = useMemo(() => {
+    if (isActive) {
+      return CYPRESS.SLIDE_ACTIVE;
+    }
+    if (isPreviouslyActive) {
+      return CYPRESS.SLIDE_PREV;
+    }
+    return CYPRESS.SLIDE;
+  }, [isActive, isPreviouslyActive]);
+
   return (
-    <li className={slideClassNames} style={style}>
+    <li className={slideClassNames} data-cy={cyAttribute} data-cy-index={index} style={style}>
       {/* eslint-disable-next-line jsx-a11y/alt-text */}
       {isLoaded && <img className={styles.image} ref={imageRef} {...imageProps} />}
       <div className={styles.imageSpacer} ref={spacerRef} />

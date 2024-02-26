@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import Preloader from "@/components/Preloader/Preloader";
 import classNames from "classnames";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { CYPRESS } from "./cypress";
 
 export type SlideType = {
   order: number;
@@ -18,24 +19,34 @@ export type SlideType = {
 }
 
 export default function Home({ slides }: { slides: SlideType[] }) {
-  const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  
-  const previousSlideIndex = searchParams.get('previousSlideIndex');
-  const initialSlide = Number(pathname.replace('/', ''));
-  const [activeSlideIndex, setActiveSlideIndex] = useState(Number.isInteger(initialSlide) ? initialSlide : 0);
-  const isAboutVisible = pathname === '/about';
 
+  const preservedActiveSlideIndex = Number(searchParams.get('activeSlideIndex'));
+  const initialSlideIndex = preservedActiveSlideIndex ?? Number(pathname.replace('/', ''));
+  const [activeSlideIndex, setActiveSlideIndex] = useState(Number.isInteger(initialSlideIndex) ? initialSlideIndex : 0);
+  useEffect(() => {
+    setActiveSlideIndex(initialSlideIndex);
+  }, [initialSlideIndex]);
+
+  const [isAboutVisible, setIsAboutVisible] = useState(pathname === '/about');
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasCompletedIntro, setHasCompletedIntro] = useState(false);
 
-  const handleToggleAbout = useCallback(() => {
-    router.push(isAboutVisible ? `/${previousSlideIndex ?? 0}` : `/about?previousSlideIndex=${activeSlideIndex}`);
-  }, [activeSlideIndex, isAboutVisible, previousSlideIndex, router]);
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    url.pathname = isAboutVisible ? `/about` : `/${activeSlideIndex ?? 0}`;
+    if (isAboutVisible) {
+      url.searchParams.set('activeSlideIndex', activeSlideIndex.toString());
+    } else {
+      url.searchParams.delete('activeSlideIndex');
+    }
+    window.history.pushState({}, '', url.href);
+  }, [activeSlideIndex, isAboutVisible]);
 
   const layoutClassNames = classNames(styles.layout, {
     [styles.isAbout]: isAboutVisible,
+    isAbout: isAboutVisible,
     [styles.isLoaded]: isLoaded,
     [styles.hasCompletedIntro]: hasCompletedIntro,
     isViewingCarousel: isLoaded && !isAboutVisible,
@@ -54,7 +65,7 @@ export default function Home({ slides }: { slides: SlideType[] }) {
   return (
     <main className={layoutClassNames}>
       <div className={styles.titleContainer}>
-        <h1 className={styles.title} onClick={handleToggleAbout}>Mirka Laura Severa</h1>
+      <h1 className={styles.title} onClick={() => setIsAboutVisible(!isAboutVisible)} data-cy={CYPRESS.PAGE_TOGGLE_LINK}>Mirka Laura Severa</h1>
       </div>
       <Preloader onPreloadComplete={setIsLoaded} slides={slides}>
         <About className={styles.info} />

@@ -4,6 +4,7 @@ import Slide from '../Slide/Slide';
 import { usePathname, useRouter } from 'next/navigation';
 import { FullGestureState, useGesture } from '@use-gesture/react';
 import { SlideType } from '@/pages';
+import { CYPRESS } from '@/pages/cypress';
 
 type CarouselProps = {
   activeSlideIndex: number;
@@ -72,10 +73,10 @@ const Carousel = ({ activeSlideIndex,  className, setActiveSlideIndex, slides }:
   return (
     <article className={`${styles.frame} ${className}`} {...bind()}>
       <h2 className={styles.heading}>Selected Work</h2>
-      <ul className={styles.carousel} onClick={handleNext}>
+      <ul className={styles.carousel} onClick={handleNext} data-cy={CYPRESS.CAROUSEL}>
         {slides.map((slide, index) => (
           <Slide
-            activeSlideIndex={activeSlideIndex}
+            index={index}
             key={slide.src}
             slide={slide}
             isActive={activeSlideIndex === index}

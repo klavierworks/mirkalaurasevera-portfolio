@@ -1,5 +1,6 @@
 import styles from './Preloader.module.css';
 import { SlideType } from "@/pages";
+import { CYPRESS } from '@/pages/cypress';
 import classNames from 'classnames';
 import { useEffect, useState } from "react";
 
@@ -36,7 +37,7 @@ const Preloader = ({ children, onPreloadComplete, slides }: PreloaderProps) => {
   return (
     <>
       {children}
-      {!hasPreloaded && <div className={styles.loading}>Loading...</div>}
+      {!hasPreloaded && <div className={styles.loading} data-cy={CYPRESS.PRELOADER}>Loading...</div>}
     </>
   );
 }

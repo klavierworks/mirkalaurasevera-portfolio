@@ -7,7 +7,8 @@
     "build": "npm run preprocess && next build",
     "start": "next start",
     "preprocess": "node -r ts-node/register pipelines/main.ts",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "cypress open"
   },
   "dependencies": {
     "@react-spring/web": "^9.7.3",
@@ -21,6 +22,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "cypress": "^13.6.6",
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
     "postcss": "^8.4.33",
