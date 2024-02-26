@@ -1,6 +1,6 @@
 import styles from './Preloader.module.css';
 import { SlideType } from "@/pages";
-import { CYPRESS } from '@/pages/cypress';
+import { CYPRESS } from '@/cypress';
 import classNames from 'classnames';
 import { useEffect, useState } from "react";
 

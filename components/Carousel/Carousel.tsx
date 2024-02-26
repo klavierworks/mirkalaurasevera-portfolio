@@ -4,7 +4,7 @@ import Slide from '../Slide/Slide';
 import { usePathname, useRouter } from 'next/navigation';
 import { FullGestureState, useGesture } from '@use-gesture/react';
 import { SlideType } from '@/pages';
-import { CYPRESS } from '@/pages/cypress';
+import { CYPRESS } from '@/cypress';
 
 type CarouselProps = {
   activeSlideIndex: number;

@@ -4,7 +4,7 @@ import { CSSProperties, useEffect, useMemo, useRef, useState } from "react";
 import { SlideType } from "@/pages";
 import useTargetScale from "./useTargetScale";
 import classNames from "classnames";
-import { CYPRESS } from "@/pages/cypress";
+import { CYPRESS } from "@/cypress";
 
 type SlideProps = {
   index: number;

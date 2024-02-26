@@ -1,4 +1,4 @@
-import { CYPRESS } from '../../pages/cypress';
+import { CYPRESS } from '../../cypress';
 import slides from '../../carousel.json';
 
 const get = (selector: string) => cy.get(`[data-cy=${selector}]`)

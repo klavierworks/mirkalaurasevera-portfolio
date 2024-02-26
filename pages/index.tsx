@@ -5,7 +5,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import Preloader from "@/components/Preloader/Preloader";
 import classNames from "classnames";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { CYPRESS } from "./cypress";
+import { CYPRESS } from "../cypress";
 
 export type SlideType = {
   order: number;
