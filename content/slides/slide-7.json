@@ -1,7 +1,7 @@
 {
-  "line1": "The New Yorker",
-  "line2": "Fiction Cover",
-  "src": "/carousel/MLS_007.jpg",
+  "order": "17",
+  "line1": "Another Magazine",
+  "line2": "Healthy Body",
   "line3": "Concept, Set Design & Photography",
-  "order": 7
+  "src": "/carousel/MLS_017.jpg"
 }
