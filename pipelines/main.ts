@@ -2,19 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const sharp = require('sharp');
 
-interface CarouselItem {
-  order: number;
-  line1: string;
-  line2: string;
-  line3?: string;
-  src: string;
-  width?: number;
-  height?: number;
-  aspectRatio?: number;
-}
-
 // Loads all JSON files from a directory and merges them into a single array.
-const loadAndMergeJsonFiles = async (directory: string): Promise<CarouselItem[]> => {
+const loadAndMergeJsonFiles = async (directory: string): Promise<Slide[]> => {
   const files: string[] = await fs.promises.readdir(directory);
   const jsonFiles = files.filter(file => file.endsWith('.json'));
   const arrays = await Promise.all(jsonFiles.map(file =>
@@ -25,18 +14,22 @@ const loadAndMergeJsonFiles = async (directory: string): Promise<CarouselItem[]>
 
 
 // Updates the JSON object with image dimensions and aspect ratio.
-const updateImageDetails = async (item: CarouselItem): Promise<CarouselItem> => {
+const updateImageDetails = async (item: Slide): Promise<Slide> => {
   const metadata = await sharp(`./public${item.src}`).metadata();
   const [line1, ...rest] = item.line1.split(',');
 
+  if (!metadata.width || !metadata.height) {
+    throw new Error(`Could not read image dimensions for ${item.src}`);
+  }
   return {
-    ...item,
+    src: item.src,
+    order: Number(item.order),
     line1,
     line2: rest.join(',').trim(),
     line3: item.line2,
     width: metadata.width,
     height: metadata.height,
-    aspectRatio: metadata.width && metadata.height ? metadata.width / metadata.height : undefined,
+    aspectRatio: metadata.width / metadata.height,
   };
 };
 
@@ -50,7 +43,7 @@ const processImagesAndCreateJson = async (directory: string, outputFilePath: str
 
 // Example usage
 const directory = './content/slides';
-const outputFilePath = './carousel.json';
+const outputFilePath = './shared/carousel.json';
 processImagesAndCreateJson(directory, outputFilePath).then(() => {
   console.log('Created carousel.json with merged content and updated image dimensions and aspect ratios.');
 }).catch(console.error);

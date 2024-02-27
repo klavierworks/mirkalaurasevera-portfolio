@@ -1,13 +1,11 @@
 import styles from './Preloader.module.css';
-import { SlideType } from "@/pages";
-import { CYPRESS } from '@/cypress';
-import classNames from 'classnames';
+import { CYPRESS } from '@/shared/cypress';
 import { useEffect, useState } from "react";
 
 type PreloaderProps = {
   children: React.ReactNode;
   onPreloadComplete?: (isLoaded: boolean) => void;
-  slides: SlideType[];
+  slides: Slide[];
 }
 
 const Preloader = ({ children, onPreloadComplete, slides }: PreloaderProps) => {

@@ -1,15 +1,13 @@
 import { MouseEvent, useCallback, useEffect, useMemo, useRef } from 'react';
 import styles from './Carousel.module.css';
-import Slide from '../Slide/Slide';
-import { usePathname, useRouter } from 'next/navigation';
+import SlideComponent from '../Slide/Slide';
 import { FullGestureState, useGesture } from '@use-gesture/react';
-import { SlideType } from '@/pages';
-import { CYPRESS } from '@/cypress';
+import { CYPRESS } from '@/shared/cypress';
 
 type CarouselProps = {
   activeSlideIndex: number;
   className: string;
-  slides: SlideType[];
+  slides: Slide[];
   setActiveSlideIndex: (index: number) => void;
 }
 
@@ -75,7 +73,7 @@ const Carousel = ({ activeSlideIndex,  className, setActiveSlideIndex, slides }:
       <h2 className={styles.heading}>Selected Work</h2>
       <ul className={styles.carousel} onClick={handleNext} data-cy={CYPRESS.CAROUSEL}>
         {slides.map((slide, index) => (
-          <Slide
+          <SlideComponent
             index={index}
             key={slide.src}
             slide={slide}

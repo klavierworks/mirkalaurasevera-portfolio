@@ -1,24 +1,13 @@
 import About from "../components/About/About";
 import Carousel from "../components/Carousel/Carousel";
 import styles from './index.module.css';
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import Preloader from "@/components/Preloader/Preloader";
 import classNames from "classnames";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { CYPRESS } from "../cypress";
+import { usePathname, useSearchParams } from "next/navigation";
+import { CYPRESS } from "../shared/cypress";
 
-export type SlideType = {
-  order: number;
-  line1: string;
-  line2: string;
-  line3: string;
-  src: string;
-  width: number;
-  height: number;
-  aspectRatio: number;
-}
-
-export default function Home({ slides }: { slides: SlideType[] }) {
+export default function Home({ slides }: { slides: Slide[] }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -76,7 +65,7 @@ export default function Home({ slides }: { slides: SlideType[] }) {
 }
 
 export async function getStaticProps() {
-  const slides = await import('../carousel.json');
+  const slides = await import('../shared/carousel.json');
   return {
     props: {
       slides: slides.default,

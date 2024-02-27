@@ -1,10 +1,10 @@
-import Index, { SlideType } from './index';
-import slides from '../carousel.json';
+import Index from './index';
+import slides from '../shared/carousel.json';
 
 export default Index;
 
 export async function getStaticProps() {
-  const slides = await import('../carousel.json');
+  const slides = await import('../shared/carousel.json');
   return {
     props: {
       slides: slides.default,
@@ -13,7 +13,7 @@ export async function getStaticProps() {
 }
 
 export async function getStaticPaths() {
-  const paths = slides.map((slide: SlideType, index: number) => ({
+  const paths = slides.map((_, index: number) => ({
     params: {
       slide: index.toString(),
     },

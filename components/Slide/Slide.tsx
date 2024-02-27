@@ -1,16 +1,15 @@
 import  { getImageProps } from "next/image"
 import styles from './Slide.module.css';
 import { CSSProperties, useEffect, useMemo, useRef, useState } from "react";
-import { SlideType } from "@/pages";
 import useTargetScale from "./useTargetScale";
 import classNames from "classnames";
-import { CYPRESS } from "@/cypress";
+import { CYPRESS } from "@/shared/cypress";
 
 type SlideProps = {
   index: number;
   isActive: boolean;
   isPreviouslyActive: boolean;
-  slide: SlideType;
+  slide: Slide;
   zIndex: number;
 }
 
