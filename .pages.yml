@@ -6,7 +6,7 @@ content:
     type: file
     format: json
     fields:
-      - { name: bio, label: Bio, type: string }
+      - { name: bio, label: Bio, type: rich-text, options: { format: html} }
       - { name: clients, label: Clients, type: string }
       - { name: exhibitions, label: Exhibitions, type: string }
       - { name: talks, label: Talks, type: string }
