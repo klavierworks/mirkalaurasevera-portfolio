@@ -1,4 +1,5 @@
 import styles from './About.module.css';
+import content from '../../content/about.json';
 
 type AboutProps = {
   className: string;
@@ -21,19 +22,19 @@ const About = ({ className }: AboutProps) => {
       <article className={styles.clients}>
         <h2 className={styles.heading}>Selected clients</h2>
         <p>
-          {`Apple, AnOther Magazine, Hermès, Lacoste, It's Nice That, Louis Vuitton, M Le Magazine du Monde, Margiela, MacGuffin Magazine, Nike, Paul Smith, Prada, The New Yorker, VICE, Vogue, WIRED, ZEIT.`}
+          {content.clients}
         </p>
       </article>
       <article className={styles.exhibitions}>
         <h2 className={styles.heading}>Selected exhibitions</h2>
         <p>
-          {`Nieuwe Instituut, Rotterdam 2022, Marséll Paradise, Milan 2022, Photo Élysée, Lausanne 2019, Black Iris, Berlin 2018, Chamber, New York 2016, Austin Center for Photography, Austin Texas 2014, pavlov's dog, Berlin 2014, Signal Gallery, New York 2013.`}
+          {content.exhibitions}
         </p>
       </article>
       <article className={styles.exhibitions}>
         <h2 className={styles.heading}>Selected Talks & Lectures</h2>
         <p>
-          {`Nicer Tuesdays, (It's Nice That, Oval Space, London), Crossroads (Lukas Feireiss, Soho House, Berlin), FF (Random Studio, Amsterdam), MD Talk (Mother, London), Capture One (Copenhagen) Jury Member ADC young Guns (ACD Club, New York)`}
+          {content.talks}
         </p>
       </article>
     </main>
