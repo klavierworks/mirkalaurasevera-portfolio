@@ -8,7 +8,7 @@ content:
     format: json
     subfolders: false
     view:
-      fields: [ order, line1 ]
+      fields: [ order, line1, line2, line3 ]
       primary: order
       sort: [ order ]
       default:
