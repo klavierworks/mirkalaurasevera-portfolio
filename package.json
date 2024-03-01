@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "npm run preprocess && next dev",
-    "build": "npm run buildadmin && npm run preprocess && next build",
+    "build": "npm run preprocess && next build",
     "buildadmin": "cd pages-cms && npm install && npm run build -- --outDir=../public/admin",
     "start": "next start",
     "preprocess": "node -r ts-node/register pipelines/main.ts",
