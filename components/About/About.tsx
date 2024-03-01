@@ -14,9 +14,9 @@ const About = ({ className }: AboutProps) => {
         <p>Her unique ability to bridge the gap between the art and commercial market has garnered recognition worldwide. In 2015, she graduated from the Gerrit Rietveld Academie (Sandberg Institute) with a Master in Applied Arts and simultaneously received the prestigious ADC Young Gun Award for her commercial practice. </p>
         <p>Currently based in Amsterdam and Paris, she is represented globally by DMB.</p>
         <p>© All images are copyrighted and owned by Mirka Laura Severa.</p>
-        <a className={styles.link} href="mailto:mls@mirkalaurasevera.com">Work Enquiries</a>
-        <a className={styles.link} href="mailto:contact@mirkalaurasevera.com">Press Enquiries</a>
-        <a className={styles.link} href="https://www.instagram.com/mirkalaurasevera">Instagram</a>
+        <a className={styles.link} target="_blank" href="mailto:mls@mirkalaurasevera.com">Work Enquiries</a>
+        <a className={styles.link} target="_blank" href="mailto:contact@mirkalaurasevera.com">Press Enquiries</a>
+        <a className={styles.link} target="_blank" href="https://www.instagram.com/mirkalaurasevera">Instagram</a>
       </article>
       <article className={styles.clients}>
         <h2 className={styles.heading}>Selected clients</h2>
