@@ -4,6 +4,7 @@ content:
     label: About
     path: content/about.json
     type: file
+    format: json
     fields:
       - { name: bio, label: Bio, type: string }
       - { name: clients, label: Clients, type: string }
