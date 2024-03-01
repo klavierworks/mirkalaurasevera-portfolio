@@ -14,7 +14,10 @@ type CarouselProps = {
 const Carousel = ({ activeSlideIndex,  className, setActiveSlideIndex, slides }: CarouselProps ) => {
   const changeSlide = useCallback((direction: number) => {
     const url = new URL(window.location.href);
-    const nextSlide = (activeSlideIndex + direction) % slides.length;
+    let nextSlide = (activeSlideIndex + direction) % slides.length;
+    if (nextSlide < 0) {
+      nextSlide = slides.length - 1;
+    }
     url.pathname = nextSlide.toString();
     setActiveSlideIndex(nextSlide);
     window.history.pushState({}, '', url.href);
