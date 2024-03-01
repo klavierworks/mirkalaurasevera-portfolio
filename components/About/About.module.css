@@ -36,6 +36,7 @@
   .link {
     margin-top: 0;
     display: block;
+    color: inherit;
   }
 }
 

@@ -10,109 +10,9 @@
     "aspectRatio": 0.7499062617172854
   },
   {
-    "src": "/carousel/MLS_010.jpg",
-    "order": 10,
-    "line1": "YSL",
-    "line2": "",
-    "line3": "Sticky Touch",
-    "width": 1622,
-    "height": 2163,
-    "aspectRatio": 0.7498844197873324
-  },
-  {
-    "src": "/carousel/MLS_011.jpg",
-    "order": 11,
-    "line1": "Wetransfer",
-    "line2": "",
-    "line3": "Sunny Side Up",
-    "width": 3162,
-    "height": 2161,
-    "aspectRatio": 1.4632114761684405
-  },
-  {
-    "src": "/carousel/MLS_012.jpg",
-    "order": 12,
-    "line1": "Splash",
-    "line2": "",
-    "line3": "",
-    "width": 2500,
-    "height": 3333,
-    "aspectRatio": 0.7500750075007501
-  },
-  {
-    "src": "/carousel/MLS_013.jpg",
-    "order": 13,
-    "line1": "Vogue",
-    "line2": "",
-    "line3": "Cartier Watch",
-    "width": 1158,
-    "height": 1500,
-    "aspectRatio": 0.772
-  },
-  {
-    "src": "/carousel/MLS_014.jpg",
-    "order": 14,
-    "line1": "Swallow",
-    "line2": "",
-    "line3": "Lightinstallation in Cave",
-    "width": 2500,
-    "height": 3062,
-    "aspectRatio": 0.8164598301763554
-  },
-  {
-    "src": "/carousel/MLS_015.jpg",
-    "order": 15,
-    "line1": "Dior",
-    "line2": "",
-    "line3": "The Worm",
-    "width": 1272,
-    "height": 1696,
-    "aspectRatio": 0.75
-  },
-  {
-    "src": "/carousel/MLS_016.jpg",
-    "order": 16,
-    "line1": "Dropbox x It's Nice That",
-    "line2": "",
-    "line3": "Cyclists",
-    "width": 2165,
-    "height": 2952,
-    "aspectRatio": 0.7334010840108401
-  },
-  {
-    "src": "/carousel/MLS_017.jpg",
-    "order": 17,
-    "line1": "Another Magazine",
-    "line2": "",
-    "line3": "Healthy Body",
-    "width": 2500,
-    "height": 3125,
-    "aspectRatio": 0.8
-  },
-  {
-    "src": "/carousel/MLS_018.jpg",
-    "order": 18,
-    "line1": "Prada x SZ Magazine",
-    "line2": "",
-    "line3": "Prada Signals",
-    "width": 1728,
-    "height": 2160,
-    "aspectRatio": 0.8
-  },
-  {
-    "src": "/carousel/MLS_019.jpg",
-    "order": 19,
-    "line1": "UV Horse",
-    "line2": "",
-    "line3": "The Solar Project",
-    "width": 2000,
-    "height": 1537,
-    "aspectRatio": 1.3012361743656473
-  },
-  {
     "src": "/carousel/MLS_002.jpg",
     "order": 2,
-    "line1": "Dropbox x It's Nice That",
+    "line1": "Dropbox X It's Nice That",
     "line2": "",
     "line3": "Cyclists",
     "width": 2000,
@@ -122,9 +22,9 @@
   {
     "src": "/carousel/MLS_003.jpg",
     "order": 3,
-    "line1": "Chanel",
+    "line1": "CHANEL",
     "line2": "",
-    "line3": "Brush",
+    "line3": "Brush on Brush",
     "width": 1875,
     "height": 2500,
     "aspectRatio": 0.75
@@ -162,9 +62,9 @@
   {
     "src": "/carousel/MLS_007.jpg",
     "order": 7,
-    "line1": "The New Yorker",
+    "line1": "The New Yorker Magazine",
     "line2": "",
-    "line3": "Fiction Cover",
+    "line3": "Fiction Cover, Claire Sestanovic",
     "width": 3050,
     "height": 4000,
     "aspectRatio": 0.7625
@@ -172,9 +72,9 @@
   {
     "src": "/carousel/MLS_008.jpg",
     "order": 8,
-    "line1": "Bibi Van Der Velden",
+    "line1": "Bibi van der Velden ",
     "line2": "",
-    "line3": "Smoke Diamond Chandelier",
+    "line3": "Smoke Collection",
     "width": 3000,
     "height": 4000,
     "aspectRatio": 0.75
@@ -188,5 +88,135 @@
     "width": 3704,
     "height": 4801,
     "aspectRatio": 0.7715059362632785
+  },
+  {
+    "src": "/carousel/MLS_010.jpg",
+    "order": 10,
+    "line1": "YSL",
+    "line2": "",
+    "line3": "Sticky Touch",
+    "width": 1622,
+    "height": 2163,
+    "aspectRatio": 0.7498844197873324
+  },
+  {
+    "src": "/carousel/MLS_011.jpg",
+    "order": 11,
+    "line1": "WePresent",
+    "line2": "",
+    "line3": "The Solar Project",
+    "width": 3162,
+    "height": 2161,
+    "aspectRatio": 1.4632114761684405
+  },
+  {
+    "src": "/carousel/MLS_012.jpg",
+    "order": 12,
+    "line1": "Personal",
+    "line2": "",
+    "line3": "Splash",
+    "width": 2500,
+    "height": 3333,
+    "aspectRatio": 0.7500750075007501
+  },
+  {
+    "src": "/carousel/Fashion Snowman_MLS.jpg",
+    "order": 20,
+    "line1": "SZ Magazine",
+    "line2": "",
+    "line3": "Fashion Snowman",
+    "width": 1800,
+    "height": 1324,
+    "aspectRatio": 1.3595166163141994
+  },
+  {
+    "src": "/carousel/BottleMold_MacGuffin_MLS_007.jpg",
+    "order": 20,
+    "line1": "MacGuffin Magazine",
+    "line2": "",
+    "line3": "The Bottle",
+    "width": 2621,
+    "height": 3467,
+    "aspectRatio": 0.7559850014421691
+  },
+  {
+    "src": "/carousel/MLS_019.jpg",
+    "order": 21,
+    "line1": "Personal",
+    "line2": "",
+    "line3": "UV Horse",
+    "width": 2000,
+    "height": 1537,
+    "aspectRatio": 1.3012361743656473
+  },
+  {
+    "src": "/carousel/MLS_013.jpg",
+    "order": 13,
+    "line1": "Vogue Magazine",
+    "line2": "",
+    "line3": "Cartier",
+    "width": 1158,
+    "height": 1500,
+    "aspectRatio": 0.772
+  },
+  {
+    "src": "/carousel/MLS_014.jpg",
+    "order": 14,
+    "line1": "Personal",
+    "line2": "",
+    "line3": "Swallow, Lightinstallation Ocean Cave",
+    "width": 2500,
+    "height": 3062,
+    "aspectRatio": 0.8164598301763554
+  },
+  {
+    "src": "/carousel/MLS_015.jpg",
+    "order": 15,
+    "line1": "DIOR",
+    "line2": "",
+    "line3": "Worm",
+    "width": 1272,
+    "height": 1696,
+    "aspectRatio": 0.75
+  },
+  {
+    "src": "/carousel/MLS_016.jpg",
+    "order": 16,
+    "line1": "Dropbox X It's Nice That",
+    "line2": "",
+    "line3": "Cyclists",
+    "width": 2165,
+    "height": 2952,
+    "aspectRatio": 0.7334010840108401
+  },
+  {
+    "src": "/carousel/MLS_017.jpg",
+    "order": 17,
+    "line1": "Another Magazine",
+    "line2": "",
+    "line3": "Healthy Body",
+    "width": 2500,
+    "height": 3125,
+    "aspectRatio": 0.8
+  },
+  {
+    "src": "/carousel/MLS_018.jpg",
+    "order": 18,
+    "line1": "PRADA",
+    "line2": "",
+    "line3": "Bag Receiver",
+    "width": 1728,
+    "height": 2160,
+    "aspectRatio": 0.8
+  },
+  {
+    "src": "/carousel/Unit_MirkaLauraSevera_(JAG Zoeppritz:Blankets:01).jpg",
+    "order": 19,
+    "line1": "Zoeppritz",
+    "line2": "Homewear",
+    "line3": "Blankets",
+    "width": 1286,
+    "height": 1800,
+    "aspectRatio": 0.7144444444444444
   }
 ]
