@@ -10,10 +10,10 @@ import { CYPRESS } from "../shared/cypress";
 export default function Home({ slides }: { slides: Slide[] }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-
-  const preservedActiveSlideIndex = Number(searchParams.get('activeSlideIndex'));
+  const preservedActiveSlideIndex = searchParams.get('activeSlideIndex') ? Number(searchParams.get('activeSlideIndex')) : undefined;
   const initialSlideIndex = preservedActiveSlideIndex ?? Number(pathname.replace('/', ''));
   const [activeSlideIndex, setActiveSlideIndex] = useState(Number.isInteger(initialSlideIndex) ? initialSlideIndex : 0);
+
   useEffect(() => {
     setActiveSlideIndex(initialSlideIndex);
   }, [initialSlideIndex]);
