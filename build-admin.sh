@@ -15,5 +15,6 @@ grep -rl "export async function" "api" | while IFS= read -r file; do
     sed -i '' 's/export async function/export default async function/g' "$file"
     sed -i '' 's/onRequest(context)/GET(request)/g' "$file"
     sed -i '' 's/env./process.env./g' "$file"
+    sed -i '' 's/context.request/request/g' "$file"
     sed -i '' -e '/const {[^}]*} = context;/d' "$file"
 done
