@@ -17,4 +17,5 @@ grep -rl "export async function" "api" | while IFS= read -r file; do
     sed -i '' 's/env./process.env./g' "$file"
     sed -i '' 's/context.request/request/g' "$file"
     sed -i '' -e '/const {[^}]*} = context;/d' "$file"
+    sed -i '' 's/new URL(request.url).origin/process.env.VERCEL_URL/g' "$file"
 done
