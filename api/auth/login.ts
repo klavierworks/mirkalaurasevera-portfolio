@@ -1,4 +1,5 @@
-export default async function GET(request) {
+export default async function GET(request: Request) {
+  return Response.redirect(`${request.url}/test`, 302);
   console.log(request.url)
   console.log(new URL(request.url))
   const redirect_uri = `${new URL(request.url).origin}/auth/callback`;
