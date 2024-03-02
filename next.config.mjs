@@ -3,8 +3,8 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/admin',
-        destination: 'https://app.pagescms.org/Runeii/mirkalaurasevera-portfolio/main/',
+        source: '/auth*',
+        destination: '/api/auth*',
         permanent: false,
       },
     ]
