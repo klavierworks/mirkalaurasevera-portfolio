@@ -1,4 +1,4 @@
-export async function onRequest(context) {
+export default async function onRequest(context) {
   const { env } = context;
   const redirect_uri = `${new URL(context.request.url).origin}/auth/callback`;
 

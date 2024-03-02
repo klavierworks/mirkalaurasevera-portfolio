@@ -1,4 +1,4 @@
-export async function onRequest(context) {
+export default async function onRequest(context) {
   const { request, env } = context;
   const url = new URL(request.url);
   const token = url.searchParams.get('token');
