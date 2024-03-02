@@ -1,4 +1,4 @@
-export default async function GET(request: Request) {
+export default async function GET(request) {
   return Response.redirect(`${request.url}/test`, 302);
   console.log(request.url)
   console.log(new URL(request.url))
