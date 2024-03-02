@@ -1,5 +1,4 @@
-export default async function onRequest(context) {
-  const { request, env } = context;
+export default async function GET(request) {
   const url = new URL(request.url);
   const token = url.searchParams.get('token');
 
@@ -7,10 +6,10 @@ export default async function onRequest(context) {
     return new Response('Token parameter is required', { status: 400 });
   }
 
-  const response = await fetch(`https://api.github.com/applications/${env.GITHUB_CLIENT_ID}/grant`, {
+  const response = await fetch(`https://api.github.com/applications/${process.env.GITHUB_CLIENT_ID}/grant`, {
     method: 'DELETE',
     headers: {
-      'Authorization': `Basic ${btoa(`${env.GITHUB_CLIENT_ID}:${env.GITHUB_CLIENT_SECRET}`)}`,
+      'Authorization': `Basic ${btoa(`${process.env.GITHUB_CLIENT_ID}:${process.env.GITHUB_CLIENT_SECRET}`)}`,
       'Content-Type': 'application/json',
       'Accept': 'application/vnd.github.v3+json',
       'User-Agent': 'Pages CMS'
