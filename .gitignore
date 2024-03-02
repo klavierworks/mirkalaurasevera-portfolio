@@ -37,4 +37,4 @@ next-env.d.ts
 dist
 
 carousel.json
-public/admin
+pages-cms
