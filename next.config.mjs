@@ -3,8 +3,8 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/auth*',
-        destination: '/api/auth*',
+        source: '/auth/:path*',
+        destination: '/api/auth/:path*',
         permanent: false,
       },
     ]
