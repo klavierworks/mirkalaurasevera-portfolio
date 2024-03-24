@@ -30,4 +30,4 @@ content:
       - { name: line2, label: Second Line, type: string }
       - { name: line3, label: Third Line, type: string }
       - { name: src, label: Image, type: image, list: false, options: { input: public/carousel, output: /carousel, extensions: jpg, jpeg, png }, description: "If a video is provided, this will be used as a fallback" }
-      - { name: videoId, label: Video, type: string, list: false, description: "This should be a HLS (m3u8) URL from Vimeo" }
+      - { name: videoId, label: Video, type: string, list: false, description: "This should be the video ID from Vimeo" }
