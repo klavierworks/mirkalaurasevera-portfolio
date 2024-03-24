@@ -4,6 +4,8 @@ import { CSSProperties, useEffect, useMemo, useRef, useState } from "react";
 import useTargetScale from "./useTargetScale";
 import classNames from "classnames";
 import { CYPRESS } from "@/shared/cypress";
+import ImageSlide from "./ImageSlide/ImageSlide";
+import VideoSlide from "./VideoSlide/VideoSlide";
 
 type SlideProps = {
   index: number;
@@ -18,53 +20,7 @@ const Slide = ({ index, isActive, isPreviouslyActive, slide, zIndex }: SlideProp
   const spacerRef = useRef<HTMLDivElement>(null);
   const { line1, line2, line3, src, width, height } = slide;
 
-  const imageProps = useMemo(() => {
-    const { props } = getImageProps({
-      src,
-      width,
-      height,
-      alt: line1,
-      quality: 90,
-      sizes: '100vw',
-      loading: 'eager',
-    })
-  
-    return props
-  }, [line1, src, width, height])
-
   const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    if (isLoaded || typeof window === 'undefined') {
-      return;
-    }
-
-    if (window.hasPreloaded[src]) {
-      setIsLoaded(true);
-      return;
-    }
-
-    window.hasPreloaded[src] = false;
-
-    const preload = async () => {
-      const image = new Image();
-      image.src = imageProps.src;
-      image.srcset = imageProps.srcSet as string;
-      image.sizes = imageProps.sizes as string;
-      image.decoding = 'async';
-      try {
-        await image.decode();
-      } catch (e) {
-        console.error(e);
-      }
-
-      window.hasPreloaded[src] = true;
-      setIsLoaded(true);
-    } 
-  
-    preload();
-  }, [imageProps, isLoaded, src]);
-
 
   const targetScale = useTargetScale({
     startSizeRef: imageRef,
@@ -95,8 +51,24 @@ const Slide = ({ index, isActive, isPreviouslyActive, slide, zIndex }: SlideProp
 
   return (
     <li className={slideClassNames} data-cy={cyAttribute} data-cy-index={index} style={style}>
-      {/* eslint-disable-next-line jsx-a11y/alt-text */}
-      {isLoaded && <img className={styles.image} ref={imageRef} {...imageProps} />}
+      {slide.video ? (
+        <VideoSlide
+          className={styles.media}
+          isActive={isActive}
+          isLoaded={isLoaded}
+          setIsLoaded={setIsLoaded}
+          slide={slide}
+          ref={imageRef}
+          />
+      ) : (
+        <ImageSlide
+          className={styles.media}
+          isLoaded={isLoaded}
+          setIsLoaded={setIsLoaded}
+          slide={slide}
+          ref={imageRef}
+        />
+      )}
       <div className={styles.imageSpacer} ref={spacerRef} />
       <div className={styles.title}>
         <p className={styles.content}>

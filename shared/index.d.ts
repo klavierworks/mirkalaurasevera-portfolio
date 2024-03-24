@@ -8,6 +8,7 @@ declare global {
     line2: string;
     line3: string;
     src: string;
+    videoId?: string;
   }
 
 
@@ -15,6 +16,17 @@ declare global {
     width: number;
     height: number;
     aspectRatio: number;
+    video?: {
+      url: string;
+      width: number;
+      height: number;
+      mp4Url: string;
+      fallback?: {
+        width: number;
+        height: number;
+        link: string;
+      };
+    };
   }
 }
 

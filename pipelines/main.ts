@@ -1,3 +1,4 @@
+require('dotenv').config()
 const fs = require('fs');
 const path = require('path');
 const sharp = require('sharp');
@@ -12,17 +13,58 @@ const loadAndMergeJsonFiles = async (directory: string): Promise<Slide[]> => {
   return arrays.flat();
 };
 
+// Fetch data from Vimeo API by video ID using Vimeo JS SDK
+const getVimeoVideoInfo = async (videoId?: string): Promise<VimeoVideoDetails | null> => {
+  if (!videoId) {
+    return null;
+  }
+
+  const url = `https://api.vimeo.com/videos/${videoId}`;
+
+  try {
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${process.env.VIMEO_ACCESS_TOKEN}`,
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    }
+
+    const data: VimeoVideoDetails = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching Vimeo video info:', error);
+    throw error;
+  }
+}
+
 
 // Updates the JSON object with image dimensions and aspect ratio.
-const updateImageDetails = async (item: Slide): Promise<Slide> => {
+const updateImageDetails = async (item: UnprocessedSlide): Promise<Slide> => {
   const metadata = await sharp(`./public${item.src}`).metadata();
   const [line1, ...rest] = item.line1.split(',');
 
   if (!metadata.width || !metadata.height) {
     throw new Error(`Could not read image dimensions for ${item.src}`);
   }
+
+  const videoInfo = await getVimeoVideoInfo(item.videoId);
+
+  const video = videoInfo ? {
+    url: videoInfo.play?.hls?.link,
+    width: videoInfo.width,
+    height: videoInfo.height,
+    fallback: videoInfo.pictures?.sizes?.reverse?.()?.[0],
+    mp4Url: videoInfo.play?.progressive?.[0]?.link,
+  } : undefined;
+
   return {
     src: item.src,
+    video,
     order: Number(item.order),
     line1,
     line2: rest.join(',').trim(),
