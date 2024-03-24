@@ -30,3 +30,4 @@ content:
       - { name: line2, label: Second Line, type: string }
       - { name: line3, label: Third Line, type: string }
       - { name: src, label: Image, type: image, list: false, options: { input: public/carousel, output: /carousel, extensions: jpg, jpeg, png } }
+      - { name: video, label: Video, type: string, list: false, description: "This should be a HLS (msu8) URL from Vimeo" }
