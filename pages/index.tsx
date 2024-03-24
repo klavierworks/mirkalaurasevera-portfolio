@@ -38,7 +38,7 @@ export default function Home({ slides }: { slides: Slide[] }) {
     isAbout: isAboutVisible,
     [styles.isLoaded]: isLoaded,
     [styles.hasCompletedIntro]: hasCompletedIntro,
-    isViewingCarousel: isLoaded && !isAboutVisible,
+    isViewingCarousel: isLoaded,
   });
 
   useEffect(() => {
@@ -58,7 +58,7 @@ export default function Home({ slides }: { slides: Slide[] }) {
       </div>
       <Preloader onPreloadComplete={setIsLoaded} slides={slides}>
         <About className={styles.info} />
-        <Carousel activeSlideIndex={activeSlideIndex} className={styles.carousel} setActiveSlideIndex={setActiveSlideIndex} slides={slides} />
+        <Carousel activeSlideIndex={activeSlideIndex} className={styles.carousel} isTransitioning={isAboutVisible} setActiveSlideIndex={setActiveSlideIndex} slides={slides} />
       </Preloader>
     </main>
   );

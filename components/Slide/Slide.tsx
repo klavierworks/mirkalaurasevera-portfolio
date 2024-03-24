@@ -4,6 +4,7 @@ import { CSSProperties, useEffect, useMemo, useRef, useState } from "react";
 import useTargetScale from "./useTargetScale";
 import classNames from "classnames";
 import { CYPRESS } from "@/shared/cypress";
+import PhysicsWrapper from "../PhysicsWrapper/PhysicsWrapper";
 
 type SlideProps = {
   index: number;
@@ -13,7 +14,8 @@ type SlideProps = {
   zIndex: number;
 }
 
-const Slide = ({ index, isActive, isPreviouslyActive, slide, zIndex }: SlideProps) => {
+const Slide = ({ index, isActive, isPreviouslyActive, isTransitioning, slide, zIndex }: SlideProps) => {
+  const containerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
   const spacerRef = useRef<HTMLDivElement>(null);
   const { line1, line2, line3, src, width, height } = slide;
@@ -94,18 +96,22 @@ const Slide = ({ index, isActive, isPreviouslyActive, slide, zIndex }: SlideProp
   }, [isActive, isPreviouslyActive]);
 
   return (
-    <li className={slideClassNames} data-cy={cyAttribute} data-cy-index={index} style={style}>
-      {/* eslint-disable-next-line jsx-a11y/alt-text */}
-      {isLoaded && <img className={styles.image} ref={imageRef} {...imageProps} />}
-      <div className={styles.imageSpacer} ref={spacerRef} />
-      <div className={styles.title}>
-        <p className={styles.content}>
-          {line1 && <>{line1}<br /></>}
-          {line2 && <>{line2}<br /></>}
-          {line3 && <span className={styles.italics}>{line3}</span>}
-        </p>
-      </div>
-    </li>
+    <PhysicsWrapper isActive={isActive || isPreviouslyActive} isSmall={isActive} isTransitioning={isTransitioning} targetRef={containerRef}>
+      <li className={slideClassNames} data-cy={cyAttribute} data-cy-index={index} ref={containerRef} style={style}>
+        <div className={styles.container}>          
+          {/* eslint-disable-next-line jsx-a11y/alt-text */}
+          {isLoaded && <img className={styles.image} ref={imageRef} {...imageProps} />}
+          <div className={styles.imageSpacer} ref={spacerRef} />
+          <div className={styles.title}>
+            <p className={styles.content}>
+              {line1 && <>{line1}<br /></>}
+              {line2 && <>{line2}<br /></>}
+              {line3 && <span className={styles.italics}>{line3}</span>}
+            </p>
+          </div>
+        </div>
+      </li>
+    </PhysicsWrapper>
   );
 }
 

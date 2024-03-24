@@ -7,11 +7,12 @@ import { CYPRESS } from '@/shared/cypress';
 type CarouselProps = {
   activeSlideIndex: number;
   className: string;
+  isTransitioning: boolean;
   slides: Slide[];
   setActiveSlideIndex: (index: number) => void;
 }
 
-const Carousel = ({ activeSlideIndex,  className, setActiveSlideIndex, slides }: CarouselProps ) => {
+const Carousel = ({ activeSlideIndex,  className, isTransitioning, setActiveSlideIndex, slides }: CarouselProps ) => {
   const changeSlide = useCallback((direction: number) => {
     const url = new URL(window.location.href);
     let nextSlide = (activeSlideIndex + direction) % slides.length;
@@ -87,6 +88,7 @@ const Carousel = ({ activeSlideIndex,  className, setActiveSlideIndex, slides }:
               || activeSlideIndex === 0 && index === totalSlides - 2
               || activeSlideIndex === 0 && index === totalSlides - 1
               || activeSlideIndex === 1 && index === totalSlides - 1}
+            isTransitioning={isTransitioning}
             zIndex={activeSlideIndex < 4 && index < 4 ? index + totalSlides : index}
           />
         ))}
