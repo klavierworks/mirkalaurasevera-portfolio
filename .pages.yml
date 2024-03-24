@@ -29,5 +29,5 @@ content:
       - { name: line1, label: First Line, type: string }
       - { name: line2, label: Second Line, type: string }
       - { name: line3, label: Third Line, type: string }
-      - { name: src, label: Image, type: image, list: false, options: { input: public/carousel, output: /carousel, extensions: jpg, jpeg, png }, description: "If a video is provided, this will be used as a fallback" }
+      - { name: src, label: Image, type: image, list: false, options: { input: public/carousel, output: /carousel, extensions: jpg, jpeg, png }, description: "If a video is provided, this is still required as a fallback" }
       - { name: videoId, label: Video, type: string, list: false, description: "This should be the video ID from Vimeo" }
