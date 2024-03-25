@@ -1,6 +1,7 @@
 import { ForwardedRef, forwardRef, useEffect, useRef, useState } from "react";
 import ImageSlide from "../ImageSlide/ImageSlide";
 import styles from './VideoSlide.module.css';
+import Hls from "hls.js";
 
 type VideoSlideProps = {
   className: string;
@@ -13,6 +14,28 @@ type VideoSlideProps = {
 const VideoSlide = forwardRef(({ className,isActive, isLoaded, setIsLoaded, slide }: VideoSlideProps, ref: ForwardedRef<HTMLImageElement>) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hasStartedPlaying, setHasStartedPlaying] = useState(false);
+
+  useEffect(() => {
+    let video = videoRef.current;
+    let src = slide.video?.url;
+    if (!video || !src) {
+      return;
+    }
+    if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = src;
+      return;
+    }
+    if (typeof window === 'undefined' ) {
+      return;
+    }
+    if (Hls.isSupported()) {
+      var hls = new Hls();
+      hls.loadSource(src);
+      hls.attachMedia(video);
+      return;
+    }
+    video.src = slide.video?.mp4Url ?? '';
+  }, [slide.video?.mp4Url, slide.video?.url]);
 
   useEffect(() => {
     if (!videoRef.current) {
@@ -59,10 +82,7 @@ const VideoSlide = forwardRef(({ className,isActive, isLoaded, setIsLoaded, slid
         ref={videoRef}
         onClick={handleClick}
         onPlay={handlePlay}
-      >
-        <source src={slide.video?.url} type="application/x-mpegURL" />
-        <source src={slide.video?.mp4Url} type="video/mp4" />
-      </video>
+      />
       <ImageSlide
         className={styles.fallback}
         slide={slide}
