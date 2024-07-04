@@ -49,7 +49,7 @@ const VideoSlide = forwardRef(({ className,isActive, isLoaded, setIsLoaded, slid
     }
   }, [isActive]);
 
-	const handlePlay = () => {
+	const handleProgress = () => {
 		setHasStartedPlaying(true);
 	};
 
@@ -81,7 +81,7 @@ const VideoSlide = forwardRef(({ className,isActive, isLoaded, setIsLoaded, slid
         playsInline
         ref={videoRef}
         onClick={handleClick}
-        onPlay={handlePlay}
+        onProgress={handleProgress}
       />
       <ImageSlide
         className={styles.fallback}
