@@ -6,6 +6,8 @@ import Preloader from "@/components/Preloader/Preloader";
 import classNames from "classnames";
 import { usePathname, useSearchParams } from "next/navigation";
 import { CYPRESS } from "../shared/cypress";
+import Title from "../components/Title/Title";
+import Projects from "../components/Projects/Projects";
 
 export default function Home({ slides }: { slides: Slide[] }) {
   const pathname = usePathname();
@@ -18,27 +20,18 @@ export default function Home({ slides }: { slides: Slide[] }) {
     setActiveSlideIndex(initialSlideIndex);
   }, [initialSlideIndex]);
 
-  const [isAboutVisible, setIsAboutVisible] = useState(pathname === '/about');
+  const isHome = pathname === '/';
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasCompletedIntro, setHasCompletedIntro] = useState(false);
 
-  useEffect(() => {
-    const url = new URL(window.location.href);
-    url.pathname = isAboutVisible ? `/about` : `/${activeSlideIndex ?? 0}`;
-    if (isAboutVisible) {
-      url.searchParams.set('activeSlideIndex', activeSlideIndex.toString());
-    } else {
-      url.searchParams.delete('activeSlideIndex');
-    }
-    window.history.pushState({}, '', url.href);
-  }, [activeSlideIndex, isAboutVisible]);
+  const isViewingCarousel = isLoaded && isHome;
 
   const layoutClassNames = classNames(styles.layout, {
-    [styles.isAbout]: isAboutVisible,
-    isAbout: isAboutVisible,
+    [styles.isNotHome]: !isHome,
+    isNotHome: !isHome,
     [styles.isLoaded]: isLoaded,
     [styles.hasCompletedIntro]: hasCompletedIntro,
-    isViewingCarousel: isLoaded && !isAboutVisible,
+    isViewingCarousel,
   });
 
   useEffect(() => {
@@ -53,10 +46,9 @@ export default function Home({ slides }: { slides: Slide[] }) {
 
   return (
     <main className={layoutClassNames}>
-      <div className={styles.titleContainer}>
-      <h1 className={styles.title} onClick={() => setIsAboutVisible(!isAboutVisible)} data-cy={CYPRESS.PAGE_TOGGLE_LINK}>Mirka Laura Severa</h1>
-      </div>
+      <Title />
       <Preloader onPreloadComplete={setIsLoaded} slides={slides}>
+        {!isHome && !isViewingCarousel && <Projects projects={slides} />}
         <About className={styles.info} />
         <Carousel activeSlideIndex={activeSlideIndex} className={styles.carousel} setActiveSlideIndex={setActiveSlideIndex} slides={slides} />
       </Preloader>

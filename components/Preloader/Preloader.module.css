@@ -7,7 +7,7 @@
   text-align: center;
   color: white;
 
-  :global(.isAbout) & {
+  :global(.isGalleryVisible) & {
     color: black;
   }
 }

@@ -6,6 +6,32 @@
     display: none;
   }
 }
+@font-face {
+  font-family: "ABC Oracle";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/ABCOracle/ABCOracle-Regular.woff2");
+}
+
+body,
+h1,
+h2,
+p,
+ul,
+li {
+  font-size: 14px;
+  line-height: 16px;
+  font-family: "ABC Oracle", sans-serif;
+  font-weight: 400;
+  font-smooth: always;
+  -webkit-font-smoothing: antialiased;
+
+  @media (min-width: 720px) {
+    font-size: 18px;
+    line-height: 21px;
+  }
+}
+
 body {
   background-color: white;
   padding: 0;

@@ -6,7 +6,12 @@ content:
     type: file
     format: json
     fields:
-      - { name: bio, label: Bio, type: rich-text, options: { format: html, image: false } }
+      - {
+          name: bio,
+          label: Bio,
+          type: rich-text,
+          options: { format: html, image: false },
+        }
       - { name: clients, label: Clients, type: string }
       - { name: exhibitions, label: Exhibitions, type: string }
       - { name: talks, label: Talks, type: string }
@@ -18,9 +23,9 @@ content:
     format: json
     subfolders: false
     view:
-      fields: [ order, line1, line2, line3 ]
+      fields: [order, line1, line2, line3]
       primary: order
-      sort: [ order ]
+      sort: [order]
       default:
         sort: order
         order: asc
@@ -29,5 +34,56 @@ content:
       - { name: line1, label: First Line, type: string }
       - { name: line2, label: Second Line, type: string }
       - { name: line3, label: Third Line, type: string }
-      - { name: src, label: Image, type: image, list: false, options: { input: public/carousel, output: /carousel, extensions: jpg, jpeg, png }, description: "If a video is provided, this is still required as a fallback" }
-      - { name: videoId, label: Video, type: string, list: false, description: "This should be the video ID from Vimeo" }
+      - {
+          name: src,
+          label: Image,
+          type: image,
+          list: false,
+          options:
+            {
+              input: public/carousel,
+              output: /carousel,
+              extensions: jpg,
+              jpeg,
+              png,
+            },
+          description: "If a video is provided, this is still required as a fallback",
+        }
+      - {
+          name: videoId,
+          label: Video,
+          type: string,
+          list: false,
+          description: "This should be the video ID from Vimeo",
+        }
+  - name: projects
+    label: Projects
+    type: collection
+    path: content/projects
+    filename: project-{primary}.json
+    format: json
+    subfolders: false
+    view:
+      fields: [order, title, src]
+      primary: order
+      sort: [order]
+      default:
+        sort: order
+        order: asc
+    fields:
+      - { name: order, label: Order, type: number }
+      - { name: title, label: Title, type: string }
+      - {
+          name: src,
+          label: Image,
+          type: image,
+          list: false,
+          options:
+            {
+              input: public/projects,
+              output: /projects,
+              extensions: jpg,
+              jpeg,
+              png,
+            },
+        }
