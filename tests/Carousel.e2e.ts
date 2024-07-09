@@ -1,5 +1,5 @@
-import { CYPRESS } from '../../shared/cypress';
-import slides from '../../shared/carousel.json';
+import { CYPRESS } from '../shared/cypress';
+import slides from '../shared/carousel.json';
 
 const get = (selector: string) => cy.get(`[data-cy=${selector}]`)
 

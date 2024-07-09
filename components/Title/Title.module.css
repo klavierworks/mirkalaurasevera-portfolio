@@ -8,6 +8,7 @@
   width: 100%;
   text-align: center;
   display: grid;
+
   justify-content: center;
   grid-template-rows: 2fr max-content max-content 1fr;
 
@@ -36,4 +37,7 @@
 
 .menu {
   grid-row: 3 / 4;
+  display: flex;
+  justify-content: center;
+  column-gap: 8px;
 }
