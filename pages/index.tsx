@@ -9,7 +9,12 @@ import { CYPRESS } from "../shared/cypress";
 import Title from "../components/Title/Title";
 import Projects from "../components/Projects/Projects";
 
-export default function Home({ slides }: { slides: Slide[] }) {
+type HomeProps = {
+  slides: Slide[];
+  projects: Project[];
+}
+
+export default function Home({ slides, projects }: HomeProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const preservedActiveSlideIndex = searchParams.get('activeSlideIndex') ? Number(searchParams.get('activeSlideIndex')) : undefined;
@@ -48,7 +53,7 @@ export default function Home({ slides }: { slides: Slide[] }) {
     <main className={layoutClassNames}>
       <Title />
       <Preloader onPreloadComplete={setIsLoaded} slides={slides}>
-        {!isHome && !isViewingCarousel && <Projects projects={slides} />}
+        {!isHome && !isViewingCarousel && <Projects projects={projects} />}
         <About className={styles.info} />
         <Carousel activeSlideIndex={activeSlideIndex} className={styles.carousel} setActiveSlideIndex={setActiveSlideIndex} slides={slides} />
       </Preloader>
@@ -56,11 +61,14 @@ export default function Home({ slides }: { slides: Slide[] }) {
   );
 }
 
-export async function getStaticProps() {
+export const getStaticProps = async () => {
   const slides = await import('../shared/carousel.json');
+  const projects = await import('../shared/projects.json');
+
   return {
     props: {
       slides: slides.default,
+      projects: projects.default,
     },
   };
 }

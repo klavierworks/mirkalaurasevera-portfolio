@@ -1,18 +1,18 @@
 import styles from './Projects.module.css';
 
 type ProjectsProps = {
-  projects: Slide[];
+  projects: Project[];
 }
 
 const Projects = ({ projects }: ProjectsProps) => {
   return (
     <div className={styles.projects}>
       {projects.map(slide => (
-        <article className={styles.project} key={slide.src}>
+        <article className={styles.project} key={slide.thumbnail.src}>
           <img alt="" style={{
-            aspectRatio: slide.width / slide.height,
+            aspectRatio: slide.thumbnail.aspectRatio,
             rotate: `${(Math.random() - 0.5) * 15}deg`,
-          }} src={slide.src} />
+          }} src={slide.thumbnail.src} />
         </article>
       ))}
     </div>

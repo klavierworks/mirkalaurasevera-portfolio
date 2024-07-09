@@ -1,12 +1,5 @@
-import Index from './index';
+import * as Index from './index';
 
-export default Index;
+export default Index.default;
 
-export async function getStaticProps() {
-  const slides = await import('../shared/carousel.json');
-  return {
-    props: {
-      slides: slides.default,
-    },
-  };
-}
+export const getStaticProps = Index.getStaticProps;
