@@ -28,7 +28,7 @@ const Projects = ({ activeProject }: ProjectsProps) => {
       <div className={styles.activeProject}>
         <h1>{activeProject?.title}
           <Link href={`/projects`} className={styles.arrow}>
-            <img alt="back icon" {...arrow} />
+            <img alt="back icon" src={arrow.src} />
           </Link>
         </h1>
         <p dangerouslySetInnerHTML={{__html: activeProject?.description}} />

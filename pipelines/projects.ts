@@ -1,5 +1,4 @@
-import { getImageMetadata, getVimeoMetadata } from './metadata';
-import { Slide, UnprocessedSlide } from '../shared/index.d';
+import { createThumbnail, getImageMetadata } from './media';
 
 // Updates the JSON object with image dimensions and aspect ratio.
 export const processUnprocessedProject = async (item: UnprocessedProject): Promise<Project> => {
@@ -9,10 +8,12 @@ export const processUnprocessedProject = async (item: UnprocessedProject): Promi
     throw new Error(`Could not read image dimensions for ${item.thumbnailSrc}`);
   }
 
+  const thumbnail = await createThumbnail(item.thumbnailSrc, 300, 500);
+
   return {
     ...item,
     thumbnail: {
-      src: item.thumbnailSrc,
+      src: thumbnail,
       width,
       height,
       aspectRatio: width / height,

@@ -7,11 +7,11 @@ import slides from '../shared/carousel.json';
 
 type HomeProps = {
   activeSlideIndex: number;
-  isPageLoaded: boolean;
+  isCarouselVisible: boolean;
   setActiveSlideIndex: (index: number) => void;
 }
 
-const Home = ({ activeSlideIndex, isPageLoaded, setActiveSlideIndex }: HomeProps ) => {
+const Home = ({ activeSlideIndex, isCarouselVisible, setActiveSlideIndex }: HomeProps ) => {
   const changeSlide = useCallback((direction: number) => {
     const url = new URL(window.location.href);
     let nextSlide = (activeSlideIndex + direction) % slides.length;
@@ -81,7 +81,7 @@ const Home = ({ activeSlideIndex, isPageLoaded, setActiveSlideIndex }: HomeProps
             key={slide.src}
             slide={slide}
             isActive={activeSlideIndex === index}
-            isCarouselVisible={isPageLoaded}
+            isCarouselVisible={isCarouselVisible}
             isPreviouslyActive={
               activeSlideIndex === index + 2
               || activeSlideIndex === index + 1

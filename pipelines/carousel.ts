@@ -1,4 +1,4 @@
-import { getImageMetadata, getVimeoMetadata } from './metadata';
+import { getImageMetadata, getVimeoMetadata } from './media';
 import { Slide, UnprocessedSlide } from '../shared/index.d';
 
 // Updates the JSON object with image dimensions and aspect ratio.

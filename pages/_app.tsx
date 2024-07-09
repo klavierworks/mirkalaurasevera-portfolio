@@ -7,7 +7,7 @@ import Title from '@/components/Title/Title';
 import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { useParams, usePathname, useSearchParams } from 'next/navigation';
 
 if (typeof window !== 'undefined') {
   window.hasPreloaded = {};
@@ -18,26 +18,34 @@ const PortfolioApp = ({ Component, pageProps }: AppProps) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const [hasLoadedAndWaited, setHasLoadedAndWaited] = useState(false);
+  const isHome = router.pathname === '/' || router.pathname === '/[slide]';
+
+  const [isCarouselVisible, setIsCarouselVisible] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
+
   useEffect(() => {
-    if (!isLoaded) {
+    if (!isLoaded || !isHome) {
       return;
     }
 
-    window.setTimeout(() => {
-      setHasLoadedAndWaited(true);
-    }, 600);
-  }, [isLoaded, pathname]);
+    let timer = window.setTimeout(() => {
+      setIsCarouselVisible(true);
+    }, 125);
+
+    return () => {
+      window.clearTimeout(timer);
+      setIsCarouselVisible(false);
+    };
+  }, [isLoaded, isHome]);
 
   const preservedActiveSlideIndex = searchParams.get('activeSlideIndex') ? Number(searchParams.get('activeSlideIndex')) : undefined;
   const initialSlideIndex = preservedActiveSlideIndex ?? Number(pathname.replace('/', ''));
   const [activeSlideIndex, setActiveSlideIndex] = useState(Number.isInteger(initialSlideIndex) ? initialSlideIndex : 0);
 
   const layoutClassNames = classNames(styles.layout, {
-    [styles.isPageLoaded]: hasLoadedAndWaited,
-    [styles.isHome]: router.pathname === '/' || router.pathname === '/[slide]',
+    [styles.isPageLoaded]: isLoaded,
+    [styles.isHome]: isHome,
   });
 
   return (
@@ -62,7 +70,7 @@ const PortfolioApp = ({ Component, pageProps }: AppProps) => {
       <Title activeSlideIndex={activeSlideIndex} />
       <Preloader onPreloadComplete={setIsLoaded} data={pageProps}>
         <div className={styles.page}>
-          <Component activeSlideIndex={activeSlideIndex} isPageLoaded={hasLoadedAndWaited} setActiveSlideIndex={setActiveSlideIndex} {...pageProps} />
+          <Component activeSlideIndex={activeSlideIndex} isCarouselVisible={isCarouselVisible} setActiveSlideIndex={setActiveSlideIndex} {...pageProps} />
         </div>
       </Preloader>
     </main>
