@@ -1,19 +1,25 @@
-import { RefObject, useMemo } from "react";
+import { RefObject, useEffect, useMemo, useState } from "react";
 
 const useTargetScale = ({ startSizeRef, targetSizeRef }: { startSizeRef: RefObject<HTMLElement>, targetSizeRef: RefObject<HTMLElement> }) => {
-  if (!startSizeRef.current || !targetSizeRef.current) {
-    return 1;
-  }
+  const [target, setTarget] = useState(0);
 
-  const { clientWidth: width, clientHeight: height } = startSizeRef.current;
+  useEffect(() => {
+    if (!startSizeRef.current || !targetSizeRef.current) {
+      return undefined;
+    }
 
-  const targetWidth = targetSizeRef.current.clientWidth;
-  const targetHeight = targetSizeRef.current.clientHeight;
+    const { clientWidth: width, clientHeight: height } = startSizeRef.current;
 
-  const heightScale = targetHeight / height;
-  const widthScale = targetWidth / width;
+    const targetWidth = targetSizeRef.current.clientWidth;
+    const targetHeight = targetSizeRef.current.clientHeight;
 
-  return Math.min(heightScale, widthScale);
+    const heightScale = targetHeight / height;
+    const widthScale = targetWidth / width;
+
+    setTarget(Math.min(heightScale, widthScale));
+  }, [startSizeRef, targetSizeRef]);
+
+  return target;
 }
 
 export default useTargetScale;

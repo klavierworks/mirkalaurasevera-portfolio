@@ -1,32 +1,40 @@
+import Link from 'next/link';
 import styles from './Projects.module.css';
+import projects from '../../shared/projects.json';
+import classNames from 'classnames';
+import arrow from './arrow.svg';
 
 type ProjectsProps = {
-  projects: Project[];
+  activeProject: Project;
 }
+console.log(arrow)
+const Projects = ({ activeProject }: ProjectsProps) => {
+  const frameClassNames = classNames(styles.projects, {
+    [styles.hasActiveProject]: activeProject
+  });
 
-const Projects = ({ projects }: ProjectsProps) => {
   return (
-    <div className={styles.projects}>
-      {projects.map(slide => (
-        <article className={styles.project} key={slide.thumbnail.src}>
-          <img alt="" style={{
-            aspectRatio: slide.thumbnail.aspectRatio,
-            rotate: `${slide.randomRotation}deg`,
-          }} src={slide.thumbnail.src} />
-        </article>
+    <div className={frameClassNames}>
+      {projects.map(project => (
+        <Link key={project.slug} href={`/projects/${project.slug}`}>
+          <article className={`${styles.project} ${activeProject?.slug === project.slug ? styles.isActive : ''}`} key={project.thumbnail.src}>
+            <img alt="" style={{
+              aspectRatio: project.thumbnail.aspectRatio,
+              rotate: `${project.randomRotation}deg`,
+            }} src={project.thumbnail.src} />
+          </article>
+        </Link>
       ))}
+      <div className={styles.activeProject}>
+        <h1>{activeProject?.title}
+          <Link href={`/projects`} className={styles.arrow}>
+            <img alt="back icon" {...arrow} />
+          </Link>
+        </h1>
+        <p dangerouslySetInnerHTML={{__html: activeProject?.description}} />
+      </div>        
     </div>
   );
 }
 
 export default Projects;
-
-export const getStaticProps = async () => {
-  const projects = await import('../../shared/projects.json');
-
-  return {
-    props: {
-      projects: projects.default,
-    },
-  };
-}

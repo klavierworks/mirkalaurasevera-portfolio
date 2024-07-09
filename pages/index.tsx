@@ -3,15 +3,15 @@ import styles from './index.module.css';
 import SlideComponent from '../components/Slide/Slide';
 import { FullGestureState, useGesture } from '@use-gesture/react';
 import { CYPRESS } from '@/shared/cypress';
+import slides from '../shared/carousel.json';
 
 type HomeProps = {
   activeSlideIndex: number;
   isPageLoaded: boolean;
-  slides: Slide[];
   setActiveSlideIndex: (index: number) => void;
 }
 
-const Home = ({ activeSlideIndex, isPageLoaded, setActiveSlideIndex, slides }: HomeProps ) => {
+const Home = ({ activeSlideIndex, isPageLoaded, setActiveSlideIndex }: HomeProps ) => {
   const changeSlide = useCallback((direction: number) => {
     const url = new URL(window.location.href);
     let nextSlide = (activeSlideIndex + direction) % slides.length;
@@ -21,7 +21,7 @@ const Home = ({ activeSlideIndex, isPageLoaded, setActiveSlideIndex, slides }: H
     url.pathname = nextSlide.toString();
     setActiveSlideIndex(nextSlide);
     window.history.pushState({}, '', url.href);
-  }, [activeSlideIndex, slides.length, setActiveSlideIndex]);
+  }, [activeSlideIndex, setActiveSlideIndex]);
 
   const handleNext = useCallback((event: MouseEvent<HTMLUListElement>) => {
     changeSlide(1);
@@ -97,13 +97,3 @@ const Home = ({ activeSlideIndex, isPageLoaded, setActiveSlideIndex, slides }: H
 }
 
 export default Home;
-
-export const getStaticProps = async () => {
-  const slides = await import('../shared/carousel.json');
-
-  return {
-    props: {
-      slides: slides.default,
-    },
-  };
-}

@@ -36,6 +36,8 @@ declare global {
   type UnprocessedProject = {
     order: number | string;
     title: string;
+    description: string;
+    slug: string;
     thumbnailSrc: string;
   }
 

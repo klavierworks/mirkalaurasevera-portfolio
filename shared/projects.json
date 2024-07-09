@@ -2,253 +2,295 @@
   {
     "thumbnailSrc": "/carousel/MLS_001.jpg",
     "title": "nicchi",
+    "description": "\n      <p>Sweet Dreams explores the relationship between two objects we all know and need to survive:</p>\n      <p>Cakes and Mattresses -\n      This projects is revealing their visual and psychological bond: eating and sleeping two essentials humans need – and the right balance – as too much of it won’t be good for us either.</p>\n      <p>Creative Direction, Photography, Concept, Set Design</p>\n    ",
     "order": 1,
+    "slug": "carouselMLS_001jpg",
     "thumbnail": {
       "src": "/carousel/MLS_001.jpg",
       "width": 2000,
       "height": 2667,
       "aspectRatio": 0.7499062617172854
     },
-    "randomRotation": -1.20587437268454
+    "randomRotation": 0.7072768448028144
   },
   {
     "thumbnailSrc": "/carousel/MLS_002.jpg",
     "title": "Dropbox X It's Nice That",
+    "description": "\n      <p>Sweet Dreams explores the relationship between two objects we all know and need to survive:</p>\n      <p>Cakes and Mattresses -\n      This projects is revealing their visual and psychological bond: eating and sleeping two essentials humans need – and the right balance – as too much of it won’t be good for us either.</p>\n      <p>Creative Direction, Photography, Concept, Set Design</p>\n    ",
     "order": 2,
+    "slug": "carouselMLS_002jpg",
     "thumbnail": {
       "src": "/carousel/MLS_002.jpg",
       "width": 2000,
       "height": 2726,
       "aspectRatio": 0.7336757153338225
     },
-    "randomRotation": -4.236612244109537
+    "randomRotation": 2.8401022238066664
   },
   {
     "thumbnailSrc": "/carousel/MLS_003.jpg",
     "title": "CHANEL",
+    "description": "\n      <p>Sweet Dreams explores the relationship between two objects we all know and need to survive:</p>\n      <p>Cakes and Mattresses -\n      This projects is revealing their visual and psychological bond: eating and sleeping two essentials humans need – and the right balance – as too much of it won’t be good for us either.</p>\n      <p>Creative Direction, Photography, Concept, Set Design</p>\n    ",
     "order": 3,
+    "slug": "carouselMLS_003jpg",
     "thumbnail": {
       "src": "/carousel/MLS_003.jpg",
       "width": 1875,
       "height": 2500,
       "aspectRatio": 0.75
     },
-    "randomRotation": 6.173598376703886
+    "randomRotation": -0.695306100370291
   },
   {
     "thumbnailSrc": "/carousel/MLS_004.jpg",
     "title": "SZ Magazine",
+    "description": "\n      <p>Sweet Dreams explores the relationship between two objects we all know and need to survive:</p>\n      <p>Cakes and Mattresses -\n      This projects is revealing their visual and psychological bond: eating and sleeping two essentials humans need – and the right balance – as too much of it won’t be good for us either.</p>\n      <p>Creative Direction, Photography, Concept, Set Design</p>\n    ",
     "order": 4,
+    "slug": "carouselMLS_004jpg",
     "thumbnail": {
       "src": "/carousel/MLS_004.jpg",
       "width": 2100,
       "height": 2678,
       "aspectRatio": 0.784167289021658
     },
-    "randomRotation": 3.4985847399581846
+    "randomRotation": 4.665804420098495
   },
   {
     "thumbnailSrc": "/carousel/PS_Juno_Black_2.jpg",
     "title": "Paul Smith",
+    "description": "\n      <p>Sweet Dreams explores the relationship between two objects we all know and need to survive:</p>\n      <p>Cakes and Mattresses -\n      This projects is revealing their visual and psychological bond: eating and sleeping two essentials humans need – and the right balance – as too much of it won’t be good for us either.</p>\n      <p>Creative Direction, Photography, Concept, Set Design</p>\n    ",
     "order": 5,
+    "slug": "carouselPS_Juno_Black_2jpg",
     "thumbnail": {
       "src": "/carousel/PS_Juno_Black_2.jpg",
       "width": 2048,
       "height": 1152,
       "aspectRatio": 1.7777777777777777
     },
-    "randomRotation": -3.0500260929507306
+    "randomRotation": -4.279088463173698
   },
   {
     "thumbnailSrc": "/carousel/MLS_006.jpg",
     "title": "M Le Magazine du Monde",
+    "description": "\n      <p>Sweet Dreams explores the relationship between two objects we all know and need to survive:</p>\n      <p>Cakes and Mattresses -\n      This projects is revealing their visual and psychological bond: eating and sleeping two essentials humans need – and the right balance – as too much of it won’t be good for us either.</p>\n      <p>Creative Direction, Photography, Concept, Set Design</p>\n    ",
     "order": 6,
+    "slug": "carouselMLS_006jpg",
     "thumbnail": {
       "src": "/carousel/MLS_006.jpg",
       "width": 1193,
       "height": 1670,
       "aspectRatio": 0.7143712574850299
     },
-    "randomRotation": -1.610102210472738
+    "randomRotation": 4.603946002640212
   },
   {
     "thumbnailSrc": "/carousel/MLS_007.jpg",
     "title": "The New Yorker Magazine",
+    "description": "\n      <p>Sweet Dreams explores the relationship between two objects we all know and need to survive:</p>\n      <p>Cakes and Mattresses -\n      This projects is revealing their visual and psychological bond: eating and sleeping two essentials humans need – and the right balance – as too much of it won’t be good for us either.</p>\n      <p>Creative Direction, Photography, Concept, Set Design</p>\n    ",
     "order": 7,
+    "slug": "carouselMLS_007jpg",
     "thumbnail": {
       "src": "/carousel/MLS_007.jpg",
       "width": 3050,
       "height": 4000,
       "aspectRatio": 0.7625
     },
-    "randomRotation": 2.715465732748541
+    "randomRotation": -7.301123176784078
   },
   {
     "thumbnailSrc": "/carousel/MLS_008.jpg",
     "title": "Bibi van der Velden ",
+    "description": "\n      <p>Sweet Dreams explores the relationship between two objects we all know and need to survive:</p>\n      <p>Cakes and Mattresses -\n      This projects is revealing their visual and psychological bond: eating and sleeping two essentials humans need – and the right balance – as too much of it won’t be good for us either.</p>\n      <p>Creative Direction, Photography, Concept, Set Design</p>\n    ",
     "order": 8,
+    "slug": "carouselMLS_008jpg",
     "thumbnail": {
       "src": "/carousel/MLS_008.jpg",
       "width": 3000,
       "height": 4000,
       "aspectRatio": 0.75
     },
-    "randomRotation": -2.1879895371865796
+    "randomRotation": -6.2112471272619825
   },
   {
     "thumbnailSrc": "/carousel/MLS_009.jpg",
     "title": "nicchi",
+    "description": "\n      <p>Sweet Dreams explores the relationship between two objects we all know and need to survive:</p>\n      <p>Cakes and Mattresses -\n      This projects is revealing their visual and psychological bond: eating and sleeping two essentials humans need – and the right balance – as too much of it won’t be good for us either.</p>\n      <p>Creative Direction, Photography, Concept, Set Design</p>\n    ",
     "order": 9,
+    "slug": "carouselMLS_009jpg",
     "thumbnail": {
       "src": "/carousel/MLS_009.jpg",
       "width": 3704,
       "height": 4801,
       "aspectRatio": 0.7715059362632785
     },
-    "randomRotation": -7.003785992081609
+    "randomRotation": 2.750884887316305
   },
   {
     "thumbnailSrc": "/carousel/MLS_010.jpg",
     "title": "YSL",
+    "description": "\n      <p>Sweet Dreams explores the relationship between two objects we all know and need to survive:</p>\n      <p>Cakes and Mattresses -\n      This projects is revealing their visual and psychological bond: eating and sleeping two essentials humans need – and the right balance – as too much of it won’t be good for us either.</p>\n      <p>Creative Direction, Photography, Concept, Set Design</p>\n    ",
     "order": 10,
+    "slug": "carouselMLS_010jpg",
     "thumbnail": {
       "src": "/carousel/MLS_010.jpg",
       "width": 1622,
       "height": 2163,
       "aspectRatio": 0.7498844197873324
     },
-    "randomRotation": 4.16661489442232
+    "randomRotation": 6.55208761769568
   },
   {
     "thumbnailSrc": "/carousel/MLS_011.jpg",
     "title": "WePresent",
+    "description": "\n      <p>Sweet Dreams explores the relationship between two objects we all know and need to survive:</p>\n      <p>Cakes and Mattresses -\n      This projects is revealing their visual and psychological bond: eating and sleeping two essentials humans need – and the right balance – as too much of it won’t be good for us either.</p>\n      <p>Creative Direction, Photography, Concept, Set Design</p>\n    ",
     "order": 11,
+    "slug": "carouselMLS_011jpg",
     "thumbnail": {
       "src": "/carousel/MLS_011.jpg",
       "width": 3162,
       "height": 2161,
       "aspectRatio": 1.4632114761684405
     },
-    "randomRotation": -5.572191871053677
+    "randomRotation": 6.68857222674168
   },
   {
     "thumbnailSrc": "/carousel/Fashion Snowman_MLS.jpg",
     "title": "SZ Magazine",
+    "description": "\n      <p>Sweet Dreams explores the relationship between two objects we all know and need to survive:</p>\n      <p>Cakes and Mattresses -\n      This projects is revealing their visual and psychological bond: eating and sleeping two essentials humans need – and the right balance – as too much of it won’t be good for us either.</p>\n      <p>Creative Direction, Photography, Concept, Set Design</p>\n    ",
     "order": 20,
+    "slug": "carouselFashion Snowman_MLSjpg",
     "thumbnail": {
       "src": "/carousel/Fashion Snowman_MLS.jpg",
       "width": 1800,
       "height": 1324,
       "aspectRatio": 1.3595166163141994
     },
-    "randomRotation": 6.710023434092297
+    "randomRotation": -7.381232910624953
   },
   {
     "thumbnailSrc": "/carousel/BottleMold_MacGuffin_MLS_007.jpg",
     "title": "MacGuffin Magazine",
+    "description": "\n      <p>Sweet Dreams explores the relationship between two objects we all know and need to survive:</p>\n      <p>Cakes and Mattresses -\n      This projects is revealing their visual and psychological bond: eating and sleeping two essentials humans need – and the right balance – as too much of it won’t be good for us either.</p>\n      <p>Creative Direction, Photography, Concept, Set Design</p>\n    ",
     "order": 21,
+    "slug": "carouselBottleMold_MacGuffin_MLS_007jpg",
     "thumbnail": {
       "src": "/carousel/BottleMold_MacGuffin_MLS_007.jpg",
       "width": 2621,
       "height": 3467,
       "aspectRatio": 0.7559850014421691
     },
-    "randomRotation": 6.008261829665224
+    "randomRotation": 4.613235434111084
   },
   {
     "thumbnailSrc": "/carousel/MLS_019.jpg",
     "title": "Personal",
+    "description": "\n      <p>Sweet Dreams explores the relationship between two objects we all know and need to survive:</p>\n      <p>Cakes and Mattresses -\n      This projects is revealing their visual and psychological bond: eating and sleeping two essentials humans need – and the right balance – as too much of it won’t be good for us either.</p>\n      <p>Creative Direction, Photography, Concept, Set Design</p>\n    ",
     "order": 22,
+    "slug": "carouselMLS_019jpg",
     "thumbnail": {
       "src": "/carousel/MLS_019.jpg",
       "width": 2000,
       "height": 1537,
       "aspectRatio": 1.3012361743656473
     },
-    "randomRotation": -3.1223269576231316
+    "randomRotation": 5.787212509933233
   },
   {
     "thumbnailSrc": "/carousel/MLS_013.jpg",
     "title": "Vogue Magazine",
+    "description": "\n      <p>Sweet Dreams explores the relationship between two objects we all know and need to survive:</p>\n      <p>Cakes and Mattresses -\n      This projects is revealing their visual and psychological bond: eating and sleeping two essentials humans need – and the right balance – as too much of it won’t be good for us either.</p>\n      <p>Creative Direction, Photography, Concept, Set Design</p>\n    ",
     "order": 13,
+    "slug": "carouselMLS_013jpg",
     "thumbnail": {
       "src": "/carousel/MLS_013.jpg",
       "width": 1158,
       "height": 1500,
       "aspectRatio": 0.772
     },
-    "randomRotation": 1.4502877184191132
+    "randomRotation": 5.858974786914175
   },
   {
     "thumbnailSrc": "/carousel/MLS_014.jpg",
     "title": "Personal",
+    "description": "\n      <p>Sweet Dreams explores the relationship between two objects we all know and need to survive:</p>\n      <p>Cakes and Mattresses -\n      This projects is revealing their visual and psychological bond: eating and sleeping two essentials humans need – and the right balance – as too much of it won’t be good for us either.</p>\n      <p>Creative Direction, Photography, Concept, Set Design</p>\n    ",
     "order": 14,
+    "slug": "carouselMLS_014jpg",
     "thumbnail": {
       "src": "/carousel/MLS_014.jpg",
       "width": 2500,
       "height": 3062,
       "aspectRatio": 0.8164598301763554
     },
-    "randomRotation": -5.201056224751524
+    "randomRotation": 2.459243522674035
   },
   {
     "thumbnailSrc": "/carousel/MLS_015.jpg",
     "title": "DIOR",
+    "description": "\n      <p>Sweet Dreams explores the relationship between two objects we all know and need to survive:</p>\n      <p>Cakes and Mattresses -\n      This projects is revealing their visual and psychological bond: eating and sleeping two essentials humans need – and the right balance – as too much of it won’t be good for us either.</p>\n      <p>Creative Direction, Photography, Concept, Set Design</p>\n    ",
     "order": 15,
+    "slug": "carouselMLS_015jpg",
     "thumbnail": {
       "src": "/carousel/MLS_015.jpg",
       "width": 1272,
       "height": 1696,
       "aspectRatio": 0.75
     },
-    "randomRotation": 2.400866337953028
+    "randomRotation": 3.1266420966278297
   },
   {
     "thumbnailSrc": "/carousel/MLS_016.jpg",
     "title": "Dropbox X It's Nice That",
+    "description": "\n      <p>Sweet Dreams explores the relationship between two objects we all know and need to survive:</p>\n      <p>Cakes and Mattresses -\n      This projects is revealing their visual and psychological bond: eating and sleeping two essentials humans need – and the right balance – as too much of it won’t be good for us either.</p>\n      <p>Creative Direction, Photography, Concept, Set Design</p>\n    ",
     "order": 16,
+    "slug": "carouselMLS_016jpg",
     "thumbnail": {
       "src": "/carousel/MLS_016.jpg",
       "width": 2165,
       "height": 2952,
       "aspectRatio": 0.7334010840108401
     },
-    "randomRotation": 0.27815577340348896
+    "randomRotation": -5.263654786273548
   },
   {
     "thumbnailSrc": "/carousel/MLS_017.jpg",
     "title": "Another Magazine",
+    "description": "\n      <p>Sweet Dreams explores the relationship between two objects we all know and need to survive:</p>\n      <p>Cakes and Mattresses -\n      This projects is revealing their visual and psychological bond: eating and sleeping two essentials humans need – and the right balance – as too much of it won’t be good for us either.</p>\n      <p>Creative Direction, Photography, Concept, Set Design</p>\n    ",
     "order": 17,
+    "slug": "carouselMLS_017jpg",
     "thumbnail": {
       "src": "/carousel/MLS_017.jpg",
       "width": 2500,
       "height": 3125,
       "aspectRatio": 0.8
     },
-    "randomRotation": -2.821898740305789
+    "randomRotation": -4.506559258492197
   },
   {
     "thumbnailSrc": "/carousel/MLS_018.jpg",
     "title": "PRADA",
+    "description": "\n      <p>Sweet Dreams explores the relationship between two objects we all know and need to survive:</p>\n      <p>Cakes and Mattresses -\n      This projects is revealing their visual and psychological bond: eating and sleeping two essentials humans need – and the right balance – as too much of it won’t be good for us either.</p>\n      <p>Creative Direction, Photography, Concept, Set Design</p>\n    ",
     "order": 18,
+    "slug": "carouselMLS_018jpg",
     "thumbnail": {
       "src": "/carousel/MLS_018.jpg",
       "width": 1728,
       "height": 2160,
       "aspectRatio": 0.8
     },
-    "randomRotation": -4.642695046326804
+    "randomRotation": -0.8973108135751284
   },
   {
     "thumbnailSrc": "/carousel/Unit_MirkaLauraSevera_(JAG Zoeppritz:Blankets:01).jpg",
     "title": "Zoeppritz, Homewear",
+    "description": "\n      <p>Sweet Dreams explores the relationship between two objects we all know and need to survive:</p>\n      <p>Cakes and Mattresses -\n      This projects is revealing their visual and psychological bond: eating and sleeping two essentials humans need – and the right balance – as too much of it won’t be good for us either.</p>\n      <p>Creative Direction, Photography, Concept, Set Design</p>\n    ",
     "order": 19,
+    "slug": "carouselUnit_MirkaLauraSevera_(JAG Zoeppritz:Blankets:01)jpg",
     "thumbnail": {
       "src": "/carousel/Unit_MirkaLauraSevera_(JAG Zoeppritz:Blankets:01).jpg",
       "width": 1286,
       "height": 1800,
       "aspectRatio": 0.7144444444444444
     },
-    "randomRotation": -7.453900345409003
+    "randomRotation": 6.791905585008527
   }
 ]

@@ -22,7 +22,36 @@
     width: 20vw;
   }
 
+  .hasActiveProject &:not(.isActive) {
+    opacity: 0.3;
+  }
+
   img {
     width: 100%;
+  }
+}
+
+.activeProject {
+  position: fixed;
+  inset: 0;
+  background-color: rgb(251, 251, 251);
+  transform: translateX(100%);
+  transition: transform 0.5s;
+  z-index: 101;
+  text-align: center;
+  padding: 10vh 16% 0;
+
+  .hasActiveProject & {
+    transform: translateX(0);
+  }
+
+  .arrow {
+    position: absolute;
+    left: 1em;
+
+    img {
+      width: 12px;
+      height: 8px;
+    }
   }
 }
