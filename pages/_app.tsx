@@ -1,13 +1,39 @@
+import Preloader from '@/components/Preloader/Preloader';
 import '../styles/global.css';
-import App from 'next/app';
+import styles from './_app.module.css';
 import type { AppProps } from 'next/app'
 import Head from 'next/head';
+import Title from '@/components/Title/Title';
+import { useEffect, useState } from 'react';
+import classNames from 'classnames';
+import { useRouter } from 'next/router';
 
 if (typeof window !== 'undefined') {
   window.hasPreloaded = {};
 }
 
-const  PortfolioApp = ({ Component, pageProps }: AppProps) => {
+const PortfolioApp = ({ Component, pageProps }: AppProps) => {
+  const router = useRouter();
+
+  const [hasCompletedIntro, setHasCompletedIntro] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    if (!isLoaded) {
+      return;
+    }
+
+    window.setTimeout(() => {
+      setHasCompletedIntro(true);
+    }, 600);
+  }, [isLoaded]);
+
+  const layoutClassNames = classNames(styles.layout, {
+    isLoaded,
+    hasCompletedIntro,
+    [styles.isHome]: router.pathname === '/' || router.pathname === '/[slide]',
+  });
+
   return (
     <>
       <Head>
@@ -25,8 +51,13 @@ const  PortfolioApp = ({ Component, pageProps }: AppProps) => {
         <meta name="twitter:image" content="https://mirkalaurasevera.com/ogmeta.jpg" />
         <link rel="canonical" href="https://mirkalaurasevera.com/" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"></meta>
-      </Head>
-      <Component {...pageProps} />
+    </Head>
+    <main className={layoutClassNames}>
+      <Title />
+      <Preloader onPreloadComplete={setIsLoaded} data={pageProps}>
+        <Component {...pageProps} />
+      </Preloader>
+    </main>
     </>
   );
 }

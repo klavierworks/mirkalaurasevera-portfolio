@@ -41,7 +41,7 @@
     line-height: 1.14;
   }
 
-  :global(.isViewingCarousel) .isActive & {
+  .isActive & {
     opacity: 1;
     transition: all 0.5s ease-in-out 0.6s;
     translate: 0 0%;
@@ -80,12 +80,12 @@
     height: auto;
   }
 
-  :global(.isViewingCarousel) .isActive & {
+  .isActive & {
     transform: translate(-50%, -50%) scale(var(--target-scale)) rotate(720deg);
     transition-delay: 0.1s;
   }
 
-  :global(.isViewingCarousel) .isPreviouslyActive & {
+  .isPreviouslyActive & {
     transform: translate(-50%, -50%) scale(1) rotate(1080deg);
     filter: brightness(0.6);
   }

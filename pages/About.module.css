@@ -18,6 +18,11 @@
   font-style: italic;
 }
 
+.column {
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
+}
+
 .heading {
   @mixin heading;
   margin: 0;
@@ -29,8 +34,6 @@
 }
 
 .bio {
-  grid-row: 2 / 3;
-  grid-column: 2 / 3;
   margin-bottom: 1em;
 
   .link {
@@ -38,14 +41,4 @@
     display: block;
     color: inherit;
   }
-}
-
-.clients {
-  grid-row: 3 / 4;
-  grid-column: 2 / 3;
-}
-
-.exhibitions {
-  grid-row: 4 / 5;
-  grid-column: 2 / 3;
 }

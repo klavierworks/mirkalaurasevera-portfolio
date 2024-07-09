@@ -1,25 +1,3 @@
-.layout {
-  display: grid;
-  grid-template-rows: 20% min-content min-content min-content;
-  grid-template-columns: 1fr min(75%, 586px) 1fr;
-  width: 100vw;
-  height: 100vh;
-  width: 100dvw;
-  height: 100dvh;
-  overflow-y: auto;
-  background-color: black;
-  position: fixed;
-  top: 0;
-  left: 0;
-  transition: background-color 0s;
-  transition-delay: 0.5s;
-
-  &:global(.isNotHome) {
-    background-color: white;
-    transition-delay: 0s;
-  }
-}
-
 .about,
 .info {
   opacity: 0;
@@ -37,8 +15,4 @@
   a {
     margin-bottom: 0.5em;
   }
-}
-
-:global(.isNotHome) .carousel {
-  pointer-events: none;
 }

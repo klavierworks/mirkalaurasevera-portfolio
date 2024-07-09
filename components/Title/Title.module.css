@@ -19,13 +19,9 @@
   h1 {
     text-decoration: none;
     cursor: pointer;
-    color: white;
+    color: inherit;
     pointer-events: all;
     transition: color 0.5s;
-
-    :global(.isNotHome) & {
-      color: black;
-    }
   }
 
   a.isActive {
