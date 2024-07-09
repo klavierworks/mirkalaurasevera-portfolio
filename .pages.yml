@@ -74,8 +74,8 @@ content:
       - { name: order, label: Order, type: number }
       - { name: title, label: Title, type: string }
       - {
-          name: src,
-          label: Image,
+          name: thumbnailSrc,
+          label: Thumbnail Image,
           type: image,
           list: false,
           options:

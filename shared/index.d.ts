@@ -11,11 +11,15 @@ declare global {
     videoId?: string;
   }
 
-
-  type Slide = UnprocessedSlide & {
+  type SimpleImageMetaData = {
+    src: string;
     width: number;
     height: number;
     aspectRatio: number;
+  }
+
+  type Slide = Omit<UnprocessedSlide, 'order'> & SimpleImageMetaData & {
+    order: number;
     video?: {
       url: string;
       width: number;
@@ -28,7 +32,21 @@ declare global {
       };
     };
   }
+
+  type UnprocessedProject = {
+    order: number | string;
+    title: string;
+    thumbnailSrc: string;
+  }
+
+  type Project = Omit<UnprocessedProject, 'order' | 'thumbnailSrc'> & {
+    thumbnail: SimpleImageMetaData;
+    order: number;
+  }
 }
 
 
-export { };
+export {
+  Slide,
+  UnprocessedSlide,
+};

@@ -78,6 +78,26 @@ declare global {
     link_expiration_time: string;
     codec: string;
   }
+
+  type ImageMetadata = {
+    width: number;
+    height: number;
+    space: string;
+    channels: number;
+    density: number;
+    hasProfile: boolean;
+    hasAlpha: boolean;
+    orientation: number;
+    format: string;
+    exif: any;
+    icc: any;
+  }
 }
 
-export { }
+export {
+  VimeoVideoDetails,
+  VimeoFile,
+  VimeoSource,
+  VimeoProgressive,
+  ImageMetadata,
+}
