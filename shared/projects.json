@@ -1,13 +1,233 @@
 [
   {
-    "order": 1,
+    "thumbnailSrc": "/carousel/MLS_001.jpg",
     "title": "nicchi",
-    "thumbnailSrc": "/projects/MLS_001.jpg",
+    "order": 1,
     "thumbnail": {
-      "src": "/projects/MLS_001.jpg",
+      "src": "/carousel/MLS_001.jpg",
       "width": 2000,
       "height": 2667,
       "aspectRatio": 0.7499062617172854
+    }
+  },
+  {
+    "thumbnailSrc": "/carousel/MLS_002.jpg",
+    "title": "Dropbox X It's Nice That",
+    "order": 2,
+    "thumbnail": {
+      "src": "/carousel/MLS_002.jpg",
+      "width": 2000,
+      "height": 2726,
+      "aspectRatio": 0.7336757153338225
+    }
+  },
+  {
+    "thumbnailSrc": "/carousel/MLS_003.jpg",
+    "title": "CHANEL",
+    "order": 3,
+    "thumbnail": {
+      "src": "/carousel/MLS_003.jpg",
+      "width": 1875,
+      "height": 2500,
+      "aspectRatio": 0.75
+    }
+  },
+  {
+    "thumbnailSrc": "/carousel/MLS_004.jpg",
+    "title": "SZ Magazine",
+    "order": 4,
+    "thumbnail": {
+      "src": "/carousel/MLS_004.jpg",
+      "width": 2100,
+      "height": 2678,
+      "aspectRatio": 0.784167289021658
+    }
+  },
+  {
+    "thumbnailSrc": "/carousel/PS_Juno_Black_2.jpg",
+    "title": "Paul Smith",
+    "order": 5,
+    "thumbnail": {
+      "src": "/carousel/PS_Juno_Black_2.jpg",
+      "width": 2048,
+      "height": 1152,
+      "aspectRatio": 1.7777777777777777
+    }
+  },
+  {
+    "thumbnailSrc": "/carousel/MLS_006.jpg",
+    "title": "M Le Magazine du Monde",
+    "order": 6,
+    "thumbnail": {
+      "src": "/carousel/MLS_006.jpg",
+      "width": 1193,
+      "height": 1670,
+      "aspectRatio": 0.7143712574850299
+    }
+  },
+  {
+    "thumbnailSrc": "/carousel/MLS_007.jpg",
+    "title": "The New Yorker Magazine",
+    "order": 7,
+    "thumbnail": {
+      "src": "/carousel/MLS_007.jpg",
+      "width": 3050,
+      "height": 4000,
+      "aspectRatio": 0.7625
+    }
+  },
+  {
+    "thumbnailSrc": "/carousel/MLS_008.jpg",
+    "title": "Bibi van der Velden ",
+    "order": 8,
+    "thumbnail": {
+      "src": "/carousel/MLS_008.jpg",
+      "width": 3000,
+      "height": 4000,
+      "aspectRatio": 0.75
+    }
+  },
+  {
+    "thumbnailSrc": "/carousel/MLS_009.jpg",
+    "title": "nicchi",
+    "order": 9,
+    "thumbnail": {
+      "src": "/carousel/MLS_009.jpg",
+      "width": 3704,
+      "height": 4801,
+      "aspectRatio": 0.7715059362632785
+    }
+  },
+  {
+    "thumbnailSrc": "/carousel/MLS_010.jpg",
+    "title": "YSL",
+    "order": 10,
+    "thumbnail": {
+      "src": "/carousel/MLS_010.jpg",
+      "width": 1622,
+      "height": 2163,
+      "aspectRatio": 0.7498844197873324
+    }
+  },
+  {
+    "thumbnailSrc": "/carousel/MLS_011.jpg",
+    "title": "WePresent",
+    "order": 11,
+    "thumbnail": {
+      "src": "/carousel/MLS_011.jpg",
+      "width": 3162,
+      "height": 2161,
+      "aspectRatio": 1.4632114761684405
+    }
+  },
+  {
+    "thumbnailSrc": "/carousel/Fashion Snowman_MLS.jpg",
+    "title": "SZ Magazine",
+    "order": 20,
+    "thumbnail": {
+      "src": "/carousel/Fashion Snowman_MLS.jpg",
+      "width": 1800,
+      "height": 1324,
+      "aspectRatio": 1.3595166163141994
+    }
+  },
+  {
+    "thumbnailSrc": "/carousel/BottleMold_MacGuffin_MLS_007.jpg",
+    "title": "MacGuffin Magazine",
+    "order": 21,
+    "thumbnail": {
+      "src": "/carousel/BottleMold_MacGuffin_MLS_007.jpg",
+      "width": 2621,
+      "height": 3467,
+      "aspectRatio": 0.7559850014421691
+    }
+  },
+  {
+    "thumbnailSrc": "/carousel/MLS_019.jpg",
+    "title": "Personal",
+    "order": 22,
+    "thumbnail": {
+      "src": "/carousel/MLS_019.jpg",
+      "width": 2000,
+      "height": 1537,
+      "aspectRatio": 1.3012361743656473
+    }
+  },
+  {
+    "thumbnailSrc": "/carousel/MLS_013.jpg",
+    "title": "Vogue Magazine",
+    "order": 13,
+    "thumbnail": {
+      "src": "/carousel/MLS_013.jpg",
+      "width": 1158,
+      "height": 1500,
+      "aspectRatio": 0.772
+    }
+  },
+  {
+    "thumbnailSrc": "/carousel/MLS_014.jpg",
+    "title": "Personal",
+    "order": 14,
+    "thumbnail": {
+      "src": "/carousel/MLS_014.jpg",
+      "width": 2500,
+      "height": 3062,
+      "aspectRatio": 0.8164598301763554
+    }
+  },
+  {
+    "thumbnailSrc": "/carousel/MLS_015.jpg",
+    "title": "DIOR",
+    "order": 15,
+    "thumbnail": {
+      "src": "/carousel/MLS_015.jpg",
+      "width": 1272,
+      "height": 1696,
+      "aspectRatio": 0.75
+    }
+  },
+  {
+    "thumbnailSrc": "/carousel/MLS_016.jpg",
+    "title": "Dropbox X It's Nice That",
+    "order": 16,
+    "thumbnail": {
+      "src": "/carousel/MLS_016.jpg",
+      "width": 2165,
+      "height": 2952,
+      "aspectRatio": 0.7334010840108401
+    }
+  },
+  {
+    "thumbnailSrc": "/carousel/MLS_017.jpg",
+    "title": "Another Magazine",
+    "order": 17,
+    "thumbnail": {
+      "src": "/carousel/MLS_017.jpg",
+      "width": 2500,
+      "height": 3125,
+      "aspectRatio": 0.8
+    }
+  },
+  {
+    "thumbnailSrc": "/carousel/MLS_018.jpg",
+    "title": "PRADA",
+    "order": 18,
+    "thumbnail": {
+      "src": "/carousel/MLS_018.jpg",
+      "width": 1728,
+      "height": 2160,
+      "aspectRatio": 0.8
+    }
+  },
+  {
+    "thumbnailSrc": "/carousel/Unit_MirkaLauraSevera_(JAG Zoeppritz:Blankets:01).jpg",
+    "title": "Zoeppritz, Homewear",
+    "order": 19,
+    "thumbnail": {
+      "src": "/carousel/Unit_MirkaLauraSevera_(JAG Zoeppritz:Blankets:01).jpg",
+      "width": 1286,
+      "height": 1800,
+      "aspectRatio": 0.7144444444444444
     }
   }
 ]

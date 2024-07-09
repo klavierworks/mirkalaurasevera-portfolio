@@ -6,6 +6,8 @@
   justify-content: center;
   column-gap: 5vw;
   width: 100%;
+  padding-top: 20vh;
+
   @media (min-width: 720px) {
     column-gap: 2.5vw;
   }
