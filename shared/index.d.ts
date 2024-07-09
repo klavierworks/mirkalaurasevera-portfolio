@@ -40,6 +40,7 @@ declare global {
   }
 
   type Project = Omit<UnprocessedProject, 'order' | 'thumbnailSrc'> & {
+    randomRotation: number;
     thumbnail: SimpleImageMetaData;
     order: number;
   }

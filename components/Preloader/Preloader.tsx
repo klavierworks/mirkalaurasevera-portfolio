@@ -20,8 +20,7 @@ const Preloader = ({ children, data, onPreloadComplete }: PreloaderProps) => {
     }
     
     const interval = setInterval(() => {
-      const currentData = data.projects && data.projects.length > 0 ? data.projects : data.slides || [];
-      const hasCompletedPreload = currentData.every((item) => window.hasPreloaded[item?.thumbnail?.src ?? item.src]);
+      const hasCompletedPreload = data.slides ? data.slides.every((item) => window.hasPreloaded[item.src]) : true;
 
       if (hasCompletedPreload) {
         clearInterval(interval);

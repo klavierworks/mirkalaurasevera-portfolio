@@ -8,7 +8,8 @@
       "width": 2000,
       "height": 2667,
       "aspectRatio": 0.7499062617172854
-    }
+    },
+    "randomRotation": -2.8656110555929626
   },
   {
     "thumbnailSrc": "/carousel/MLS_002.jpg",
@@ -19,7 +20,8 @@
       "width": 2000,
       "height": 2726,
       "aspectRatio": 0.7336757153338225
-    }
+    },
+    "randomRotation": -2.2010239762840724
   },
   {
     "thumbnailSrc": "/carousel/MLS_003.jpg",
@@ -30,7 +32,8 @@
       "width": 1875,
       "height": 2500,
       "aspectRatio": 0.75
-    }
+    },
+    "randomRotation": 4.625785692175167
   },
   {
     "thumbnailSrc": "/carousel/MLS_004.jpg",
@@ -41,7 +44,8 @@
       "width": 2100,
       "height": 2678,
       "aspectRatio": 0.784167289021658
-    }
+    },
+    "randomRotation": -0.09735897094832247
   },
   {
     "thumbnailSrc": "/carousel/PS_Juno_Black_2.jpg",
@@ -52,7 +56,8 @@
       "width": 2048,
       "height": 1152,
       "aspectRatio": 1.7777777777777777
-    }
+    },
+    "randomRotation": 6.962684288904479
   },
   {
     "thumbnailSrc": "/carousel/MLS_006.jpg",
@@ -63,7 +68,8 @@
       "width": 1193,
       "height": 1670,
       "aspectRatio": 0.7143712574850299
-    }
+    },
+    "randomRotation": -4.617655768279116
   },
   {
     "thumbnailSrc": "/carousel/MLS_007.jpg",
@@ -74,7 +80,8 @@
       "width": 3050,
       "height": 4000,
       "aspectRatio": 0.7625
-    }
+    },
+    "randomRotation": 5.69415834820599
   },
   {
     "thumbnailSrc": "/carousel/MLS_008.jpg",
@@ -85,7 +92,8 @@
       "width": 3000,
       "height": 4000,
       "aspectRatio": 0.75
-    }
+    },
+    "randomRotation": 7.2940191746805265
   },
   {
     "thumbnailSrc": "/carousel/MLS_009.jpg",
@@ -96,7 +104,8 @@
       "width": 3704,
       "height": 4801,
       "aspectRatio": 0.7715059362632785
-    }
+    },
+    "randomRotation": -2.0795895032632217
   },
   {
     "thumbnailSrc": "/carousel/MLS_010.jpg",
@@ -107,7 +116,8 @@
       "width": 1622,
       "height": 2163,
       "aspectRatio": 0.7498844197873324
-    }
+    },
+    "randomRotation": -6.159503975974178
   },
   {
     "thumbnailSrc": "/carousel/MLS_011.jpg",
@@ -118,7 +128,8 @@
       "width": 3162,
       "height": 2161,
       "aspectRatio": 1.4632114761684405
-    }
+    },
+    "randomRotation": 4.773746620186533
   },
   {
     "thumbnailSrc": "/carousel/Fashion Snowman_MLS.jpg",
@@ -129,7 +140,8 @@
       "width": 1800,
       "height": 1324,
       "aspectRatio": 1.3595166163141994
-    }
+    },
+    "randomRotation": -2.4385382469560035
   },
   {
     "thumbnailSrc": "/carousel/BottleMold_MacGuffin_MLS_007.jpg",
@@ -140,7 +152,8 @@
       "width": 2621,
       "height": 3467,
       "aspectRatio": 0.7559850014421691
-    }
+    },
+    "randomRotation": 3.6521160369760217
   },
   {
     "thumbnailSrc": "/carousel/MLS_019.jpg",
@@ -151,7 +164,8 @@
       "width": 2000,
       "height": 1537,
       "aspectRatio": 1.3012361743656473
-    }
+    },
+    "randomRotation": -4.959996012818459
   },
   {
     "thumbnailSrc": "/carousel/MLS_013.jpg",
@@ -162,7 +176,8 @@
       "width": 1158,
       "height": 1500,
       "aspectRatio": 0.772
-    }
+    },
+    "randomRotation": 3.410781453184406
   },
   {
     "thumbnailSrc": "/carousel/MLS_014.jpg",
@@ -173,7 +188,8 @@
       "width": 2500,
       "height": 3062,
       "aspectRatio": 0.8164598301763554
-    }
+    },
+    "randomRotation": 7.1948494374280605
   },
   {
     "thumbnailSrc": "/carousel/MLS_015.jpg",
@@ -184,7 +200,8 @@
       "width": 1272,
       "height": 1696,
       "aspectRatio": 0.75
-    }
+    },
+    "randomRotation": -3.2782806156552713
   },
   {
     "thumbnailSrc": "/carousel/MLS_016.jpg",
@@ -195,7 +212,8 @@
       "width": 2165,
       "height": 2952,
       "aspectRatio": 0.7334010840108401
-    }
+    },
+    "randomRotation": 6.260913394917605
   },
   {
     "thumbnailSrc": "/carousel/MLS_017.jpg",
@@ -206,7 +224,8 @@
       "width": 2500,
       "height": 3125,
       "aspectRatio": 0.8
-    }
+    },
+    "randomRotation": 5.372064284236279
   },
   {
     "thumbnailSrc": "/carousel/MLS_018.jpg",
@@ -217,7 +236,8 @@
       "width": 1728,
       "height": 2160,
       "aspectRatio": 0.8
-    }
+    },
+    "randomRotation": -5.091802581156309
   },
   {
     "thumbnailSrc": "/carousel/Unit_MirkaLauraSevera_(JAG Zoeppritz:Blankets:01).jpg",
@@ -228,6 +248,7 @@
       "width": 1286,
       "height": 1800,
       "aspectRatio": 0.7144444444444444
-    }
+    },
+    "randomRotation": -4.40566237735855
   }
 ]

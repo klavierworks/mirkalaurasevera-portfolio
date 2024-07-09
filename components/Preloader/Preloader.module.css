@@ -5,9 +5,4 @@
   width: 100%;
   height: 20%;
   text-align: center;
-  color: white;
-
-  :global(.isGalleryVisible) & {
-    color: black;
-  }
 }

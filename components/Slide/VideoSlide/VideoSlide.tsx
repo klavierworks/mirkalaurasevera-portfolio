@@ -6,12 +6,10 @@ import Hls from "hls.js";
 type VideoSlideProps = {
   className: string;
   isActive: boolean;
-  isLoaded: boolean;
-  setIsLoaded: (isLoaded: boolean) => void;
   slide: Slide;
 }
 
-const VideoSlide = forwardRef(({ className,isActive, isLoaded, setIsLoaded, slide }: VideoSlideProps, ref: ForwardedRef<HTMLImageElement>) => {
+const VideoSlide = forwardRef(({ className,isActive, slide }: VideoSlideProps, ref: ForwardedRef<HTMLImageElement>) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hasStartedPlaying, setHasStartedPlaying] = useState(false);
 
@@ -86,8 +84,6 @@ const VideoSlide = forwardRef(({ className,isActive, isLoaded, setIsLoaded, slid
       <ImageSlide
         className={styles.fallback}
         slide={slide}
-        isLoaded={isLoaded}
-        setIsLoaded={setIsLoaded}
         onClick={handleThumbnailClick}
         ref={ref}
       />

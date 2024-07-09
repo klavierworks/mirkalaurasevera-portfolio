@@ -17,6 +17,7 @@ export const processUnprocessedProject = async (item: UnprocessedProject): Promi
       height,
       aspectRatio: width / height,
     },
+    randomRotation: (Math.random() - 0.5) * 15,
     order: Number(item.order),
   };
 };

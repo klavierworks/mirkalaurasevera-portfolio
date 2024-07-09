@@ -1,6 +1,5 @@
-import  { getImageProps } from "next/image"
 import styles from './Slide.module.css';
-import { CSSProperties, useEffect, useMemo, useRef, useState } from "react";
+import { CSSProperties, useMemo, useRef } from "react";
 import useTargetScale from "./useTargetScale";
 import classNames from "classnames";
 import { CYPRESS } from "@/shared/cypress";
@@ -11,16 +10,15 @@ type SlideProps = {
   index: number;
   isActive: boolean;
   isPreviouslyActive: boolean;
+  isCarouselVisible: boolean;
   slide: Slide;
   zIndex: number;
 }
 
-const Slide = ({ index, isActive, isPreviouslyActive, slide, zIndex }: SlideProps) => {
+const Slide = ({ index, isActive, isPreviouslyActive, isCarouselVisible, slide, zIndex }: SlideProps) => {
   const imageRef = useRef<HTMLImageElement>(null);
   const spacerRef = useRef<HTMLDivElement>(null);
   const { line1, line2, line3, src, width, height } = slide;
-
-  const [isLoaded, setIsLoaded] = useState(false);
 
   const targetScale = useTargetScale({
     startSizeRef: imageRef,
@@ -28,9 +26,8 @@ const Slide = ({ index, isActive, isPreviouslyActive, slide, zIndex }: SlideProp
   });
 
   const slideClassNames = classNames(styles.slide, {
-    [styles.isLoaded]: isLoaded,
-    [styles.isPreviouslyActive]: isPreviouslyActive,
-    [styles.isActive]: isActive,
+    [styles.isPreviouslyActive]: isPreviouslyActive && isCarouselVisible,
+    [styles.isActive]: isActive && isCarouselVisible,
   });
 
   const style = {
@@ -54,17 +51,13 @@ const Slide = ({ index, isActive, isPreviouslyActive, slide, zIndex }: SlideProp
       {slide.video ? (
         <VideoSlide
           className={styles.media}
-          isActive={isActive}
-          isLoaded={isLoaded}
-          setIsLoaded={setIsLoaded}
+          isActive={isActive && isCarouselVisible}
           slide={slide}
           ref={imageRef}
           />
       ) : (
         <ImageSlide
           className={styles.media}
-          isLoaded={isLoaded}
-          setIsLoaded={setIsLoaded}
           slide={slide}
           ref={imageRef}
         />

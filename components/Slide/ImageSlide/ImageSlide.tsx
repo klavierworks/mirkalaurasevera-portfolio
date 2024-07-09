@@ -3,13 +3,11 @@ import { ForwardedRef, RefObject, forwardRef, useEffect, useMemo } from "react";
 
 type ImageSlideProps = {
   className: string;
-  isLoaded: boolean;
   onClick?: () => void;
-  setIsLoaded: (isLoaded: boolean) => void;
   slide: Slide;
 }
 
-const ImageSlide = forwardRef(({ className, isLoaded, onClick, setIsLoaded, slide }: ImageSlideProps, ref: ForwardedRef<HTMLImageElement>) => {
+const ImageSlide = forwardRef(({ className, onClick, slide }: ImageSlideProps, ref: ForwardedRef<HTMLImageElement>) => {
   const { line1, src, width, height } = slide;
 
   const imageProps = useMemo(() => {
@@ -28,12 +26,11 @@ const ImageSlide = forwardRef(({ className, isLoaded, onClick, setIsLoaded, slid
 
 
   useEffect(() => {
-    if (isLoaded || typeof window === 'undefined') {
+    if (typeof window === 'undefined') {
       return;
     }
 
     if (window.hasPreloaded[src]) {
-      setIsLoaded(true);
       return;
     }
 
@@ -52,15 +49,10 @@ const ImageSlide = forwardRef(({ className, isLoaded, onClick, setIsLoaded, slid
       }
 
       window.hasPreloaded[src] = true;
-      setIsLoaded(true);
     } 
   
     preload();
-  }, [imageProps, isLoaded, setIsLoaded, src]);
-
-  if (!isLoaded) {
-    return null;
-  }
+  }, [imageProps, src]);
 
   {/* eslint-disable-next-line jsx-a11y/alt-text */}
   return <img className={className} {...imageProps} onClick={onClick} ref={ref} />

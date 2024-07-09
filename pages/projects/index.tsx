@@ -1,4 +1,3 @@
-import * as Index from '../index';
 import styles from './Projects.module.css';
 
 type ProjectsProps = {
@@ -12,7 +11,7 @@ const Projects = ({ projects }: ProjectsProps) => {
         <article className={styles.project} key={slide.thumbnail.src}>
           <img alt="" style={{
             aspectRatio: slide.thumbnail.aspectRatio,
-            rotate: `${(Math.random() - 0.5) * 15}deg`,
+            rotate: `${slide.randomRotation}deg`,
           }} src={slide.thumbnail.src} />
         </article>
       ))}
@@ -22,4 +21,12 @@ const Projects = ({ projects }: ProjectsProps) => {
 
 export default Projects;
 
-export const getStaticProps = Index.getStaticProps;
+export const getStaticProps = async () => {
+  const projects = await import('../../shared/projects.json');
+
+  return {
+    props: {
+      projects: projects.default,
+    },
+  };
+}

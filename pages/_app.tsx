@@ -7,6 +7,7 @@ import Title from '@/components/Title/Title';
 import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 if (typeof window !== 'undefined') {
   window.hasPreloaded = {};
@@ -14,8 +15,10 @@ if (typeof window !== 'undefined') {
 
 const PortfolioApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
-  const [hasCompletedIntro, setHasCompletedIntro] = useState(false);
+  const [hasLoadedAndWaited, setHasLoadedAndWaited] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -24,13 +27,16 @@ const PortfolioApp = ({ Component, pageProps }: AppProps) => {
     }
 
     window.setTimeout(() => {
-      setHasCompletedIntro(true);
+      setHasLoadedAndWaited(true);
     }, 600);
-  }, [isLoaded]);
+  }, [isLoaded, pathname]);
+
+  const preservedActiveSlideIndex = searchParams.get('activeSlideIndex') ? Number(searchParams.get('activeSlideIndex')) : undefined;
+  const initialSlideIndex = preservedActiveSlideIndex ?? Number(pathname.replace('/', ''));
+  const [activeSlideIndex, setActiveSlideIndex] = useState(Number.isInteger(initialSlideIndex) ? initialSlideIndex : 0);
 
   const layoutClassNames = classNames(styles.layout, {
-    isLoaded,
-    hasCompletedIntro,
+    [styles.isPageLoaded]: hasLoadedAndWaited,
     [styles.isHome]: router.pathname === '/' || router.pathname === '/[slide]',
   });
 
@@ -53,9 +59,11 @@ const PortfolioApp = ({ Component, pageProps }: AppProps) => {
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"></meta>
     </Head>
     <main className={layoutClassNames}>
-      <Title />
+      <Title activeSlideIndex={activeSlideIndex} />
       <Preloader onPreloadComplete={setIsLoaded} data={pageProps}>
-        <Component {...pageProps} />
+        <div className={styles.page}>
+          <Component activeSlideIndex={activeSlideIndex} isPageLoaded={hasLoadedAndWaited} setActiveSlideIndex={setActiveSlideIndex} {...pageProps} />
+        </div>
       </Preloader>
     </main>
     </>
