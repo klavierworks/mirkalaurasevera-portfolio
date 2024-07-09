@@ -7,7 +7,7 @@ import arrow from './arrow.svg';
 type ProjectsProps = {
   activeProject: Project;
 }
-console.log(arrow)
+
 const Projects = ({ activeProject }: ProjectsProps) => {
   const frameClassNames = classNames(styles.projects, {
     [styles.hasActiveProject]: activeProject
@@ -32,6 +32,9 @@ const Projects = ({ activeProject }: ProjectsProps) => {
           </Link>
         </h1>
         <p dangerouslySetInnerHTML={{__html: activeProject?.description}} />
+        {activeProject?.images.map((imageSrc) => (
+          <img key={imageSrc} alt="" className={styles.image} src={imageSrc} />
+        ))}
       </div>        
     </div>
   );

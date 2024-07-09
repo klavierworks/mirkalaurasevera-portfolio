@@ -72,12 +72,32 @@ content:
         order: asc
     fields:
       - { name: order, label: Order, type: number }
-      - { name: title, label: Title, type: string }
       - {
           name: thumbnailSrc,
           label: Thumbnail Image,
           type: image,
           list: false,
+          options:
+            {
+              input: public/projects,
+              output: /projects,
+              extensions: jpg,
+              jpeg,
+              png,
+            },
+        }
+      - { name: title, label: Title, type: string }
+      - {
+          name: description,
+          label: Description,
+          type: rich-text,
+          options: { format: html, image: false },
+        }
+      - {
+          name: images,
+          label: Images,
+          type: image,
+          list: true,
           options:
             {
               input: public/projects,

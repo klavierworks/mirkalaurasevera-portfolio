@@ -38,6 +38,7 @@ declare global {
     title: string;
     description: string;
     slug: string;
+    images: string[];
     thumbnailSrc: string;
   }
 

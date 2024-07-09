@@ -39,7 +39,8 @@
   transition: transform 0.5s;
   z-index: 101;
   text-align: center;
-  padding: 10vh 16% 0;
+  padding: 10vh 16vw 0;
+  overflow-y: auto;
 
   .hasActiveProject & {
     transform: translateX(0);
@@ -53,5 +54,12 @@
       width: 12px;
       height: 8px;
     }
+  }
+
+  .image {
+    width: 100vw;
+    height: auto;
+    display: block;
+    margin-left: -16vw;
   }
 }
