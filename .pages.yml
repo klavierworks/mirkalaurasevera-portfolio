@@ -72,20 +72,26 @@ content:
         order: asc
     fields:
       - { name: order, label: Order, type: number }
-      - {
-          name: thumbnailSrc,
-          label: Thumbnail Image,
-          type: image,
-          list: false,
-          options:
-            {
-              input: public/projects,
-              output: /projects,
-              extensions: jpg,
-              jpeg,
-              png,
-            },
-        }
+      - name: thumbnail
+        label: Featured media
+        type: object
+        fields:
+          - name: image
+            label: Thumbnail Image
+            type: image
+            description: "If a video is provided, this is still required as a fallback"
+            options:
+              {
+                input: public/projects,
+                output: /projects,
+                extensions: jpg,
+                jpeg,
+                png,
+              }
+          - name: video
+            label: Video
+            type: string
+            description: "Video ID from Vimeo"
       - { name: title, label: Title, type: string }
       - {
           name: description,
@@ -93,17 +99,24 @@ content:
           type: rich-text,
           options: { format: html, image: false },
         }
-      - {
-          name: images,
-          label: Images,
-          type: image,
-          list: true,
-          options:
-            {
-              input: public/projects,
-              output: /projects,
-              extensions: jpg,
-              jpeg,
-              png,
-            },
-        }
+      - name: thumbnail
+        label: Media
+        type: object
+        list: true,
+        fields:
+          - name: image
+            label: Thumbnail Image
+            type: image
+            description: "If a video is provided, this is still required as a fallback"
+            options:
+              {
+                input: public/projects,
+                output: /projects,
+                extensions: jpg,
+                jpeg,
+                png,
+              }
+          - name: video
+            label: Video
+            type: string
+            description: "Video ID from Vimeo"
