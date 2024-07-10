@@ -31,7 +31,7 @@ const PortfolioApp = ({ Component, pageProps }: AppProps) => {
 
     let timer = window.setTimeout(() => {
       setIsCarouselVisible(true);
-    }, 125);
+    }, 500);
 
     return () => {
       window.clearTimeout(timer);
@@ -44,7 +44,7 @@ const PortfolioApp = ({ Component, pageProps }: AppProps) => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(Number.isInteger(initialSlideIndex) ? initialSlideIndex : 0);
 
   const layoutClassNames = classNames(styles.layout, {
-    [styles.isPageLoaded]: isLoaded,
+    [styles.isPageLoaded]: isLoaded && (!isHome || isCarouselVisible),
     [styles.isHome]: isHome,
   });
 
