@@ -32,7 +32,7 @@ const Projects = ({ activeProject }: ProjectsProps) => {
           </Link>
         </h1>
         <p dangerouslySetInnerHTML={{__html: activeProject?.description}} />
-        {activeProject?.images.map((imageSrc) => (
+        {activeProject?.images?.map((imageSrc) => (
           <img key={imageSrc} alt="" className={styles.image} src={imageSrc} />
         ))}
       </div>        
