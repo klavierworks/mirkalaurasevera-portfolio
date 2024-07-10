@@ -37,13 +37,13 @@ declare global {
     order: number | string;
     title: string;
     description: string;
-    slug: string;
     images: string[];
     thumbnailSrc: string;
   }
 
   type Project = Omit<UnprocessedProject, 'order' | 'thumbnailSrc'> & {
     randomRotation: number;
+    slug: string;
     thumbnail: SimpleImageMetaData;
     order: number;
   }

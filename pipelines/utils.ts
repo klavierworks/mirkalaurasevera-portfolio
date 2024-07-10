@@ -20,3 +20,25 @@ export const safelyProcessJsonFilesAndWrite = async (directory: string, outputFi
     console.error('Error processing JSON files:', error);
   }
 }
+
+export const createSlugFromString = (text: string) => {
+  // Replace any non-alphanumeric character with a space
+  text = text.replace(/[^a-zA-Z0-9\s]/g, ' ');
+
+  // Convert the string to lowercase
+  text = text.toLowerCase();
+
+  // Replace multiple spaces with a single space
+  text = text.replace(/\s+/g, ' ');
+
+  // Trim leading and trailing spaces
+  text = text.trim();
+
+  // Replace spaces with hyphens
+  text = text.replace(/\s/g, '-');
+
+  // Remove any trailing hyphens
+  text = text.replace(/-+$/g, '');
+
+  return text;
+}

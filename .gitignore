@@ -36,5 +36,6 @@ yarn-error.log*
 next-env.d.ts
 dist
 
-carousel.json
+shared/carousel.json
+shared/projects.json
 .env

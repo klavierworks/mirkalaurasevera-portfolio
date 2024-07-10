@@ -1,6 +1,5 @@
 import Project from './index';
 import projects from '../../shared/projects.json';
-import { GetStaticPaths, GetStaticPathsContext } from 'next';
 
 export default Project;
 

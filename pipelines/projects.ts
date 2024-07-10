@@ -1,4 +1,5 @@
 import { createThumbnail, getImageMetadata } from './media';
+import { createSlugFromString } from './utils';
 
 // Updates the JSON object with image dimensions and aspect ratio.
 export const processUnprocessedProject = async (item: UnprocessedProject): Promise<Project> => {
@@ -18,6 +19,7 @@ export const processUnprocessedProject = async (item: UnprocessedProject): Promi
       height,
       aspectRatio: width / height,
     },
+    slug: createSlugFromString(item.title),
     randomRotation: (Math.random() - 0.5) * 15,
     order: Number(item.order),
   };
