@@ -1,5 +1,7 @@
 {
   "order": 2,
-  "thumbnailSrc": "/projects/CHANEL__MirkaLauraSevera.jpg",
+  "thumbnail": {
+    "image": "/projects/CHANEL__MirkaLauraSevera.jpg"
+  },
   "title": "Chanel"
 }

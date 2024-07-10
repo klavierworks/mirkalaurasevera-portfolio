@@ -1,26 +1,28 @@
-import { ForwardedRef, forwardRef, useEffect, useRef, useState } from "react";
-import ImageSlide from "../ImageSlide/ImageSlide";
-import styles from './VideoSlide.module.css';
+import { CSSProperties, ForwardedRef, forwardRef, useEffect, useRef, useState } from "react";
+import styles from './CustomVideo.module.css';
 import Hls from "hls.js";
+import CustomImage from "../CustomImage/CustomImage";
 
-type VideoSlideProps = {
+type CustomVideoProps = {
   className: string;
+  fallback: ImageObject;
   isActive: boolean;
-  slide: Slide;
+  style?: CSSProperties;
+  video: VideoObject
 }
 
-const VideoSlide = forwardRef(({ className,isActive, slide }: VideoSlideProps, ref: ForwardedRef<HTMLImageElement>) => {
+const CustomVideo = forwardRef(({ className, fallback, isActive, style, video }: CustomVideoProps, ref: ForwardedRef<HTMLImageElement | HTMLVideoElement>) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hasStartedPlaying, setHasStartedPlaying] = useState(false);
 
   useEffect(() => {
-    let video = videoRef.current;
-    let src = slide.video?.url;
-    if (!video || !src) {
+    let videoEl = videoRef.current;
+    let src = video?.url;
+    if (!videoEl || !src) {
       return;
     }
-    if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      video.src = src;
+    if (videoEl.canPlayType('application/vnd.apple.mpegurl')) {
+      videoEl.src = src;
       return;
     }
     if (typeof window === 'undefined' ) {
@@ -29,11 +31,11 @@ const VideoSlide = forwardRef(({ className,isActive, slide }: VideoSlideProps, r
     if (Hls.isSupported()) {
       var hls = new Hls();
       hls.loadSource(src);
-      hls.attachMedia(video);
+      hls.attachMedia(videoEl);
       return;
     }
-    video.src = slide.video?.mp4Url ?? '';
-  }, [slide.video?.mp4Url, slide.video?.url]);
+    videoEl.src = video.mp4Url ?? '';
+  }, [video.mp4Url, video.url]);
 
   useEffect(() => {
     if (!videoRef.current) {
@@ -70,7 +72,7 @@ const VideoSlide = forwardRef(({ className,isActive, slide }: VideoSlideProps, r
 	};
 
   return (
-    <div className={`${styles.container} ${className} ${hasStartedPlaying && styles.hasStartedPlaying}`}>
+    <div className={`${styles.container} ${className} ${hasStartedPlaying && styles.hasStartedPlaying}`} style={style}>
       <video
         className={styles.video}
         controls={false}
@@ -81,9 +83,9 @@ const VideoSlide = forwardRef(({ className,isActive, slide }: VideoSlideProps, r
         onClick={handleClick}
         onProgress={handleProgress}
       />
-      <ImageSlide
+      <CustomImage
         className={styles.fallback}
-        slide={slide}
+        image={fallback}
         onClick={handleThumbnailClick}
         ref={ref}
       />
@@ -91,5 +93,5 @@ const VideoSlide = forwardRef(({ className,isActive, slide }: VideoSlideProps, r
   )
 })
 
-VideoSlide.displayName = 'VideoSlide';
-export default VideoSlide;
+CustomVideo.displayName = 'CustomVideo';
+export default CustomVideo;

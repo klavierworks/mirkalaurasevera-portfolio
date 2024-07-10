@@ -1,8 +1,12 @@
 import Link from 'next/link';
 import styles from './Projects.module.css';
-import projects from '../../shared/projects.json';
+import projectsJson from '../../shared/projects.json';
 import classNames from 'classnames';
 import arrow from './arrow.svg';
+import Project from '@/components/Project/Project';
+import Media from '@/components/Media/Media';
+
+const projects = projectsJson as unknown as Project[];
 
 type ProjectsProps = {
   activeProject: Project;
@@ -15,26 +19,25 @@ const Projects = ({ activeProject }: ProjectsProps) => {
 
   return (
     <div className={frameClassNames}>
-      {projects.map(project => (
-        <Link key={project.slug} href={`/projects/${project.slug}`}>
-          <article className={`${styles.project} ${activeProject?.slug === project.slug ? styles.isActive : ''}`} key={project.thumbnail.src}>
-            <img alt="" style={{
-              aspectRatio: project.thumbnail.aspectRatio,
-              rotate: `${project.randomRotation}deg`,
-            }} src={project.thumbnail.src} />
-          </article>
-        </Link>
+      {projects.map((project) => (
+        <Project
+          key={project.slug}
+          isActive={activeProject?.slug === project.slug}
+          project={project}
+        />
       ))}
       <div className={styles.activeProject}>
-        <h1>{activeProject?.title}
-          <Link href={`/projects`} className={styles.arrow}>
-            <img alt="back icon" src={arrow.src} />
-          </Link>
-        </h1>
-        <p dangerouslySetInnerHTML={{__html: activeProject?.description}} />
-        {activeProject?.images?.map((imageSrc) => (
-          <img key={imageSrc} alt="" className={styles.image} src={imageSrc} />
-        ))}
+        <div className={styles.content}>
+          <h1>{activeProject?.title}
+            <Link href={`/projects`} className={styles.arrow}>
+              <img alt="back icon" src={arrow.src} />
+            </Link>
+          </h1>
+          <p dangerouslySetInnerHTML={{__html: activeProject?.description}} />
+          {activeProject?.media?.map((media) => (
+            <Media className={styles.image} isActive key={media.image.src} media={media} />
+          ))}
+        </div>
       </div>        
     </div>
   );

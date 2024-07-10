@@ -1,0 +1,16 @@
+.project {
+  width: 40vw;
+  height: auto;
+
+  @media (min-width: 720px) {
+    width: 20vw;
+  }
+
+  .hasActiveProject &:not(.isActive) {
+    opacity: 0.3;
+  }
+
+  img {
+    width: 100%;
+  }
+}

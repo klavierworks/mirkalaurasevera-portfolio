@@ -9,16 +9,6 @@ export const getImageMetadata = async (imagePath: string): Promise<sharp.Metadat
   return metadata;
 }
 
-export const createThumbnail = async (imagePath: string, width: number, height: number) => {
-  const buffer = await sharp(`./public${imagePath}`)
-    .resize(width, height, {
-      fit: 'cover',
-      position: sharp.strategy.attention
-    })
-    .toBuffer();
-  return `data:image/png;base64,${buffer.toString('base64')}`;
-}
-
 // Fetch data from Vimeo API by video ID using Vimeo JS SDK
 export const getVimeoMetadata = async (videoId?: string): Promise<VimeoVideoDetails | null> => {
   if (!videoId) {
@@ -46,4 +36,68 @@ export const getVimeoMetadata = async (videoId?: string): Promise<VimeoVideoDeta
     console.error(`Error fetching Vimeo video info for ${videoId}:`, error);
     throw error;
   }
+}
+
+export const createVideoObject = async (videoId?: string) => {
+  const videoInfo = await getVimeoMetadata(videoId);
+
+  if (!videoInfo) {
+    return undefined;
+  }
+
+  return {
+    url: videoInfo.play?.hls?.link,
+    width: videoInfo.width,
+    height: videoInfo.height,
+    fallback: videoInfo.pictures?.sizes?.reverse?.()?.[0],
+    mp4Url: videoInfo.play?.progressive?.[0]?.link,
+  } as VideoObject;
+}
+
+export const createImageObject = async (src: string, alt?: string) => {
+  const { width, height } = await getImageMetadata(src);
+
+  if (!width || !height) {
+    throw new Error(`Could not read image dimensions for ${src}`);
+  }
+
+  return {
+    alt,
+    src,
+    width,
+    height,
+    aspectRatio: width / height,
+  } as ImageObject;
+}
+
+export const createMediaObject = async (imageSrc: string, alt: string, videoId?: string): Promise<MediaObject> => {
+  const image = await createImageObject(imageSrc, alt);
+  const video = await createVideoObject(videoId);
+
+  return {
+    image,
+    video,
+  }
+}
+
+
+export const createThumbnailObject = async (imagePath: string, width: number, height: number) => {
+  const buffer = await sharp(`./public${imagePath}`)
+    .resize(width, height, {
+      fit: 'inside',
+      position: sharp.strategy.attention
+    }).toBuffer();
+
+  const image = await createImageObject(imagePath, '');
+
+  const resizedMetadata = await sharp(buffer).metadata();
+
+  return {
+    image: {
+      ...image,
+      src: `data:image/png;base64,${buffer.toString('base64')}`,
+      width: resizedMetadata.width,
+      height: resizedMetadata.height,
+    },
+  } as MediaObject;
 }

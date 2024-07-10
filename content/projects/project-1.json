@@ -1,7 +1,9 @@
 {
   "order": 1,
   "title": "nicchi",
-  "thumbnailSrc": "/projects/MLS_001.jpg",
+  "thumbnail": {
+    "image": "/projects/MLS_001.jpg"
+  },
   "slug": "nicchi",
   "description": "",
   "images": []

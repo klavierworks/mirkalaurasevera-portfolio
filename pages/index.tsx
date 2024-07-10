@@ -78,7 +78,7 @@ const Home = ({ activeSlideIndex, isCarouselVisible, setActiveSlideIndex }: Home
         {slides.map((slide, index) => (
           <SlideComponent
             index={index}
-            key={slide.src}
+            key={slide.media.image.src}
             slide={slide}
             isActive={activeSlideIndex === index}
             isCarouselVisible={isCarouselVisible}

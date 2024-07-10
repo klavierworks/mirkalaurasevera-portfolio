@@ -1,28 +1,29 @@
 import { getImageProps } from "next/image";
-import { ForwardedRef, RefObject, forwardRef, useEffect, useMemo } from "react";
+import { CSSProperties, ForwardedRef, forwardRef, useEffect, useMemo } from "react";
 
-type ImageSlideProps = {
+type CustomImageProps = {
   className: string;
+  image: ImageObject;
   onClick?: () => void;
-  slide: Slide;
+  style?: CSSProperties;
 }
 
-const ImageSlide = forwardRef(({ className, onClick, slide }: ImageSlideProps, ref: ForwardedRef<HTMLImageElement>) => {
-  const { line1, src, width, height } = slide;
+const CustomImage = forwardRef(({ className, image, onClick, style }: CustomImageProps, ref: ForwardedRef<HTMLImageElement | HTMLVideoElement>) => {
+  const { alt, src, width, height } = image;
 
   const imageProps = useMemo(() => {
     const { props } = getImageProps({
       src,
       width,
       height,
-      alt: line1,
+      alt,
       quality: 90,
       sizes: '100vw',
       loading: 'eager',
     })
   
     return props
-  }, [line1, src, width, height])
+  }, [alt, src, width, height])
 
 
   useEffect(() => {
@@ -55,9 +56,9 @@ const ImageSlide = forwardRef(({ className, onClick, slide }: ImageSlideProps, r
   }, [imageProps, src]);
 
   {/* eslint-disable-next-line jsx-a11y/alt-text */}
-  return <img className={className} {...imageProps} onClick={onClick} ref={ref} />
+  return <img className={className} {...imageProps} onClick={onClick} ref={ref as ForwardedRef<HTMLImageElement>} style={style} />
 })
 
-ImageSlide.displayName = 'ImageSlide';
+CustomImage.displayName = 'CustomImage';
 
-export default ImageSlide;
+export default CustomImage;

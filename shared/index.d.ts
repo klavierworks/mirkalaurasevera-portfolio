@@ -2,6 +2,32 @@ declare global {
   interface Window {
     hasPreloaded: { [key: string]: boolean };
   }
+
+  type ImageObject = {
+    alt: string;
+    src: string;
+    width: number;
+    height: number;
+    aspectRatio: number;
+  }
+
+  type VideoObject = {
+    url: string;
+    width: number;
+    height: number;
+    mp4Url: string;
+    fallback?: {
+      width: number;
+      height: number;
+      link: string;
+    };
+  }
+
+  type MediaObject = {
+    image: ImageObject;
+    video?: VideoObject
+  }
+
   interface UnprocessedSlide {
     order: number | string;
     line1: string;
@@ -11,40 +37,33 @@ declare global {
     videoId?: string;
   }
 
-  type SimpleImageMetaData = {
-    src: string;
-    width: number;
-    height: number;
-    aspectRatio: number;
-  }
-
-  type Slide = Omit<UnprocessedSlide, 'order'> & SimpleImageMetaData & {
+  type Slide = {
     order: number;
-    video?: {
-      url: string;
-      width: number;
-      height: number;
-      mp4Url: string;
-      fallback?: {
-        width: number;
-        height: number;
-        link: string;
-      };
-    };
+    media: MediaObject;
+    line1: string;
+    line2: string;
+    line3: string;
   }
 
   type UnprocessedProject = {
     order: number | string;
     title: string;
     description: string;
-    images: string[];
-    thumbnailSrc: string;
+    images: {
+      image: string;
+      video: string;
+    }[];
+    thumbnail: {
+      image: string;
+      video: string;
+    }
   }
 
-  type Project = Omit<UnprocessedProject, 'order' | 'thumbnailSrc'> & {
+  type Project = Omit<UnprocessedProject, 'order' | 'thumbnail' | 'images'> & {
     randomRotation: number;
     slug: string;
-    thumbnail: SimpleImageMetaData;
+    thumbnail: MediaObject;
+    media: MediaObject[];
     order: number;
   }
 }

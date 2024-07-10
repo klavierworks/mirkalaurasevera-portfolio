@@ -3,8 +3,7 @@ import { CSSProperties, useMemo, useRef } from "react";
 import useTargetScale from "./useTargetScale";
 import classNames from "classnames";
 import { CYPRESS } from "@/shared/cypress";
-import ImageSlide from "./ImageSlide/ImageSlide";
-import VideoSlide from "./VideoSlide/VideoSlide";
+import Media from '../Media/Media';
 
 type SlideProps = {
   index: number;
@@ -18,7 +17,7 @@ type SlideProps = {
 const Slide = ({ index, isActive, isPreviouslyActive, isCarouselVisible, slide, zIndex }: SlideProps) => {
   const imageRef = useRef<HTMLImageElement>(null);
   const spacerRef = useRef<HTMLDivElement>(null);
-  const { line1, line2, line3, src, width, height } = slide;
+  const { line1, line2, line3, media } = slide;
 
   const targetScale = useTargetScale({
     startSizeRef: imageRef,
@@ -32,7 +31,7 @@ const Slide = ({ index, isActive, isPreviouslyActive, isCarouselVisible, slide, 
 
   const style = {
     '--target-scale': targetScale,
-    '--aspect-ratio': `${width} / ${height}`,
+    '--aspect-ratio': `${media.image.width} / ${media.image.height}`,
     '--z-index': zIndex,
   } as CSSProperties
 
@@ -48,20 +47,12 @@ const Slide = ({ index, isActive, isPreviouslyActive, isCarouselVisible, slide, 
 
   return (
     <li className={slideClassNames} data-cy={cyAttribute} data-cy-index={index} style={style}>
-      {slide.video ? (
-        <VideoSlide
-          className={styles.media}
-          isActive={isActive && isCarouselVisible}
-          slide={slide}
-          ref={imageRef}
-          />
-      ) : (
-        <ImageSlide
-          className={styles.media}
-          slide={slide}
-          ref={imageRef}
-        />
-      )}
+      <Media
+        className={styles.media}
+        media={media}
+        isActive={isActive && isCarouselVisible}
+        ref={imageRef}
+      />
       <div className={styles.imageSpacer} ref={spacerRef} />
       <div className={styles.title}>
         <p className={styles.content}>
