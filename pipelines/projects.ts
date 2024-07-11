@@ -17,7 +17,7 @@ export const processUnprocessedProject = async (item: UnprocessedProject): Promi
       image: shrunkImage,
     },
     media: await Promise.all(
-      item.images.map(({ image, video }) => createMediaObject(image, video))
+      item.images.map(({ image, video }, index) => createMediaObject(image, `${item.title} – asset #${index + 1}`, video))
     ),
     slug: createSlugFromString(item.title),
     randomRotation: (Math.random() - 0.5) * 15,

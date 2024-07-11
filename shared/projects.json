@@ -20,6 +20,7 @@
     "media": [
       {
         "image": {
+          "alt": "The Bottle – asset #1",
           "src": "/projects/BottleMold_MacGuffin_MLS_007.jpg",
           "width": 2621,
           "height": 3467,
@@ -28,7 +29,7 @@
       }
     ],
     "slug": "the-bottle",
-    "randomRotation": -3.3919321408345193
+    "randomRotation": -0.040384184508791554
   },
   {
     "order": 1,
@@ -42,7 +43,7 @@
         "aspectRatio": 0.7499062617172854
       },
       "video": {
-        "url": "https://player.vimeo.com/play/122aa2c0-51ae-4163-8fc7-d9638bd5faac/hls.m3u8?s=927047412_1720712578_ed1a02020cfff6668330f82fbdfba44b&context=Vimeo%5CController%5CApi%5CResources%5CVideoController.&log_user=0&oauth2_token_id=1770775249",
+        "url": "https://player.vimeo.com/play/122aa2c0-51ae-4163-8fc7-d9638bd5faac/hls.m3u8?s=927047412_1720776547_9172313222a41adc019572f44f686fb7&context=Vimeo%5CController%5CApi%5CResources%5CVideoController.&log_user=0&oauth2_token_id=1770775249",
         "width": 2048,
         "height": 1152,
         "fallback": {
@@ -51,7 +52,7 @@
           "link": "https://i.vimeocdn.com/video/1821710986-97f83b9ef5f21711398d3d28a5b34f68d04e8c8eeb00833301d19ee0d7661af0-d_1920x1080?r=pad",
           "link_with_play_button": "https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F1821710986-97f83b9ef5f21711398d3d28a5b34f68d04e8c8eeb00833301d19ee0d7661af0-d_1920x1080&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png"
         },
-        "mp4Url": "https://player.vimeo.com/progressive_redirect/playback/927047412/container/122aa2c0-51ae-4163-8fc7-d9638bd5faac/9256193a-1f4e4d59?expires=1720712698&loc=external&log_user=0&oauth2_token_id=1770775249&signature=01fbe5d2eac75d3ebb8c15e36a15789fb921d836a200fe54e11796899aa36987"
+        "mp4Url": "https://player.vimeo.com/progressive_redirect/playback/927047412/container/122aa2c0-51ae-4163-8fc7-d9638bd5faac/92afaa12-1f4e4d59?expires=1720776667&loc=external&log_user=0&oauth2_token_id=1770775249&signature=cf55db490260b2e40832e7ab09b794ad4bb1bebd2903b4107ebc27bbdcf79c94"
       }
     },
     "slug": "nicchi",
@@ -60,19 +61,80 @@
       {
         "video": "927047412",
         "image": "/projects/MLS_001.jpg"
+      },
+      {
+        "image": "/projects/BottleMold_MacGuffin_MLS_007.jpg"
+      },
+      {
+        "video": "927047412",
+        "image": "/projects/MLS_001.jpg"
+      },
+      {
+        "image": "/projects/BottleMold_MacGuffin_MLS_007.jpg"
       }
     ],
     "media": [
       {
         "image": {
-          "alt": "927047412",
+          "alt": "nicchi – asset #1",
           "src": "/projects/MLS_001.jpg",
           "width": 2000,
           "height": 2667,
           "aspectRatio": 0.7499062617172854
+        },
+        "video": {
+          "url": "https://player.vimeo.com/play/122aa2c0-51ae-4163-8fc7-d9638bd5faac/hls.m3u8?s=927047412_1720776547_9172313222a41adc019572f44f686fb7&context=Vimeo%5CController%5CApi%5CResources%5CVideoController.&log_user=0&oauth2_token_id=1770775249",
+          "width": 2048,
+          "height": 1152,
+          "fallback": {
+            "width": 1920,
+            "height": 1080,
+            "link": "https://i.vimeocdn.com/video/1821710986-97f83b9ef5f21711398d3d28a5b34f68d04e8c8eeb00833301d19ee0d7661af0-d_1920x1080?r=pad",
+            "link_with_play_button": "https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F1821710986-97f83b9ef5f21711398d3d28a5b34f68d04e8c8eeb00833301d19ee0d7661af0-d_1920x1080&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png"
+          },
+          "mp4Url": "https://player.vimeo.com/progressive_redirect/playback/927047412/container/122aa2c0-51ae-4163-8fc7-d9638bd5faac/92afaa12-1f4e4d59?expires=1720776667&loc=external&log_user=0&oauth2_token_id=1770775249&signature=cf55db490260b2e40832e7ab09b794ad4bb1bebd2903b4107ebc27bbdcf79c94"
+        }
+      },
+      {
+        "image": {
+          "alt": "nicchi – asset #2",
+          "src": "/projects/BottleMold_MacGuffin_MLS_007.jpg",
+          "width": 2621,
+          "height": 3467,
+          "aspectRatio": 0.7559850014421691
+        }
+      },
+      {
+        "image": {
+          "alt": "nicchi – asset #3",
+          "src": "/projects/MLS_001.jpg",
+          "width": 2000,
+          "height": 2667,
+          "aspectRatio": 0.7499062617172854
+        },
+        "video": {
+          "url": "https://player.vimeo.com/play/122aa2c0-51ae-4163-8fc7-d9638bd5faac/hls.m3u8?s=927047412_1720776547_9172313222a41adc019572f44f686fb7&context=Vimeo%5CController%5CApi%5CResources%5CVideoController.&log_user=0&oauth2_token_id=1770775249",
+          "width": 2048,
+          "height": 1152,
+          "fallback": {
+            "width": 1920,
+            "height": 1080,
+            "link": "https://i.vimeocdn.com/video/1821710986-97f83b9ef5f21711398d3d28a5b34f68d04e8c8eeb00833301d19ee0d7661af0-d_1920x1080?r=pad",
+            "link_with_play_button": "https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F1821710986-97f83b9ef5f21711398d3d28a5b34f68d04e8c8eeb00833301d19ee0d7661af0-d_1920x1080&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png"
+          },
+          "mp4Url": "https://player.vimeo.com/progressive_redirect/playback/927047412/container/122aa2c0-51ae-4163-8fc7-d9638bd5faac/92afaa12-1f4e4d59?expires=1720776667&loc=external&log_user=0&oauth2_token_id=1770775249&signature=cf55db490260b2e40832e7ab09b794ad4bb1bebd2903b4107ebc27bbdcf79c94"
+        }
+      },
+      {
+        "image": {
+          "alt": "nicchi – asset #4",
+          "src": "/projects/BottleMold_MacGuffin_MLS_007.jpg",
+          "width": 2621,
+          "height": 3467,
+          "aspectRatio": 0.7559850014421691
         }
       }
     ],
-    "randomRotation": 5.122662618730107
+    "randomRotation": -1.7862039919952155
   }
 ]

@@ -35,7 +35,9 @@ const Projects = ({ activeProject }: ProjectsProps) => {
           </h1>
           <p dangerouslySetInnerHTML={{__html: activeProject?.description}} />
           {activeProject?.media?.map((media) => (
-            <Media className={styles.image} isActive key={media.image.src} media={media} />
+            <div className={styles.mediaContainer} key={media.image.src}>
+              <Media className={styles.media} isActive media={media} />
+            </div>
           ))}
         </div>
       </div>        
