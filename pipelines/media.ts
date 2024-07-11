@@ -21,16 +21,16 @@ export const getVimeoMetadata = async (videoId?: string): Promise<VimeoVideoDeta
     const response = await fetch(url, {
       method: 'GET',
       headers: {
-        'Authorization': `Bearer ${process.env.VIMEO_ACCESS_TOKEN}`,
+        'Authorization': `bearer ${process.env.VIMEO_CLIENT_TOKEN}`,
         'Content-Type': 'application/json'
       }
     });
-
     if (!response.ok) {
       throw new Error(`Error: ${response.status}`);
     }
 
     const data: VimeoVideoDetails = await response.json();
+
     return data;
   } catch (error) {
     console.error(`Error fetching Vimeo video info for ${videoId}:`, error);
@@ -93,11 +93,9 @@ export const createThumbnailObject = async (imagePath: string, width: number, he
   const resizedMetadata = await sharp(buffer).metadata();
 
   return {
-    image: {
-      ...image,
-      src: `data:image/png;base64,${buffer.toString('base64')}`,
-      width: resizedMetadata.width,
-      height: resizedMetadata.height,
-    },
-  } as MediaObject;
+    ...image,
+    src: `data:image/png;base64,${buffer.toString('base64')}`,
+    width: resizedMetadata.width,
+    height: resizedMetadata.height,
+  } as ImageObject;
 }

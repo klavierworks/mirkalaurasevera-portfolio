@@ -15,7 +15,7 @@ const Project = ({ isActive, project }: ProjectProps) => {
         <Media 
           className={styles.media}
           media={project.thumbnail}
-          isActive={isActive}
+          isActive
           style={{
             aspectRatio: project.thumbnail?.image?.aspectRatio,
             rotate: `${project.randomRotation}deg`,

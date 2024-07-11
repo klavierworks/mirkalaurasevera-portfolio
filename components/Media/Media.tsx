@@ -15,6 +15,7 @@ const Media = forwardRef(({
   isActive,
   style
 }: MediaProps, ref: ForwardedRef<HTMLImageElement | HTMLVideoElement>) => {
+
   if (media?.video) {
     return (
       <CustomVideo

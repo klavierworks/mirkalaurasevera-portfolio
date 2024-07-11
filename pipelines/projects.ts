@@ -7,11 +7,15 @@ export const processUnprocessedProject = async (item: UnprocessedProject): Promi
     throw new Error('Project is missing thumbnail');
   }
 
-  const thumbnail = await createThumbnailObject(item.thumbnail.image, 300, 500);
+  const thumbnail = await createMediaObject(item.thumbnail.image, item.title, item.thumbnail.video);
+  const shrunkImage = await createThumbnailObject(item.thumbnail.image, 300, 500);
 
   return {
     ...item,
-    thumbnail,
+    thumbnail: {
+      ...thumbnail,
+      image: shrunkImage,
+    },
     media: await Promise.all(
       item.images.map(({ image, video }) => createMediaObject(image, video))
     ),

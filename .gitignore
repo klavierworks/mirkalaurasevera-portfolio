@@ -38,4 +38,5 @@ dist
 
 shared/carousel.json
 shared/projects.json
+
 .env
