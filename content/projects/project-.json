@@ -1,13 +1,22 @@
 {
   "order": 3,
-  "title": "The Bottle",
-  "thumbnail": {
-    "image": "/projects/BottleMold_MacGuffin_MLS_007.jpg"
-  },
-  "description": "<p>Mac Guffin Magazine</p><p></p><p>Bottle Mold</p>",
-  "images": [
+  "thumbnail": [
     {
-      "image": "/projects/BottleMold_MacGuffin_MLS_007.jpg"
+      "image": "/projects/MirkaLauraSevera__TheBottle_001.jpg"
+    },
+    {
+      "image": "/projects/MirkaLauraSevera__TheBottle_003.jpg"
+    },
+    {
+      "image": "/projects/MirkaLauraSevera__TheBottle_005.jpg"
+    },
+    {
+      "image": "/projects/MirkaLauraSevera__TheBottle_003.jpg"
+    },
+    {
+      "image": "/projects/MirkaLauraSevera__TheBottle_004.jpg"
     }
-  ]
+  ],
+  "title": "The Bottle",
+  "description": "<p>Mac Guffin Magazine</p><p>Bottle Mold</p>"
 }
