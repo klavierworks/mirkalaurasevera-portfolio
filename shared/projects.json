@@ -41,15 +41,6 @@
       {
         "image": {
           "alt": "The Bottle – asset #4",
-          "src": "/projects/MirkaLauraSevera__TheBottle_003.jpg",
-          "width": 4913,
-          "height": 6550,
-          "aspectRatio": 0.7500763358778626
-        }
-      },
-      {
-        "image": {
-          "alt": "The Bottle – asset #5",
           "src": "/projects/MirkaLauraSevera__TheBottle_004.jpg",
           "width": 4912,
           "height": 6692,
@@ -60,7 +51,7 @@
     "title": "The Bottle",
     "description": "<p>Mac Guffin Magazine</p><p>Bottle Mold</p>",
     "slug": "the-bottle",
-    "randomRotation": -2.210850453936004
+    "randomRotation": -2.2789818008641904
   },
   {
     "order": 6,
@@ -114,7 +105,7 @@
     "title": "Solar Views",
     "description": "<p><br>“ It's about us not seeing whether something is real or fake</p><p style=\"text-align: start\">- because we don’t take the time to really look at it,</p><p style=\"text-align: start\">it’s about how our happiness depends on the weather,</p><p style=\"text-align: start\">it’s about trying to make a perfect picture of a sunset but</p><p style=\"text-align: start\">always failing.”</p><p style=\"text-align: start\">- Sunny</p><p style=\"text-align: start\"></p><p style=\"text-align: start\">This project is about the fictional Artist „Sunny“ .</p><p style=\"text-align: start\">Sunny creates only images with the sun. His images are so strong that you</p><p style=\"text-align: start\">need to wear UV protection to be able to look at his art.</p><p style=\"text-align: start\">Occasionally he also takes on commissions - for instance to create&nbsp;solar</p><p style=\"text-align: start\">visuals for the weather forecast channel SunTV.</p><p style=\"text-align: start\">The following images document the opening of his latest show:</p><p style=\"text-align: start\">The Sunny Side Up.</p><p style=\"text-align: start\"></p><p style=\"text-align: start\">Warning:</p><p style=\"text-align: start\">To avoid longterm damage of your eyes, its strongly recommended to put on</p><p style=\"text-align: start\">sunglasses BEFORE you enter his exhibition.</p><p style=\"text-align: start\">The artist takes no responsibility for any health damage caused by his art.</p><p style=\"text-align: start\">Looking at his art is at your own risk.</p>",
     "slug": "solar-views",
-    "randomRotation": 7.360191397069089
+    "randomRotation": -0.1828179279878961
   },
   {
     "order": 2,
@@ -127,7 +118,7 @@
         "aspectRatio": 1.7877094972067038
       },
       "video": {
-        "url": "https://player.vimeo.com/play/028eb342-9508-4af2-89b3-536d89e0a90f/hls.m3u8?s=342315950_1720861897_9b2e1a221e0a335e34a26f7b23644e29&context=Vimeo%5CController%5CApi%5CResources%5CVideoController.&log_user=0&oauth2_token_id=1770775249",
+        "url": "https://player.vimeo.com/play/028eb342-9508-4af2-89b3-536d89e0a90f/hls.m3u8?s=342315950_1720874158_6a311472172949a841303bc77ef023c0&context=Vimeo%5CController%5CApi%5CResources%5CVideoController.&log_user=0&oauth2_token_id=1770775249",
         "width": 3840,
         "height": 2160,
         "fallback": {
@@ -136,13 +127,13 @@
           "link": "https://i.vimeocdn.com/video/791647293-7dd6959f5bf0963fd7678e66eae69cb559bf58c5a262a1fa6f1040be4ad84d65-d_1920x1080?r=pad",
           "link_with_play_button": "https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F791647293-7dd6959f5bf0963fd7678e66eae69cb559bf58c5a262a1fa6f1040be4ad84d65-d_1920x1080&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png"
         },
-        "mp4Url": "https://player.vimeo.com/progressive_redirect/playback/342315950/container/028eb342-9508-4af2-89b3-536d89e0a90f/23af6bc2?expires=1720862017&loc=external&log_user=0&oauth2_token_id=1770775249&signature=22fccc8bb77d801a8d827ce1925353d2df3e23c5193f43c893ad3d73f028cb79"
+        "mp4Url": "https://player.vimeo.com/progressive_redirect/playback/342315950/container/028eb342-9508-4af2-89b3-536d89e0a90f/23af6bc2?expires=1720874278&loc=external&log_user=0&oauth2_token_id=1770775249&signature=7d54446d415d5251372a121e81ac312a7d8fa8c7896660699fe1d915fe15f2bb"
       }
     },
     "media": [],
     "title": "Forces of Nature",
     "slug": "forces-of-nature",
-    "randomRotation": 2.9193773574647808
+    "randomRotation": -2.7997309050912653
   },
   {
     "order": 5,
@@ -295,7 +286,7 @@
     "title": "Fietser",
     "description": "<p>Fieters = Cyclists</p><p>Dutch cyclist in the street during Lockdown. </p>",
     "slug": "fietser",
-    "randomRotation": -5.252046338893351
+    "randomRotation": 3.7912758817975756
   },
   {
     "order": 1,
@@ -312,7 +303,7 @@
     "description": "<p>Fiction Artwork for The New Yorker. </p><p></p><p>(Excerpt)</p><p>The symptoms, Danny was explaining, were textbook: excessive crying, loss of appetite, feelings of hopelessness. Like Sasha, Danny was the kind of person who trusted textbooks. A good student. Sasha couldn’t sleep, or else she slept all day. She was rarely hungry, unless, in a burst of energy, she baked an elaborate cake. The good news was that, on most days, she still went to work. The bad news was that fear—her boss, her deadlines, the phone that she kept under the pillow, buzzing with middle-of-the-night emergencies—was the one thing that got her out of bed.</p><p>[...]</p><p>„A crisis summoned Sasha to the office in the middle of the afternoon. Her transformation happened in a matter of minutes. Suddenly, she was upright. She was earringed and high-heeled. The muscles in her jaw flexed.“&nbsp;</p>",
     "media": [],
     "slug": "you-tell-me",
-    "randomRotation": 2.9260765503395847
+    "randomRotation": 7.0296414452812765
   },
   {
     "order": 7,
@@ -357,6 +348,6 @@
     "title": "Sweet Dreams",
     "description": "<p>Sweet Dreams is a exploring the relationship between two objects well know, love and need to survive. </p><p>eating and sleeping, Cutted cakes and mattresses. </p><p></p>",
     "slug": "sweet-dreams",
-    "randomRotation": -0.46970469358681877
+    "randomRotation": 1.4793775566644896
   }
 ]

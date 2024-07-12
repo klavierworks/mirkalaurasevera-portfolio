@@ -1,10 +1,8 @@
-import Link from 'next/link';
 import styles from './Projects.module.css';
 import projectsJson from '../../shared/projects.json';
-import classNames from 'classnames';
-import arrow from './arrow.svg';
 import Project from '@/components/Project/Project';
-import Media from '@/components/Media/Media';
+import SingleProject from '@/components/SingleProject/SingleProject';
+import { useEffect, useRef } from 'react';
 
 const projects = projectsJson as unknown as Project[];
 
@@ -13,34 +11,37 @@ type ProjectsProps = {
 }
 
 const Projects = ({ activeProject }: ProjectsProps) => {
-  const frameClassNames = classNames(styles.projects, {
-    [styles.hasActiveProject]: activeProject
-  });
+  const masonryFrameRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleMutation = (mutations?: MutationRecord[]) => {
+      masonryFrameRef.current?.style.setProperty('--masonry-height', `${masonryFrameRef.current.clientHeight}px`);
+      masonryFrameRef.current?.classList.add('masonry-ready');
+    }
+
+    if (!masonryFrameRef.current) {
+      return
+    }
+
+    handleMutation();
+    const observer = new MutationObserver(handleMutation);
+    observer.observe(masonryFrameRef.current, { childList: true });
+    return () => {
+      observer.disconnect();
+    }
+  }, [activeProject]);
 
   return (
-    <div className={frameClassNames}>
-      {projects.map((project) => (
+    <div className={styles.projects} ref={masonryFrameRef}>
+      {projects.map((project, index) => (
         <Project
+          className={`${styles.project} ${activeProject?.slug === project.slug ? styles.isActive : ''}`}
           key={project.slug}
-          isActive={activeProject?.slug === project.slug}
+          order={index % 2 === 0 ? index / 2 : (projects.length / 2) + index}
           project={project}
         />
       ))}
-      <div className={styles.activeProject}>
-        <div className={styles.content}>
-          <h1>{activeProject?.title}
-            <Link href={`/projects`} className={styles.arrow}>
-              <img alt="back icon" src={arrow.src} />
-            </Link>
-          </h1>
-          <p dangerouslySetInnerHTML={{__html: activeProject?.description}} />
-          {activeProject?.media?.map((media) => (
-            <div className={styles.mediaContainer} key={media.image.src}>
-              <Media className={styles.media} isActive media={media} />
-            </div>
-          ))}
-        </div>
-      </div>        
+      <SingleProject activeProject={activeProject} />
     </div>
   );
 }

@@ -1,16 +1,14 @@
 .project {
-  width: 40vw;
-  height: auto;
+  position: relative;
+  rotate: var(--rotate);
 
-  @media (min-width: 720px) {
-    width: 20vw;
-  }
-
-  .hasActiveProject &:not(.isActive) {
-    opacity: 0.3;
+  a:nth-child(even) & {
+    rotate: calc(var(--rotate) * -1);
   }
 
   img {
-    width: 100%;
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
   }
 }

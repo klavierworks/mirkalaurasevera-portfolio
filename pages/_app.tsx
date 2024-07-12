@@ -1,5 +1,5 @@
-import Preloader from '@/components/Preloader/Preloader';
 import '../styles/global.css';
+import Preloader from '@/components/Preloader/Preloader';
 import styles from './_app.module.css';
 import type { AppProps } from 'next/app'
 import Head from 'next/head';

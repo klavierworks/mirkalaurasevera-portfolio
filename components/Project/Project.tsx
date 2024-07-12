@@ -1,25 +1,29 @@
-import CustomVideo from "../CustomVideo/CustomVideo";
+import { CSSProperties } from "react";
 import Media from "../Media/Media";
 import styles from "./Project.module.css";
 import Link from "next/link";
 
 type ProjectProps = {
-  isActive: boolean;
+  className: string;
+  order: number;
   project: Project;
 }
 
-const Project = ({ isActive, project }: ProjectProps) => {
+const Project = ({className, order, project }: ProjectProps) => {
   return (
-    <Link key={project.slug} href={`/projects/${project.slug}`}>
-      <article className={`${styles.project} ${isActive ? styles.isActive : ''}`} key={project.slug}>
+    <Link
+      href={`/projects/${project.slug}`}
+      className={`${styles.project} ${className}`}
+      style={{
+        '--order': order,
+        '--rotate': `${project.randomRotation}deg`,
+      } as CSSProperties}
+    >
+      <article>
         <Media 
           className={styles.media}
           media={project.thumbnail}
           isActive
-          style={{
-            aspectRatio: project.thumbnail?.image?.aspectRatio,
-            rotate: `${project.randomRotation}deg`,
-          }}
         />
       </article>
     </Link>
