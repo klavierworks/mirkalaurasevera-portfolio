@@ -1,6 +1,9 @@
 {
   "order": 7,
-  "thumbnail": [
+  "thumbnail": {
+    "image": "/projects/Mirka_Laura_Severa_Mac_Guffin_Sweet_Dreams_04.jpg"
+  },
+  "media": [
     {
       "image": "/projects/Mirka_Laura_Severa_Mac_Guffin_Sweet_Dreams_04.jpg"
     },

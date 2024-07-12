@@ -99,13 +99,13 @@ content:
           type: rich-text,
           options: { format: html, image: false },
         }
-      - name: thumbnail
+      - name: media
         label: Media
         type: object
         list: true,
         fields:
           - name: image
-            label: Thumbnail Image
+            label: Image
             type: image
             description: "If a video is provided, this is still required as a fallback"
             options:

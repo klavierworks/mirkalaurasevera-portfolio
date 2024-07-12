@@ -1,6 +1,9 @@
 {
   "order": 5,
-  "thumbnail": [
+  "thumbnail": {
+    "image": "/projects/MirkaLauraSevera__Fietsers_017.jpg"
+  },
+  "media": [
     {
       "image": "/projects/MirkaLauraSevera__Fietsers_017.jpg"
     },

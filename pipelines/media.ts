@@ -10,10 +10,12 @@ export const getImageMetadata = async (imagePath: string): Promise<sharp.Metadat
 }
 
 // Fetch data from Vimeo API by video ID using Vimeo JS SDK
-export const getVimeoMetadata = async (videoId?: string): Promise<VimeoVideoDetails | null> => {
-  if (!videoId) {
+export const getVimeoMetadata = async (rawVideoId?: string): Promise<VimeoVideoDetails | null> => {
+  if (!rawVideoId) {
     return null;
   }
+
+  const videoId = rawVideoId.includes('vimeo') ? rawVideoId.split('/').pop() : rawVideoId;
 
   const url = `https://api.vimeo.com/videos/${videoId}`;
 

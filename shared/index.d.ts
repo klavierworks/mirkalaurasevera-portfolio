@@ -49,7 +49,7 @@ declare global {
     order: number | string;
     title: string;
     description: string;
-    images: {
+    media: {
       image: string;
       video: string;
     }[];
@@ -59,7 +59,7 @@ declare global {
     }
   }
 
-  type Project = Omit<UnprocessedProject, 'order' | 'thumbnail' | 'images'> & {
+  type Project = Omit<UnprocessedProject, 'order' | 'thumbnail' | 'media'> & {
     randomRotation: number;
     slug: string;
     thumbnail: MediaObject;

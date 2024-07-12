@@ -1,6 +1,9 @@
 {
   "order": 6,
-  "thumbnail": [
+  "thumbnail": {
+    "image": "/projects/MirkaLauraSevera__SolarViews_003.jpg"
+  },
+  "media": [
     {
       "image": "/projects/MirkaLauraSevera__SolarViews_003.jpg"
     },

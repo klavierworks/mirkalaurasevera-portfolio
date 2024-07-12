@@ -1,6 +1,9 @@
 {
   "order": 3,
-  "thumbnail": [
+  "thumbnail": {
+    "image": "/projects/MirkaLauraSevera__TheBottle_001.jpg"
+  },
+  "media": [
     {
       "image": "/projects/MirkaLauraSevera__TheBottle_001.jpg"
     },

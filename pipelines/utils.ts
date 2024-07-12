@@ -13,8 +13,17 @@ const loadAndMergeJsonFiles = async (directory: string): Promise<Slide[]> => {
 
 export const safelyProcessJsonFilesAndWrite = async (directory: string, outputFilePath: string, processCallback: (item: unknown) => Promise<unknown>) => {
   try {
+    console.log(`Processing, ${directory}`);
     const items = await loadAndMergeJsonFiles(directory);
     const updatedItems = await Promise.allSettled(items.map(item => processCallback(item)));
+    updatedItems.forEach((item, index) => {
+      if (item.status === 'rejected') {
+        console.error(`Error processing item ${JSON.stringify(items[index])}:`)
+        console.log('\n')
+        console.log((item as PromiseRejectedResult).reason);
+        console.log('\n\n')
+      }
+    });
     const successfulItems = updatedItems.filter(item => item.status === 'fulfilled').map(item => (item as PromiseFulfilledResult<unknown>).value);
     await promises.writeFile(outputFilePath, JSON.stringify(successfulItems, null, 2), 'utf8');
   } catch (error) {
