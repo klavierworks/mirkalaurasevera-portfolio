@@ -1,4 +1,13 @@
 {
   "order": 4,
-  "title": "Fashion Snowman"
+  "thumbnail": {
+    "image": "/projects/MirkaLauraSevera__Fashion Snowman_001.jpg"
+  },
+  "title": "Fashion Snowman",
+  "description": "<p>Give freezing models a break ! For this project real models where replaced by snow and are showcasing the latest winter wear fashion trends. </p>",
+  "media": [
+    {
+      "image": "/projects/MirkaLauraSevera__Fashion Snowman_001.jpg"
+    }
+  ]
 }
