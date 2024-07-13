@@ -1,8 +1,10 @@
 {
   "order": 7,
   "thumbnail": {
-    "image": "/projects/Mirka_Laura_Severa_Mac_Guffin_Sweet_Dreams_04.jpg"
+    "image": "/projects/mix.jpg"
   },
+  "title": "Sweet Dreams",
+  "description": "<p>Sweet Dreams is a exploring the relationship between two objects well know, love and need to survive. </p><p>eating and sleeping, Cutted cakes and mattresses. </p><p></p>",
   "media": [
     {
       "image": "/projects/Mirka_Laura_Severa_Mac_Guffin_Sweet_Dreams_04.jpg"
@@ -13,7 +15,5 @@
     {
       "image": "/projects/008_MirkaLauraSevera_MacGuffinMagazine_SweetDreams.jpg"
     }
-  ],
-  "title": "Sweet Dreams",
-  "description": "<p>Sweet Dreams is a exploring the relationship between two objects well know, love and need to survive. </p><p>eating and sleeping, Cutted cakes and mattresses. </p><p></p>"
+  ]
 }
