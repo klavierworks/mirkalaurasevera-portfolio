@@ -1,11 +1,14 @@
 {
   "order": 4,
   "thumbnail": {
-    "image": "/projects/MirkaLauraSevera__Fashion Snowman_001.jpg"
+    "image": "/projects/MirkaLauraSevera__Fashion Snowman_002.jpg"
   },
   "title": "Fashion Snowman",
   "description": "<p style=\"text-align: center\">Give freezing models a break ! </p><p style=\"text-align: center\">For this project real models where replaced by snow models who are proudly showcasing the latest winter wear fashion trends on top of a Glacier in Austria.</p>",
   "media": [
+    {
+      "image": "/projects/MirkaLauraSevera__Fashion Snowman_002.jpg"
+    },
     {
       "image": "/projects/MirkaLauraSevera__Fashion Snowman_001.jpg"
     }
