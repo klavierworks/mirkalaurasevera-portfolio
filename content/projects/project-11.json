@@ -3,5 +3,10 @@
   "thumbnail": {
     "image": "/projects/MirkaLauraSevera__SpringFeelings_001.jpg"
   },
-  "title": "Spring Feelings"
+  "title": "Spring Feelings",
+  "media": [
+    {
+      "image": "/projects/MirkaLauraSevera__SpringFeelings_001.jpg"
+    }
+  ]
 }
