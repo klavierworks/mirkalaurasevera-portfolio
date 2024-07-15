@@ -1,12 +1,18 @@
 {
   "order": 16,
   "thumbnail": {
-    "image": "/projects/MirkaLauraSevera__Worm_001.jpg"
+    "image": "/projects/MirkaLauraSevera__Dior_2.jpg"
   },
   "title": "Dior Dance",
   "media": [
     {
-      "image": "/projects/MirkaLauraSevera__Worm_002.jpg"
+      "image": "/projects/MirkaLauraSevera__Dior_1.jpg"
+    },
+    {
+      "image": "/projects/MirkaLauraSevera__Dior_2.jpg"
+    },
+    {
+      "image": "/projects/MirkaLauraSevera__Dior_3.jpg"
     }
   ]
 }
