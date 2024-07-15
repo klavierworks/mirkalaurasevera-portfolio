@@ -1,0 +1,27 @@
+{
+  "order": 21,
+  "thumbnail": {
+    "image": "/projects/MirkaLauraSevera__Swallow_001.jpg"
+  },
+  "title": "Swallow",
+  "media": [
+    {
+      "image": "/projects/MirkaLauraSevera__Swallow_001.jpg"
+    },
+    {
+      "image": "/projects/MirkaLauraSevera__Swallow_002.jpg"
+    },
+    {
+      "image": "/projects/MirkaLauraSevera__Swallow_003.jpg"
+    },
+    {
+      "image": "/projects/MirkaLauraSevera__Swallow_004.jpg"
+    },
+    {
+      "image": "/projects/MirkaLauraSevera__Swallow_005.jpg"
+    },
+    {
+      "image": "/projects/MirkaLauraSevera__Swallow_006.jpg"
+    }
+  ]
+}
