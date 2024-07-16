@@ -1,0 +1,12 @@
+{
+  "order": 25,
+  "thumbnail": {
+    "image": "/projects/MirkaLauraSevera_cat_head.jpg"
+  },
+  "title": "CAT",
+  "media": [
+    {
+      "image": "/projects/MirkaLauraSevera_cat.jpg"
+    }
+  ]
+}
