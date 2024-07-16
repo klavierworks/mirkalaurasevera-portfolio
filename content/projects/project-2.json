@@ -4,5 +4,10 @@
     "image": "/projects/MirkaLauraSevera__ForcesOfNature_001.jpg",
     "video": "https://vimeo.com/342315950"
   },
-  "title": "Forces of Nature"
+  "title": "Forces of Nature",
+  "media": [
+    {
+      "video": "https://vimeo.com/342315950"
+    }
+  ]
 }
