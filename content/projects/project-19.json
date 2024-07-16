@@ -3,5 +3,10 @@
   "thumbnail": {
     "image": "/projects/Mirka_Laura_Severa_Bready.jpg"
   },
-  "title": "Bready"
+  "title": "Bready",
+  "media": [
+    {
+      "image": "/projects/Mirka_Laura_Severa_Bready.jpg"
+    }
+  ]
 }
