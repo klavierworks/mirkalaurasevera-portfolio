@@ -1,7 +1,8 @@
 {
   "order": 16,
   "thumbnail": {
-    "image": "/projects/MirkaLauraSevera__Dior_2.jpg"
+    "image": "/projects/MirkaLauraSevera__Dior_2.jpg",
+    "video": "<iframe src=\"https://player.vimeo.com/video/984593372?h=9f8df06d46&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479\" width=\"2400\" height=\"3200\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write\" title=\"Diorshow\"></iframe>"
   },
   "title": "Dior Dance",
   "media": [
