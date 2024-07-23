@@ -1,7 +1,16 @@
 {
   "order": 23,
   "thumbnail": {
-    "image": "/projects/Mirka_Laura_Severa_Willkommen.jpg"
+    "image": "/projects/MirkaLauraSevera_paulsmith_MLS.jpg",
+    "video": "https://vimeo.com/400261900"
   },
-  "title": "Kaffee und Kuchen"
+  "title": "The Bottle Pick Up",
+  "description": "<p>Recycled Trainer Campaign for Paul Smith</p><p>Concept &amp; Direction. </p>",
+  "media": [
+    {
+      "image": "/projects/MirkaLauraSevera_paulsmith_MLS.jpg",
+      "video": "https://vimeo.com/400261900",
+      "hasAudio": false
+    }
+  ]
 }
