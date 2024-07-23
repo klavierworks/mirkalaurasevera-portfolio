@@ -31,11 +31,11 @@ const CustomImage = forwardRef(({ className, image, onClick, style }: CustomImag
       return;
     }
 
-    if (window.hasPreloaded[src]) {
+    if (window.hasPreloadedImages[src]) {
       return;
     }
 
-    window.hasPreloaded[src] = false;
+    window.hasPreloadedImages[src] = false;
 
     const preload = async () => {
       const image = new Image();
@@ -49,7 +49,7 @@ const CustomImage = forwardRef(({ className, image, onClick, style }: CustomImag
         console.error(e);
       }
 
-      window.hasPreloaded[src] = true;
+      window.hasPreloadedImages[src] = true;
     } 
   
     preload();

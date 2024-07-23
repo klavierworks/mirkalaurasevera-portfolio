@@ -7,11 +7,7 @@ import Title from '@/components/Title/Title';
 import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
-import { useParams, usePathname, useSearchParams } from 'next/navigation';
-
-if (typeof window !== 'undefined') {
-  window.hasPreloaded = {};
-}
+import { usePathname, useSearchParams } from 'next/navigation';
 
 const PortfolioApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
@@ -22,7 +18,6 @@ const PortfolioApp = ({ Component, pageProps }: AppProps) => {
 
   const [isCarouselVisible, setIsCarouselVisible] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
-
 
   useEffect(() => {
     if (!isLoaded || !isHome) {
@@ -68,7 +63,7 @@ const PortfolioApp = ({ Component, pageProps }: AppProps) => {
     </Head>
     <main className={layoutClassNames}>
       <Title activeSlideIndex={activeSlideIndex} />
-      <Preloader onPreloadComplete={setIsLoaded} data={pageProps}>
+      <Preloader onPreloadComplete={setIsLoaded}>
         <div className={styles.page}>
           <Component activeSlideIndex={activeSlideIndex} isCarouselVisible={isCarouselVisible} setActiveSlideIndex={setActiveSlideIndex} {...pageProps} />
         </div>

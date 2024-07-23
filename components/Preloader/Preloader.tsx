@@ -1,35 +1,41 @@
 import styles from './Preloader.module.css';
 import { CYPRESS } from '@/shared/cypress';
+import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from "react";
+
+if (typeof window !== 'undefined') {
+  window.hasPreloadedImages = {};
+}
 
 type PreloaderProps = {
   children: React.ReactNode;
   onPreloadComplete?: (isLoaded: boolean) => void;
-  data: {
-    projects?: Project[];
-    slides?: Slide[];
-  }
 }
 
-const Preloader = ({ children, data, onPreloadComplete }: PreloaderProps) => {
+const Preloader = ({ children,  onPreloadComplete }: PreloaderProps) => {
   const [hasPreloaded, setHasPreloaded] = useState(false);
+  const pathname = usePathname();
+  useEffect(() => {
+    const hasLoadedImages = Object.values(window.hasPreloadedImages).every((isLoaded: boolean) => isLoaded);
+    setHasPreloaded(hasLoadedImages);
+  }, [pathname]);
 
   useEffect(() => {
     if (hasPreloaded || typeof window === 'undefined') {
       return;
     }
-    
-    const interval = setInterval(() => {
-      const hasCompletedPreload = data.slides ? data.slides.every((item) => window.hasPreloaded[item.media.image.src]) : true;
 
-      if (hasCompletedPreload) {
+    const interval = setInterval(() => {
+      const hasLoadedImages = Object.values(window.hasPreloadedImages).every((isLoaded: boolean) => isLoaded);
+
+      if (hasLoadedImages) {
         clearInterval(interval);
         setHasPreloaded(true);
       }
     }, 100);
 
     return () => clearInterval(interval);
-  }, [hasPreloaded, data]);
+  }, [hasPreloaded]);
 
   useEffect(() => {
     onPreloadComplete?.(hasPreloaded);
