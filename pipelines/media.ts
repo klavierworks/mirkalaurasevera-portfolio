@@ -1,3 +1,4 @@
+import path from 'path';
 import sharp from 'sharp';
 import { VimeoVideoDetails } from './pipelines';
 
@@ -80,24 +81,4 @@ export const createMediaObject = async (imageSrc: string, alt: string, videoId?:
     image,
     video,
   }
-}
-
-
-export const createThumbnailObject = async (imagePath: string, width: number, height: number) => {
-  const buffer = await sharp(`./public${imagePath}`)
-    .resize(width, height, {
-      fit: 'inside',
-      position: sharp.strategy.attention
-    }).toBuffer();
-
-  const image = await createImageObject(imagePath, '');
-
-  const resizedMetadata = await sharp(buffer).metadata();
-
-  return {
-    ...image,
-    src: `data:image/png;base64,${buffer.toString('base64')}`,
-    width: resizedMetadata.width,
-    height: resizedMetadata.height,
-  } as ImageObject;
 }

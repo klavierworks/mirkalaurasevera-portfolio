@@ -1,4 +1,3 @@
-import { CSSProperties } from "react";
 import Media from "../Media/Media";
 import styles from "./Project.module.css";
 import Link from "next/link";
