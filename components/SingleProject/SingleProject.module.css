@@ -13,7 +13,7 @@
   grid-template-rows: 10vh auto;
   grid-template-columns: 16% 68% 16%;
 
-  @media (min-width: 1120px) {
+  @media (min-width: 1520px) {
     grid-template-columns: 1fr 1080px 1fr;
   }
 
