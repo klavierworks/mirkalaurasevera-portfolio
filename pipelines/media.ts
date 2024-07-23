@@ -1,5 +1,5 @@
 import sharp from 'sharp';
-import { VimeoVideoDetails } from '../shared/pipelines';
+import { VimeoVideoDetails } from './pipelines';
 
 export const getImageMetadata = async (imagePath: string): Promise<sharp.Metadata> => {
   const metadata = await sharp(`./public${imagePath}`).metadata();

@@ -8,6 +8,7 @@ export const processUnprocessedProject = async (item: UnprocessedProject): Promi
   }
 
   const thumbnail = await createMediaObject(item.thumbnail.image, item.title, item.thumbnail.video);
+
   const shrunkImage = await createThumbnailObject(item.thumbnail.image, 300, 500);
 
   return {

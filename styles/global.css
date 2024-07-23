@@ -1,4 +1,4 @@
-* {
+*:not(.has-scrollbar) {
   /* Lord God forgive me all my sins */
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -6,6 +6,7 @@
     display: none;
   }
 }
+
 @font-face {
   font-family: "ABC Oracle";
   font-style: normal;
