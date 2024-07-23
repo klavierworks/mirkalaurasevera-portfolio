@@ -1,16 +1,18 @@
 import { getImageProps } from "next/image";
-import { CSSProperties, ForwardedRef, forwardRef, useEffect, useMemo } from "react";
+import { CSSProperties, ForwardedRef, forwardRef, useEffect, useMemo, useState } from "react";
 
 type CustomImageProps = {
   className: string;
   image: ImageObject;
+  isLazyLoaded?: boolean;
   onClick?: () => void;
   style?: CSSProperties;
 }
 
-const CustomImage = forwardRef(({ className, image, onClick, style }: CustomImageProps, ref: ForwardedRef<HTMLImageElement | HTMLVideoElement>) => {
+const CustomImage = forwardRef(({ className, isLazyLoaded, image, onClick, style }: CustomImageProps, ref: ForwardedRef<HTMLImageElement | HTMLVideoElement>) => {
   const { alt, src, width, height } = image;
 
+  const [isLoaded, setIsLoaded] = useState(false);
   const imageProps = useMemo(() => {
     const { props } = getImageProps({
       src,
@@ -19,11 +21,11 @@ const CustomImage = forwardRef(({ className, image, onClick, style }: CustomImag
       alt,
       quality: 90,
       sizes: '100vw',
-      loading: 'eager',
+      loading: isLazyLoaded ? 'lazy' : 'eager',
     })
   
     return props
-  }, [alt, src, width, height])
+  }, [alt,isLazyLoaded, src, width, height])
 
 
   useEffect(() => {

@@ -2,18 +2,36 @@ import { CSSProperties, ForwardedRef, forwardRef, useEffect, useRef, useState } 
 import styles from './CustomVideo.module.css';
 import Hls from "hls.js";
 import CustomImage from "../CustomImage/CustomImage";
+import mute from './mute.svg';
+import unmute from './unmute.svg';
 
 type CustomVideoProps = {
   className: string;
   fallback: ImageObject;
+  hasAudio?: boolean;
   isActive: boolean;
   style?: CSSProperties;
   video: VideoObject
 }
 
-const CustomVideo = forwardRef(({ className, fallback, isActive, style, video }: CustomVideoProps, ref: ForwardedRef<HTMLImageElement | HTMLVideoElement>) => {
+const CustomVideo = forwardRef(({ className, fallback, hasAudio, isActive, style, video }: CustomVideoProps, ref: ForwardedRef<HTMLImageElement | HTMLVideoElement>) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hasStartedPlaying, setHasStartedPlaying] = useState(false);
+
+  const [videoAspectRatio, setVideoAspectRatio] = useState(0);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (!videoRef.current) {
+        return;
+      }
+      setVideoAspectRatio(videoRef.current.videoWidth / videoRef.current.videoHeight);
+    }
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [hasStartedPlaying]);
 
   useEffect(() => {
     let videoEl = videoRef.current;
@@ -71,18 +89,27 @@ const CustomVideo = forwardRef(({ className, fallback, isActive, style, video }:
 		videoRef.current.play();
 	};
 
+  const [isMuted, setIsMuted] = useState(true);
+
   return (
     <div className={`${styles.container} ${className} ${hasStartedPlaying && styles.hasStartedPlaying}`} style={style}>
       <video
         className={styles.video}
         controls={false}
         loop
-        muted
+        muted={isMuted}
         playsInline
         ref={videoRef}
         onClick={handleClick}
         onProgress={handleProgress}
       />
+      <div className={styles.controls} style={{"--videoAspectRatio": videoAspectRatio} as CSSProperties}>
+        {hasAudio && (
+          <div className={styles.mute} onClick={() => setIsMuted(!isMuted)}>
+            <img src={isMuted ? mute.src : unmute.src} alt={isMuted ? 'Unmute' : 'Mute'} />
+          </div>
+        )}
+      </div>
       <CustomImage
         className={styles.fallback}
         image={fallback}

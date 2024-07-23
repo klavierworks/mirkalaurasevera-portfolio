@@ -1,4 +1,5 @@
 .container {
+  position: relative;
   .video,
   .fallback {
     position: absolute;
@@ -11,9 +12,36 @@
     transition: opacity 0.25s ease-in;
   }
 
+  .fallback {
+    pointer-events: none;
+  }
+
   &.hasStartedPlaying {
     .fallback {
       opacity: 0;
     }
+  }
+}
+
+.controls {
+  position: absolute;
+  top: 50%;
+  color: white;
+  width: 100%;
+  aspect-ratio: var(--videoAspectRatio);
+  pointer-events: none;
+  transform: translateY(-50%);
+
+  img {
+    height: 42px;
+    width: 42px;
+  }
+
+  .mute {
+    position: absolute;
+    bottom: 20px;
+    right: 12px;
+    pointer-events: all;
+    cursor: pointer;
   }
 }

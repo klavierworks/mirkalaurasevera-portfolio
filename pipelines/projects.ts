@@ -13,7 +13,7 @@ export const processUnprocessedProject = async (item: UnprocessedProject): Promi
     ...item,
     thumbnail,
     media: await Promise.all(
-      item.media?.filter(value => value).map(({ image, video }, index) => createMediaObject(image, `${item.title} – asset #${index + 1}`, video)) ?? []
+      item.media?.filter(value => value).map(({ hasAudio, image, video }, index) => createMediaObject(image, `${item.title} – asset #${index + 1}`, video, hasAudio)) ?? []
     ),
     slug: createSlugFromString(item.title),
     randomRotation: (Math.random() - 0.5) * 15,

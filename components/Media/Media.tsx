@@ -4,15 +4,19 @@ import CustomVideo from "../CustomVideo/CustomVideo";
 
 type MediaProps = {
   className: string;
+  hasAudio?: boolean;
   media: MediaObject;
   isActive: boolean;
+  isLazyLoaded?: boolean;
   style?: CSSProperties;
 }
 
 const Media = forwardRef(({
   className,
+  hasAudio,
   media,
   isActive,
+  isLazyLoaded,
   style
 }: MediaProps, ref: ForwardedRef<HTMLImageElement | HTMLVideoElement>) => {
   if (media?.video) {
@@ -21,6 +25,7 @@ const Media = forwardRef(({
         className={className}
         fallback={media.image}
         isActive={isActive}
+        hasAudio={hasAudio && media.video.hasAudio}
         ref={ref}
         style={style}
         video={media.video}
@@ -32,6 +37,7 @@ const Media = forwardRef(({
     return (
       <CustomImage
         className={className}
+        isLazyLoaded={isLazyLoaded}
         image={media.image}
         ref={ref}
         style={style}

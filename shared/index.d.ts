@@ -16,6 +16,7 @@ declare global {
     width: number;
     height: number;
     mp4Url: string;
+    hasAudio: boolean;
     fallback?: {
       width: number;
       height: number;
@@ -52,6 +53,7 @@ declare global {
     media: {
       image: string;
       video: string;
+      hasAudio: boolean;
     }[];
     thumbnail: {
       image: string;

@@ -18,7 +18,7 @@ const ProjectMedia = ({ isFirstSlide, isVisible, media, toggleIsVisible }: Proje
 
   return (
     <div className={`${styles.mediaContainer} ${isVisible && styles.isVisible}`} ref={ref}>
-      <Media className={styles.media} isActive media={media} />
+      <Media className={styles.media} hasAudio isLazyLoaded isActive media={media} />
     </div>
   )
 }

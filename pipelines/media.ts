@@ -41,7 +41,7 @@ export const getVimeoMetadata = async (rawVideoId?: string): Promise<VimeoVideoD
   }
 }
 
-export const createVideoObject = async (videoId?: string) => {
+export const createVideoObject = async (videoId?: string, hasAudio?: boolean) => {
   const videoInfo = await getVimeoMetadata(videoId);
 
   if (!videoInfo) {
@@ -49,6 +49,7 @@ export const createVideoObject = async (videoId?: string) => {
   }
 
   return {
+    hasAudio,
     url: videoInfo.play?.hls?.link,
     width: videoInfo.width,
     height: videoInfo.height,
@@ -73,9 +74,9 @@ export const createImageObject = async (src: string, alt?: string) => {
   } as ImageObject;
 }
 
-export const createMediaObject = async (imageSrc: string, alt: string, videoId?: string): Promise<MediaObject> => {
+export const createMediaObject = async (imageSrc: string, alt: string, videoId?: string, hasAudio?: boolean): Promise<MediaObject> => {
   const image = await createImageObject(imageSrc, alt);
-  const video = await createVideoObject(videoId);
+  const video = await createVideoObject(videoId, hasAudio);
 
   return {
     image,

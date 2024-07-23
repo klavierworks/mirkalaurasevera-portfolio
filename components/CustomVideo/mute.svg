@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 5" viewBox="0 0 24 30" x="0px" y="0px">
+  <path fill="#fff"
+    d="M10,8.16v8.57L7.28,14.46,6.72,14H5V10H7.7l.55-.44L10,8.16M12,4,7,8H3v8H6l6,5V4Z" />
+  <rect fill="#fff" x="17" y="7.76" width="2" height="8.48"
+    transform="translate(-3.21 16.24) rotate(-45)" />
+  <rect fill="#fff" x="13.76" y="11" width="8.49" height="2"
+    transform="translate(-3.21 16.24) rotate(-45)" />
+</svg>
