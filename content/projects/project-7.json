@@ -4,16 +4,19 @@
     "image": "/projects/SweetDreams_head.jpg"
   },
   "title": "Sweet Dreams",
-  "description": "<p style=\"text-align: center\">Sweet Dreams is exploring the relationship between two objects we all know, love and need to recharge: cakes &amp; mattresses = eating &amp; sleeping. Captured as cross-sections they are revealing the secret inner life with its hidden layers of temptation.</p>",
+  "description": "<p style=\"text-align: center\">Sweet Dreams is exploring the relationship between two objects we all know, love and need to recharge: cakes &amp; mattresses = eating &amp; sleeping. Captured as cross-sections they are revealing the secret inner life with its  hidden layers of temptation.</p><p style=\"text-align: center\">Photography &amp; Concept, Published in Mac Guffin Magazine.</p>",
   "media": [
     {
-      "image": "/projects/Mirka_Laura_Severa_Mac_Guffin_Sweet_Dreams_04.jpg"
+      "image": "/projects/Mirka_Laura_Severa_Mac_Guffin_Sweet_Dreams_04.jpg",
+      "hasAudio": false
     },
     {
-      "image": "/projects/Mirka_Laura_Severa_Mac_Guffin_Sweet_Dreams_05.jpg"
+      "image": "/projects/Mirka_Laura_Severa_Mac_Guffin_Sweet_Dreams_05.jpg",
+      "hasAudio": false
     },
     {
-      "image": "/projects/008_MirkaLauraSevera_MacGuffinMagazine_SweetDreams.jpg"
+      "image": "/projects/008_MirkaLauraSevera_MacGuffinMagazine_SweetDreams.jpg",
+      "hasAudio": false
     }
   ]
 }
