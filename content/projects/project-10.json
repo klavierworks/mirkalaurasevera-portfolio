@@ -1,10 +1,11 @@
 {
   "order": 5,
   "thumbnail": {
-    "image": "/projects/MirkaLauraSevera__Fietsers_025_head.jpg"
+    "image": "/projects/MirkaLauraSevera__Fietsers_025_head.jpg",
+    "video": "https://vimeo.com/manage/videos/984630173"
   },
   "title": "Fietsers",
-  "description": "<p style=\"text-align: center\">The preferred vehicle to move from A to B in the Netherlands is by bike. With a cross generational blend this series examines the Dutch bike culture on their daily commute by fiets = bike.</p><p style=\"text-align: center\">Hi Andrew this is the link, for Featured media:</p><p style=\"text-align: center\"><a href=\"https://vimeo.com/manage/videos/984630173\">https://vimeo.com/manage/videos/984630173</a></p>",
+  "description": "<p style=\"text-align: center\">The preferred vehicle to move from A to B in the Netherlands is by bike. With a cross generational blend this series examines the Dutch bike culture on their daily commute by fiets = bike.</p>",
   "media": [
     {
       "image": "/projects/MirkaLauraSevera__Fietsers_017.jpg"
