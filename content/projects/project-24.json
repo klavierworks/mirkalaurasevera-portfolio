@@ -1,14 +1,14 @@
 {
   "order": 19,
   "thumbnail": {
-    "image": "/projects/MirkaLauraSevera_Shoes_Airport.jpg",
+    "image": "/projects/MirkaLauraSevera_Shoes_Airport_head.jpg",
     "video": "https://vimeo.com/323410573"
   },
   "title": "Shoes",
   "description": "<p>Shoes</p>",
   "media": [
     {
-      "image": "/projects/MirkaLauraSevera_Shoes_Airport.jpg",
+      "image": "/projects/MirkaLauraSevera_Shoes_Airport_head.jpg",
       "video": "https://vimeo.com/323410573",
       "hasAudio": true
     }
