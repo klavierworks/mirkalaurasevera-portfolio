@@ -120,3 +120,7 @@ content:
             label: Video
             type: string
             description: "Video ID from Vimeo"
+          - name: hasAudio
+            label: Video has audio?
+            type: boolean
+            description: "Allow user to unmute video"
