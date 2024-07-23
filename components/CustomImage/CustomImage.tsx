@@ -12,7 +12,6 @@ type CustomImageProps = {
 const CustomImage = forwardRef(({ className, isLazyLoaded, image, onClick, style }: CustomImageProps, ref: ForwardedRef<HTMLImageElement | HTMLVideoElement>) => {
   const { alt, src, width, height } = image;
 
-  const [isLoaded, setIsLoaded] = useState(false);
   const imageProps = useMemo(() => {
     const { props } = getImageProps({
       src,
@@ -33,11 +32,11 @@ const CustomImage = forwardRef(({ className, isLazyLoaded, image, onClick, style
       return;
     }
 
-    if (window.hasPreloadedImages[src]) {
+    if (window.requiresPreload.includes(src)) {
       return;
     }
 
-    window.hasPreloadedImages[src] = false;
+    window.requiresPreload.push(src);
 
     const preload = async () => {
       const image = new Image();
@@ -51,7 +50,8 @@ const CustomImage = forwardRef(({ className, isLazyLoaded, image, onClick, style
         console.error(e);
       }
 
-      window.hasPreloadedImages[src] = true;
+      // Remove src from array
+      window.requiresPreload = window.requiresPreload.filter((url: string) => url !== src);
     } 
   
     preload();

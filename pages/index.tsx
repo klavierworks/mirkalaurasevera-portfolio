@@ -1,9 +1,9 @@
 import { MouseEvent, useCallback, useEffect, useRef } from 'react';
 import styles from './index.module.css';
-import SlideComponent from '../components/Slide/Slide';
 import { FullGestureState, useGesture } from '@use-gesture/react';
 import { CYPRESS } from '@/shared/cypress';
 import slides from '../shared/carousel.json';
+import Carousel from '@/components/Carousel/Carousel';
 
 type HomeProps = {
   activeSlideIndex: number;
@@ -69,28 +69,12 @@ const Home = ({ activeSlideIndex, isCarouselVisible, setActiveSlideIndex }: Home
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [changeSlide]);
 
-  const totalSlides = slides.length;
 
   return (
     <article className={styles.frame} {...bind()}>
       <h2 className={styles.heading}>Selected Work</h2>
       <ul className={styles.carousel} onClick={handleNext} data-cy={CYPRESS.CAROUSEL}>
-        {slides.map((slide, index) => (
-          <SlideComponent
-            index={index}
-            key={slide.media.image.src}
-            slide={slide}
-            isActive={activeSlideIndex === index}
-            isCarouselVisible={isCarouselVisible}
-            isPreviouslyActive={
-              activeSlideIndex === index + 2
-              || activeSlideIndex === index + 1
-              || activeSlideIndex === 0 && index === totalSlides - 2
-              || activeSlideIndex === 0 && index === totalSlides - 1
-              || activeSlideIndex === 1 && index === totalSlides - 1}
-            zIndex={activeSlideIndex < 4 && index < 4 ? index + totalSlides : index}
-          />
-        ))}
+        <Carousel activeSlideIndex={activeSlideIndex} isCarouselVisible={isCarouselVisible} />
       </ul>
     </article>
   );

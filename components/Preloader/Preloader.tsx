@@ -2,9 +2,11 @@ import styles from './Preloader.module.css';
 import { CYPRESS } from '@/shared/cypress';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from "react";
+import Projects from '@/pages/projects';
+import Carousel from '../Carousel/Carousel';
 
 if (typeof window !== 'undefined') {
-  window.hasPreloadedImages = {};
+  window.requiresPreload = [];
 }
 
 type PreloaderProps = {
@@ -15,10 +17,6 @@ type PreloaderProps = {
 const Preloader = ({ children,  onPreloadComplete }: PreloaderProps) => {
   const [hasPreloaded, setHasPreloaded] = useState(false);
   const pathname = usePathname();
-  useEffect(() => {
-    const hasLoadedImages = Object.values(window.hasPreloadedImages).every((isLoaded: boolean) => isLoaded);
-    setHasPreloaded(hasLoadedImages);
-  }, [pathname]);
 
   useEffect(() => {
     if (hasPreloaded || typeof window === 'undefined') {
@@ -26,7 +24,7 @@ const Preloader = ({ children,  onPreloadComplete }: PreloaderProps) => {
     }
 
     const interval = setInterval(() => {
-      const hasLoadedImages = Object.values(window.hasPreloadedImages).every((isLoaded: boolean) => isLoaded);
+      const hasLoadedImages = window.requiresPreload.length === 0;
 
       if (hasLoadedImages) {
         clearInterval(interval);
@@ -43,8 +41,15 @@ const Preloader = ({ children,  onPreloadComplete }: PreloaderProps) => {
 
   return (
     <>
-      {children}
-      {!hasPreloaded && <div className={styles.loading} data-cy={CYPRESS.PRELOADER}>Loading...</div>}
+      {hasPreloaded ? children : (
+        <>
+          <div className={styles.layers}>
+            <Carousel activeSlideIndex={0} isCarouselVisible={false} />
+            <Projects isPreloading />
+          </div>
+          <div className={styles.loading} data-cy={CYPRESS.PRELOADER}>Loading...</div>
+        </>
+      )}
     </>
   );
 }

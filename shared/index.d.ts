@@ -1,6 +1,6 @@
 declare global {
   interface Window {
-    hasPreloadedImages: { [key: string]: boolean };
+    requiresPreload: string[];
   }
 
   type ImageObject = {

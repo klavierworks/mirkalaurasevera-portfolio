@@ -7,10 +7,11 @@ import { useEffect, useRef } from 'react';
 const projects = projectsJson as unknown as Project[];
 
 type ProjectsProps = {
-  activeProject: Project;
+  activeProject?: Project;
+  isPreloading?: boolean;
 }
 
-const Projects = ({ activeProject }: ProjectsProps) => {
+const Projects = ({ activeProject, isPreloading }: ProjectsProps) => {
   const masonryFrameRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -37,6 +38,7 @@ const Projects = ({ activeProject }: ProjectsProps) => {
         <Project
           className={`${styles.project} ${activeProject?.slug === project.slug ? styles.isActive : ''}`}
           key={project.slug}
+          isPreloading={isPreloading}
           order={index % 2 === 0 ? index / 2 : (projects.length / 2) + index}
           project={project}
         />

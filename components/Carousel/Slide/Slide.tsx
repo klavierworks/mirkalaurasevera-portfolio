@@ -3,7 +3,7 @@ import { CSSProperties, useMemo, useRef } from "react";
 import useTargetScale from "./useTargetScale";
 import classNames from "classnames";
 import { CYPRESS } from "@/shared/cypress";
-import Media from '../Media/Media';
+import Media from '../../Media/Media';
 
 type SlideProps = {
   index: number;

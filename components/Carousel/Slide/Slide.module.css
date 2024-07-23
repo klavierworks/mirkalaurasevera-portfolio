@@ -38,7 +38,7 @@
     padding: 0;
     grid-row: 2 / 3;
     text-align: center;
-    line-height: 1.14;
+    line-height: 1.2;
   }
 
   .isActive & {

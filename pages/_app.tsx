@@ -60,6 +60,16 @@ const PortfolioApp = ({ Component, pageProps }: AppProps) => {
         <meta name="twitter:image" content="https://mirkalaurasevera.com/ogmeta.jpg" />
         <link rel="canonical" href="https://mirkalaurasevera.com/" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"></meta>
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="/favicons/favicon-16x16.png" sizes="16x16" />
+        <link rel="apple-touch-icon" sizes="192x192" href="/favicons/favicon-192x192.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="/favicons/favicon-152x152.png" />
+        <link rel="apple-touch-icon" sizes="128x128" href="/favicons/favicon-128x128.png" />
+        <link rel="apple-touch-icon" sizes="64x64" href="/favicons/favicon-60x60.png" />
+        <link rel="apple-touch-icon" sizes="48x48" href="/favicons/favicon-57x57.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/favicons/favicon-192x192.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/favicons/favicon-512x512.png" />
     </Head>
     <main className={layoutClassNames}>
       <Title activeSlideIndex={activeSlideIndex} />

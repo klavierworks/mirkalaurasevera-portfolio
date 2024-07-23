@@ -5,11 +5,12 @@ import { animated, config, useSpring } from "@react-spring/web";
 
 type ProjectProps = {
   className: string;
+  isPreloading?: boolean;
   order: number;
   project: Project;
 }
 
-const Project = ({className, order, project }: ProjectProps) => {
+const Project = ({className, isPreloading, order, project }: ProjectProps) => {
   const spring = useSpring({
     from: {
       y: 1000,
@@ -34,7 +35,7 @@ const Project = ({className, order, project }: ProjectProps) => {
         <Media 
           className={styles.media}
           media={project.thumbnail}
-          isActive
+          isActive={!isPreloading}
         />
       </animated.article>
     </Link>

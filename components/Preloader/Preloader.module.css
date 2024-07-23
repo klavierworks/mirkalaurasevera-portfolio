@@ -6,3 +6,7 @@
   height: 20%;
   text-align: center;
 }
+
+.layers {
+  visibility: hidden;
+}
