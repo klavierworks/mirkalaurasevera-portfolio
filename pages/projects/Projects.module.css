@@ -1,0 +1,29 @@
+.projects {
+  grid-column: 1 / -1;
+
+  --columns: 2;
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  width: 100%;
+  gap: 0;
+
+  @media (min-width: 720px) {
+    --columns: 3;
+  }
+
+  @media (min-width: 1024px) {
+    --columns: 4;
+  }
+}
+
+.project {
+  box-sizing: border-box;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  width: 100%;
+
+  .hasActiveProject &:not(.isActive) {
+    opacity: 0.3;
+  }
+}

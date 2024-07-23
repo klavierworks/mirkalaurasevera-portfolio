@@ -1,74 +1,99 @@
-import About from "../components/About/About";
-import Carousel from "../components/Carousel/Carousel";
+import { MouseEvent, useCallback, useEffect, useRef } from 'react';
 import styles from './index.module.css';
-import { useEffect, useState } from "react";
-import Preloader from "@/components/Preloader/Preloader";
-import classNames from "classnames";
-import { usePathname, useSearchParams } from "next/navigation";
-import { CYPRESS } from "../shared/cypress";
+import SlideComponent from '../components/Slide/Slide';
+import { FullGestureState, useGesture } from '@use-gesture/react';
+import { CYPRESS } from '@/shared/cypress';
+import slides from '../shared/carousel.json';
 
-export default function Home({ slides }: { slides: Slide[] }) {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const preservedActiveSlideIndex = searchParams.get('activeSlideIndex') ? Number(searchParams.get('activeSlideIndex')) : undefined;
-  const initialSlideIndex = preservedActiveSlideIndex ?? Number(pathname.replace('/', ''));
-  const [activeSlideIndex, setActiveSlideIndex] = useState(Number.isInteger(initialSlideIndex) ? initialSlideIndex : 0);
+type HomeProps = {
+  activeSlideIndex: number;
+  isCarouselVisible: boolean;
+  setActiveSlideIndex: (index: number) => void;
+}
 
-  useEffect(() => {
-    setActiveSlideIndex(initialSlideIndex);
-  }, [initialSlideIndex]);
-
-  const [isAboutVisible, setIsAboutVisible] = useState(pathname === '/about');
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [hasCompletedIntro, setHasCompletedIntro] = useState(false);
-
-  useEffect(() => {
+const Home = ({ activeSlideIndex, isCarouselVisible, setActiveSlideIndex }: HomeProps ) => {
+  const changeSlide = useCallback((direction: number) => {
     const url = new URL(window.location.href);
-    url.pathname = isAboutVisible ? `/about` : `/${activeSlideIndex ?? 0}`;
-    if (isAboutVisible) {
-      url.searchParams.set('activeSlideIndex', activeSlideIndex.toString());
-    } else {
-      url.searchParams.delete('activeSlideIndex');
+    let nextSlide = (activeSlideIndex + direction) % slides.length;
+    if (nextSlide < 0) {
+      nextSlide = slides.length - 1;
     }
+    url.pathname = nextSlide.toString();
+    setActiveSlideIndex(nextSlide);
     window.history.pushState({}, '', url.href);
-  }, [activeSlideIndex, isAboutVisible]);
+  }, [activeSlideIndex, setActiveSlideIndex]);
 
-  const layoutClassNames = classNames(styles.layout, {
-    [styles.isAbout]: isAboutVisible,
-    isAbout: isAboutVisible,
-    [styles.isLoaded]: isLoaded,
-    [styles.hasCompletedIntro]: hasCompletedIntro,
-    isViewingCarousel: isLoaded && !isAboutVisible,
-  });
+  const handleNext = useCallback((event: MouseEvent<HTMLUListElement>) => {
+    changeSlide(1);
+    event.preventDefault();
+  }, [changeSlide]);
 
-  useEffect(() => {
-    if (!isLoaded) {
+  const hasSwiped = useRef(false);
+  const startIndex = useRef(activeSlideIndex);
+  const handleGesture = useCallback(({ first, last, movement: [_1, movementY] }: FullGestureState<'drag' | 'wheel'>) => {
+    if (first) {
+      startIndex.current = activeSlideIndex;
+      hasSwiped.current = false;
+    }
+  
+    if (last) {
+      hasSwiped.current = false;
+      return;
+    }
+  
+    if (hasSwiped.current || Math.abs(movementY) < window.innerHeight / 8 || activeSlideIndex !== startIndex.current) {
       return;
     }
 
-    window.setTimeout(() => {
-      setHasCompletedIntro(true);
-    }, 600);
-  }, [isLoaded]);
+    hasSwiped.current = true;
+    changeSlide(Math.sign(movementY));
+  }, [activeSlideIndex, changeSlide]);
+
+  const bind = useGesture({
+    onDrag: handleGesture,
+    onWheel: handleGesture
+  })
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'ArrowRight') {
+        changeSlide(1);
+      }
+
+      if (event.key === 'ArrowLeft') {
+        changeSlide(-1);
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [changeSlide]);
+
+  const totalSlides = slides.length;
 
   return (
-    <main className={layoutClassNames}>
-      <div className={styles.titleContainer}>
-      <h1 className={styles.title} onClick={() => setIsAboutVisible(!isAboutVisible)} data-cy={CYPRESS.PAGE_TOGGLE_LINK}>Mirka Laura Severa</h1>
-      </div>
-      <Preloader onPreloadComplete={setIsLoaded} slides={slides}>
-        <About className={styles.info} />
-        <Carousel activeSlideIndex={activeSlideIndex} className={styles.carousel} setActiveSlideIndex={setActiveSlideIndex} slides={slides} />
-      </Preloader>
-    </main>
+    <article className={styles.frame} {...bind()}>
+      <h2 className={styles.heading}>Selected Work</h2>
+      <ul className={styles.carousel} onClick={handleNext} data-cy={CYPRESS.CAROUSEL}>
+        {slides.map((slide, index) => (
+          <SlideComponent
+            index={index}
+            key={slide.media.image.src}
+            slide={slide}
+            isActive={activeSlideIndex === index}
+            isCarouselVisible={isCarouselVisible}
+            isPreviouslyActive={
+              activeSlideIndex === index + 2
+              || activeSlideIndex === index + 1
+              || activeSlideIndex === 0 && index === totalSlides - 2
+              || activeSlideIndex === 0 && index === totalSlides - 1
+              || activeSlideIndex === 1 && index === totalSlides - 1}
+            zIndex={activeSlideIndex < 4 && index < 4 ? index + totalSlides : index}
+          />
+        ))}
+      </ul>
+    </article>
   );
 }
 
-export async function getStaticProps() {
-  const slides = await import('../shared/carousel.json');
-  return {
-    props: {
-      slides: slides.default,
-    },
-  };
-}
+export default Home;

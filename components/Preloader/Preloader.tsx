@@ -5,10 +5,13 @@ import { useEffect, useState } from "react";
 type PreloaderProps = {
   children: React.ReactNode;
   onPreloadComplete?: (isLoaded: boolean) => void;
-  slides: Slide[];
+  data: {
+    projects?: Project[];
+    slides?: Slide[];
+  }
 }
 
-const Preloader = ({ children, onPreloadComplete, slides }: PreloaderProps) => {
+const Preloader = ({ children, data, onPreloadComplete }: PreloaderProps) => {
   const [hasPreloaded, setHasPreloaded] = useState(false);
 
   useEffect(() => {
@@ -17,7 +20,7 @@ const Preloader = ({ children, onPreloadComplete, slides }: PreloaderProps) => {
     }
     
     const interval = setInterval(() => {
-      const hasCompletedPreload = slides.every((slide) => window.hasPreloaded[slide.src]);
+      const hasCompletedPreload = data.slides ? data.slides.every((item) => window.hasPreloaded[item.media.image.src]) : true;
 
       if (hasCompletedPreload) {
         clearInterval(interval);
@@ -26,7 +29,7 @@ const Preloader = ({ children, onPreloadComplete, slides }: PreloaderProps) => {
     }, 100);
 
     return () => clearInterval(interval);
-  }, [hasPreloaded, slides]);
+  }, [hasPreloaded, data]);
 
   useEffect(() => {
     onPreloadComplete?.(hasPreloaded);

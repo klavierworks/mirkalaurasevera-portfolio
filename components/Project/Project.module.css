@@ -1,0 +1,9 @@
+.project {
+  position: relative;
+
+  img {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+}
