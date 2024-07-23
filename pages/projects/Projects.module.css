@@ -18,7 +18,9 @@
 
 .project {
   box-sizing: border-box;
-  display: block;
+  display: flex;
+  place-content: center;
+  place-items: center;
   width: 100%;
 
   .hasActiveProject &:not(.isActive) {

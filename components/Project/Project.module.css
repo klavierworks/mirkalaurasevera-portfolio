@@ -1,10 +1,5 @@
 .project {
   position: relative;
-  rotate: var(--rotate);
-
-  a:nth-child(even) & {
-    rotate: calc(var(--rotate) * -1);
-  }
 
   img {
     position: relative !important;
