@@ -2,14 +2,17 @@
   "order": 7,
   "thumbnail": {
     "image": "/projects/MirkaLauraSevera_BVDV_Space_head.jpg",
-    "video": "https://vimeo.com/342315950"
+    "video": "https://vimeo.com/342320564"
   },
   "title": "Forces of Nature",
-  "description": "",
   "media": [
     {
       "image": "/projects/MirkaLauraSevera_BVDV_Space_head.jpg",
-      "video": "https://vimeo.com/342315950"
+      "video": "https://vimeo.com/342320564",
+      "hasAudio": false
+    },
+    {
+      "hasAudio": false
     }
   ]
 }
