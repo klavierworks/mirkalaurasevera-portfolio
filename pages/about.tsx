@@ -29,6 +29,11 @@ const About = () => {
           {content.talks}
         </p>
       </article>
+      <article className={styles.credits}>
+        <p>
+          {content.credits}
+        </p>
+      </article>
     </div>
   );
 }

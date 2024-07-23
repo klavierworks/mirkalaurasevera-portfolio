@@ -15,6 +15,7 @@ content:
       - { name: clients, label: Clients, type: string }
       - { name: exhibitions, label: Exhibitions, type: string }
       - { name: talks, label: Talks, type: string }
+      - { name: credits, label: Credits, type: string }
   - name: carousel
     label: Carousel
     type: collection
