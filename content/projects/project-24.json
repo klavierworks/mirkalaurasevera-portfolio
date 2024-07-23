@@ -9,7 +9,8 @@
   "media": [
     {
       "image": "/projects/MirkaLauraSevera_Shoes_Airport.jpg",
-      "video": "https://vimeo.com/323410573"
+      "video": "https://vimeo.com/323410573",
+      "hasAudio": true
     }
   ]
 }
