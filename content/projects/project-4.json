@@ -4,13 +4,15 @@
     "image": "/projects/MirkaLauraSevera__Fashion Snowman_002.jpg"
   },
   "title": "Fashion Snowman",
-  "description": "<p style=\"text-align: center\">Give freezing models a break !</p><p style=\"text-align: center\">For this project real models where replaced by a group of very experiences snow models who where brave enough *  to proudly showcase the latest winter wear fashion trends on top of the Austrian Glacier.  </p><p style=\"text-align: center\">*accidents included </p>",
+  "description": "<p style=\"text-align: center\">Give freezing models a break! For this project real models where replaced by a group of very experienced snow models who where brave enough* to proudly showcase the latest winter wear fashion trends on top of the Austrian Glacier.  *accidents included</p>",
   "media": [
     {
-      "image": "/projects/MirkaLauraSevera__Fashion Snowman_002.jpg"
+      "image": "/projects/MirkaLauraSevera__Fashion Snowman_002.jpg",
+      "hasAudio": false
     },
     {
-      "image": "/projects/MirkaLauraSevera__Fashion Snowman_001.jpg"
+      "image": "/projects/MirkaLauraSevera__Fashion Snowman_001.jpg",
+      "hasAudio": false
     }
   ]
 }
