@@ -1,7 +1,6 @@
 import styles from './SingleProject.module.css';
 import arrow from './arrow.svg';
 import Link from "next/link";
-import Media from "../Media/Media";
 import { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import ProjectMedia from './ProjectMedia/ProjectMedia';
@@ -49,7 +48,7 @@ const SingleProject = ({ activeProject }: SingleProjectProps) => {
 
   const frameClassNames = classNames(styles.frame, {
     'has-scrollbar': true,
-    [styles.isActive]: !!activeProject
+    [styles.isActive]: visibleProject === activeProject,
   });
 
   return (
