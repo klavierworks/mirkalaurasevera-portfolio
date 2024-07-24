@@ -16,30 +16,14 @@ const PortfolioApp = ({ Component, pageProps }: AppProps) => {
 
   const isHome = router.pathname === '/' || router.pathname === '/[slide]';
 
-  const [isCarouselVisible, setIsCarouselVisible] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    if (!isLoaded || !isHome) {
-      return;
-    }
-
-    let timer = window.setTimeout(() => {
-      setIsCarouselVisible(true);
-    }, 500);
-
-    return () => {
-      window.clearTimeout(timer);
-      setIsCarouselVisible(false);
-    };
-  }, [isLoaded, isHome]);
 
   const preservedActiveSlideIndex = searchParams.get('activeSlideIndex') ? Number(searchParams.get('activeSlideIndex')) : undefined;
   const initialSlideIndex = preservedActiveSlideIndex ?? Number(pathname.replace('/', ''));
   const [activeSlideIndex, setActiveSlideIndex] = useState(Number.isInteger(initialSlideIndex) ? initialSlideIndex : 0);
 
   const layoutClassNames = classNames(styles.layout, {
-    [styles.isPageLoaded]: isLoaded && (!isHome || isCarouselVisible),
+    [styles.isPageLoaded]: isLoaded && (!isHome || isLoaded),
     [styles.isHome]: isHome,
   });
 
@@ -75,7 +59,7 @@ const PortfolioApp = ({ Component, pageProps }: AppProps) => {
       <Title activeSlideIndex={activeSlideIndex} />
       <Preloader onPreloadComplete={setIsLoaded}>
         <div className={styles.page}>
-          <Component activeSlideIndex={activeSlideIndex} isCarouselVisible={isCarouselVisible} setActiveSlideIndex={setActiveSlideIndex} {...pageProps} />
+          <Component activeSlideIndex={activeSlideIndex} setActiveSlideIndex={setActiveSlideIndex} {...pageProps} />
         </div>
       </Preloader>
     </main>

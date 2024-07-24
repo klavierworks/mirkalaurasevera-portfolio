@@ -1,4 +1,4 @@
-import { MouseEvent, useCallback, useEffect, useRef } from 'react';
+import { MouseEvent, useCallback, useEffect, useRef, useState } from 'react';
 import styles from './index.module.css';
 import { FullGestureState, useGesture } from '@use-gesture/react';
 import { CYPRESS } from '@/shared/cypress';
@@ -7,11 +7,10 @@ import Carousel from '@/components/Carousel/Carousel';
 
 type HomeProps = {
   activeSlideIndex: number;
-  isCarouselVisible: boolean;
   setActiveSlideIndex: (index: number) => void;
 }
 
-const Home = ({ activeSlideIndex, isCarouselVisible, setActiveSlideIndex }: HomeProps ) => {
+const Home = ({ activeSlideIndex, setActiveSlideIndex }: HomeProps ) => {
   const changeSlide = useCallback((direction: number) => {
     const url = new URL(window.location.href);
     let nextSlide = (activeSlideIndex + direction) % slides.length;
@@ -69,6 +68,13 @@ const Home = ({ activeSlideIndex, isCarouselVisible, setActiveSlideIndex }: Home
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [changeSlide]);
 
+  const [isCarouselVisible, setIsCarouselVisible] = useState(false);
+  useEffect(() => {
+    let timer = window.setTimeout(() => {
+      setIsCarouselVisible(true);
+    }, 500);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   return (
     <article className={styles.frame} {...bind()}>
