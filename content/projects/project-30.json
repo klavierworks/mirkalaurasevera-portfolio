@@ -1,13 +1,17 @@
 {
   "order": 22,
   "thumbnail": {
-    "image": "/projects/MirkaLauraSevera__Airport_002.jpg"
+    "image": "/projects/MirkaLauraSevera__Airport_002-1.jpg"
   },
   "title": "Airport Check",
   "description": "<p>Airport Security Check for M Le Magazine du Monde. </p><p></p>",
   "media": [
     {
-      "image": "/projects/MirkaLauraSevera__Airport_002.jpg",
+      "image": "/projects/MirkaLauraSevera__Airport_002-1.jpg",
+      "hasAudio": false
+    },
+    {
+      "image": "/projects/MirkaLauraSevera__Airport_003.jpg",
       "hasAudio": false
     }
   ]
