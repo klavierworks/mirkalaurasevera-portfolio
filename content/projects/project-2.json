@@ -9,10 +9,7 @@
     {
       "image": "/projects/MirkaLauraSevera_BVDV_Space_head.jpg",
       "video": "https://vimeo.com/342320564",
-      "hasAudio": false
-    },
-    {
-      "hasAudio": false
+      "hasAudio": true
     }
   ]
 }
