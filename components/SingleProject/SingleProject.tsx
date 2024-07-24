@@ -48,7 +48,7 @@ const SingleProject = ({ activeProject }: SingleProjectProps) => {
 
   const frameClassNames = classNames(styles.frame, {
     'has-scrollbar': true,
-    [styles.isActive]: visibleProject === activeProject,
+    [styles.isActive]: activeProject && visibleProject === activeProject,
   });
 
   return (
