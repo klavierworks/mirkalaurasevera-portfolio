@@ -12,3 +12,4 @@ A creative, eye catching website that puts photography examples front and centre
 * React Spring for animations
 * Sharp for image preprocessing
 * Pages.cms for static admin control
+* Nothing shocking to see here.
