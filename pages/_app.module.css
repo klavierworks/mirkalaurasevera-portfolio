@@ -24,10 +24,10 @@
 .page {
   display: grid;
   grid-template-columns: 1fr min(75%, 586px) 1fr;
-
-  grid-row: 2 / 3;
+  grid-row: 1 / 3;
   grid-column: 1 / 2;
   padding: 1em;
+  padding-top: 20vh;
   overflow-y: auto;
   opacity: 0;
   transition: opacity 0.5s;
