@@ -1,0 +1,6 @@
+.image {
+  transition: filter 0.5s;
+  &.thumbnail {
+    filter: blur(10px);
+  }
+}

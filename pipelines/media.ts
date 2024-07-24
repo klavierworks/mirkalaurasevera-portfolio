@@ -58,6 +58,14 @@ export const createVideoObject = async (videoId?: string, hasAudio?: boolean) =>
   } as VideoObject;
 }
 
+export const createThumbnail = async (src: string) => {
+  const buffer = await sharp(`./public${src}`).resize(25, 25, {
+    fit: 'inside',
+  }).toBuffer();
+  const base64Image = buffer.toString('base64');
+  return `data:image/jpeg;base64,${base64Image}`;
+}
+
 export const createImageObject = async (src: string, alt?: string) => {
   const { width, height } = await getImageMetadata(src);
 
@@ -65,12 +73,15 @@ export const createImageObject = async (src: string, alt?: string) => {
     throw new Error(`Could not read image dimensions for ${src}`);
   }
 
+  const thumbnail = await createThumbnail(src);
+
   return {
     alt,
     src,
     width,
     height,
     aspectRatio: width / height,
+    thumbnail,
   } as ImageObject;
 }
 

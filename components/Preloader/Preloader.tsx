@@ -7,6 +7,7 @@ import Carousel from '../Carousel/Carousel';
 
 if (typeof window !== 'undefined') {
   window.requiresPreload = [];
+  window.hasPreloaded = false;
 }
 
 type PreloaderProps = {
@@ -29,6 +30,7 @@ const Preloader = ({ children,  onPreloadComplete }: PreloaderProps) => {
       if (hasLoadedImages) {
         clearInterval(interval);
         setHasPreloaded(true);
+        window.hasPreloaded = true;
       }
     }, 100);
 
@@ -36,7 +38,7 @@ const Preloader = ({ children,  onPreloadComplete }: PreloaderProps) => {
   }, [hasPreloaded]);
 
   useEffect(() => {
-    onPreloadComplete?.(hasPreloaded);
+    onPreloadComplete?.(true);
   }, [hasPreloaded, onPreloadComplete]);
 
   return (

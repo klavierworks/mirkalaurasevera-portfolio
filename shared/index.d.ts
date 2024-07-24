@@ -1,6 +1,7 @@
 declare global {
   interface Window {
     requiresPreload: string[];
+    hasPreloaded: boolean;
   }
 
   type ImageObject = {
@@ -9,6 +10,7 @@ declare global {
     width: number;
     height: number;
     aspectRatio: number;
+    thumbnail: string;
   }
 
   type VideoObject = {

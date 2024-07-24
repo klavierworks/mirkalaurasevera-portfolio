@@ -1,3 +1,4 @@
+import styles from './CustomImage.module.css';
 import { getImageProps } from "next/image";
 import { CSSProperties, ForwardedRef, forwardRef, useEffect, useMemo, useState } from "react";
 
@@ -10,7 +11,7 @@ type CustomImageProps = {
 }
 
 const CustomImage = forwardRef(({ className, isLazyLoaded, image, onClick, style }: CustomImageProps, ref: ForwardedRef<HTMLImageElement | HTMLVideoElement>) => {
-  const { alt, src, width, height } = image;
+  const { alt, src, width, height, thumbnail } = image;
 
   const imageProps = useMemo(() => {
     const { props } = getImageProps({
@@ -27,6 +28,7 @@ const CustomImage = forwardRef(({ className, isLazyLoaded, image, onClick, style
   }, [alt,isLazyLoaded, src, width, height])
 
 
+  const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     if (typeof window === 'undefined') {
       return;
@@ -52,13 +54,24 @@ const CustomImage = forwardRef(({ className, isLazyLoaded, image, onClick, style
 
       // Remove src from array
       window.requiresPreload = window.requiresPreload.filter((url: string) => url !== src);
+      setIsLoaded(true);
     } 
   
     preload();
   }, [imageProps, src]);
 
+
   {/* eslint-disable-next-line jsx-a11y/alt-text */}
-  return <img className={className} {...imageProps} onClick={onClick} ref={ref as ForwardedRef<HTMLImageElement>} style={style} />
+  return (
+    <img
+      alt={alt}
+      className={`${className} ${styles.image} ${!isLoaded && styles.thumbnail}`}
+      srcSet={isLoaded ? imageProps.srcSet : undefined}
+      src={isLoaded ? undefined : thumbnail}
+      onClick={onClick}
+      ref={ref as ForwardedRef<HTMLImageElement>}
+      style={style} />
+  )
 })
 
 CustomImage.displayName = 'CustomImage';

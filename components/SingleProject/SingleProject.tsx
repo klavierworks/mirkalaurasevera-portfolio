@@ -52,19 +52,15 @@ const SingleProject = ({ activeProject }: SingleProjectProps) => {
     [styles.isActive]: !!activeProject
   });
 
-  if (!visibleProject) {
-    return null
-  }
-
   return (
     <>
       <div className={frameClassNames} ref={masonryFrameRef}>
         <div className={styles.content}>
-          <h1>{visibleProject.title}</h1>
-          <div dangerouslySetInnerHTML={{__html: visibleProject.description }} />
+          <h1>{visibleProject?.title}</h1>
+          <div dangerouslySetInnerHTML={{__html: visibleProject?.description ?? '' }} />
         </div>
         <div className={styles.slider}>
-          {visibleProject.media.map((media, index) => (
+          {visibleProject?.media.map((media, index) => (
             <ProjectMedia
               isFirstSlide={index === 0}
               isVisible={visibleSlideIndex === index}
