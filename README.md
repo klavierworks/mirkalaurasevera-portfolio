@@ -1,11 +1,14 @@
 # Mirka Laura Severa
-A simple Next.js portfolio site, running on Vercel.
+A static portfolio website for photographer Mirka Laura Severa.
 
-CMS provided by Pages CMS.
+Live: https://www.mirkalaurasevera.com/
 
-Note: a file at shared/carousel.json will be created at run or build time. This should be kept out of version control as it will be regenerated on server/locally depending on latest CMS content.
+## Aim
+A creative, eye catching website that puts photography examples front and centre. Must require minimal developer maintenance support; all content should be editable directly by client, but with no server or CMS maintenance.
 
-## Updating admin CMS
-First, in the root of the application run: `git clone https://github.com/pages-cms/pages-cms.git`
-
-Second, run `npm run buildadmin`
+## Tooling
+* Next.js
+* Vercel hosting
+* React Spring for animations
+* Sharp for image preprocessing
+* Pages.cms for static admin control
