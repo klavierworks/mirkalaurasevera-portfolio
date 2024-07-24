@@ -1,4 +1,3 @@
-import styles from './CustomImage.module.css';
 import { getImageProps } from "next/image";
 import { CSSProperties, ForwardedRef, forwardRef, useEffect, useMemo, useState } from "react";
 
@@ -22,13 +21,12 @@ const CustomImage = forwardRef(({ className, isLazyLoaded, image, onClick, style
       quality: 90,
       sizes: '100vw',
       loading: isLazyLoaded ? 'lazy' : 'eager',
+      blurDataURL: thumbnail,
     })
   
     return props
-  }, [alt,isLazyLoaded, src, width, height])
+  }, [src, width, height, alt, isLazyLoaded, thumbnail])
 
-
-  const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     if (typeof window === 'undefined') {
       return;
@@ -54,7 +52,6 @@ const CustomImage = forwardRef(({ className, isLazyLoaded, image, onClick, style
 
       // Remove src from array
       window.requiresPreload = window.requiresPreload.filter((url: string) => url !== src);
-      setIsLoaded(true);
     } 
   
     preload();
@@ -65,9 +62,8 @@ const CustomImage = forwardRef(({ className, isLazyLoaded, image, onClick, style
   return (
     <img
       alt={alt}
-      className={`${className} ${styles.image} ${!isLoaded && styles.thumbnail}`}
-      srcSet={isLoaded ? imageProps.srcSet : undefined}
-      src={isLoaded ? undefined : thumbnail}
+      className={className}
+      {...imageProps}
       onClick={onClick}
       ref={ref as ForwardedRef<HTMLImageElement>}
       style={style} />
