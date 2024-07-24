@@ -9,12 +9,12 @@
     {
       "image": "/projects/Mirka_Laura_Severa_Bready.jpg",
       "video": "https://vimeo.com/989005461",
-      "hasAudio": false
+      "hasAudio": true
     },
     {
       "image": "/projects/Mirka_Laura_Severa_Bready_2.jpg",
       "video": "https://vimeo.com/989004687",
-      "hasAudio": false
+      "hasAudio": true
     }
   ]
 }
