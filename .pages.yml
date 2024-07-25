@@ -103,7 +103,7 @@ content:
       - name: media
         label: Media
         type: object
-        list: true,
+        list: true
         fields:
           - name: image
             label: Image
