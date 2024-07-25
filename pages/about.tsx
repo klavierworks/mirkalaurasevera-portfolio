@@ -3,6 +3,9 @@ import styles from './About.module.css';
 import content from '../content/about.json';
 
 const About = () => {
+  // Replace all heading tags (h1-h6) in string with h2
+  const aboutWithStandardisedHeadings = content.information.replace(/<h[1-6]>/g, '<h2>').replace(/<\/h[1-6]>/g, '</h2>');
+
   return (
     <div className={styles.column}>
       <article className={styles.bio}>
@@ -11,29 +14,7 @@ const About = () => {
         <a className={styles.link} target="_blank" href="mailto:contact@mirkalaurasevera.com">Press Enquiries</a>
         <a className={styles.link} target="_blank" href="https://www.instagram.com/mirkalaurasevera">Instagram</a>
       </article>
-      <article className={styles.clients}>
-        <h2 className={styles.heading}>Selected clients</h2>
-        <p>
-          {content.clients}
-        </p>
-      </article>
-      <article className={styles.exhibitions}>
-        <h2 className={styles.heading}>Selected exhibitions</h2>
-        <p>
-          {content.exhibitions}
-        </p>
-      </article>
-      <article className={styles.exhibitions}>
-        <h2 className={styles.heading}>Selected Talks & Lectures</h2>
-        <p>
-          {content.talks}
-        </p>
-      </article>
-      <article className={styles.credits}>
-        <p>
-          {content.credits}
-        </p>
-      </article>
+      <article className={styles.about} dangerouslySetInnerHTML={{__html: aboutWithStandardisedHeadings}} />
     </div>
   );
 }

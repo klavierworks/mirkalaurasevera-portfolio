@@ -12,10 +12,12 @@ content:
           type: rich-text,
           options: { format: html, image: false },
         }
-      - { name: clients, label: Clients, type: string }
-      - { name: exhibitions, label: Exhibitions, type: string }
-      - { name: talks, label: Talks, type: string }
-      - { name: credits, label: Credits, type: string }
+      - {
+          name: information,
+          label: Additional Information,
+          type: rich-text,
+          options: { format: html, image: false },
+        }
   - name: carousel
     label: Carousel
     type: collection

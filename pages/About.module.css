@@ -23,16 +23,6 @@
   grid-column: 2 / 3;
 }
 
-.heading {
-  @mixin heading;
-  margin: 0;
-  padding: 0;
-
-  + :global(p) {
-    margin-top: 0;
-  }
-}
-
 .bio {
   margin-bottom: 1em;
 
@@ -40,5 +30,17 @@
     margin-top: 0;
     display: block;
     color: inherit;
+  }
+}
+
+.information {
+  h2 {
+    @mixin heading;
+    margin: 0;
+    padding: 0;
+
+    + p {
+      margin-top: 0;
+    }
   }
 }
