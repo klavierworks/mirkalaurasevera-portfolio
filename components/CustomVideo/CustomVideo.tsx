@@ -48,7 +48,8 @@ const CustomVideo = forwardRef(({ className, fallback, hasAudio, isActive, style
     }
     if (Hls.isSupported()) {
       var hls = new Hls();
-      hls.loadSource(src);
+      const proxiedSrc = `/api/proxy-vimeo?url=${encodeURIComponent(src)}`;
+      hls.loadSource(proxiedSrc);
       hls.attachMedia(videoEl);
       return;
     }
