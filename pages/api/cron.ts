@@ -16,3 +16,5 @@ export const handler = async (req: NextRequest, res: NextResponse) => {
   // @ts-expect-error ignore
   res.status(200).end('Hello Cron!');
 }
+
+export default handler;
