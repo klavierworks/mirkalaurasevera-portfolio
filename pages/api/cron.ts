@@ -1,4 +1,6 @@
-export default async function handler(req, res) {
+import { NextRequest, NextResponse } from 'next/server';
+
+export const handler = async (req: NextRequest, res: NextResponse) => {
   // if (req.headers['Authorization'] !== `Bearer ${process.env.CRON_SECRET}`) {
   //   return res.status(401).end('Unauthorized');
   // }
@@ -11,5 +13,6 @@ export default async function handler(req, res) {
     },
   });
 
+  // @ts-expect-error ignore
   res.status(200).end('Hello Cron!');
 }
