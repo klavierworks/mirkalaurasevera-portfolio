@@ -1,0 +1,13 @@
+{
+  "order": 32,
+  "thumbnail": {
+    "image": "/projects/Prada_Smoothie_MirkaLauraSevera.jpg"
+  },
+  "title": "Prada Smoothie",
+  "media": [
+    {
+      "image": "/projects/Prada_Smoothie_MirkaLauraSevera.jpg",
+      "hasAudio": false
+    }
+  ]
+}
