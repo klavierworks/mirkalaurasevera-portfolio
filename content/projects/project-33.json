@@ -3,10 +3,11 @@
   "thumbnail": {
     "image": "/projects/MirkaLauraSevera__Swallow_004.jpg"
   },
-  "title": "My house on fire",
+  "title": "House on Fire",
   "media": [
     {
-      "image": "/projects/MirkaLauraSevera__Swallow_004.jpg"
+      "image": "/projects/MirkaLauraSevera__Swallow_004.jpg",
+      "hasAudio": false
     }
   ]
 }
