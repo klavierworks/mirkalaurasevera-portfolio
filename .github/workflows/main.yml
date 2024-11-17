@@ -1,0 +1,14 @@
+name: Weekly Vercel Rebuild
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    env:
+      WEBHOOK_URL: ${{ secrets.VERCEL_WEBHOOK_URL }}
+    steps:
+      - name: Trigger Vercel rebuild webhook
+        run: curl -X POST $WEBHOOK_URL
