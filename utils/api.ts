@@ -71,14 +71,17 @@ export const getSlides = async (includeImages = false) => {
 
   const data = await response.json();
 
-  return Promise.all(data.items.map((item: any) => item.fields).map(async (slide: any) => {
+  const slides = await Promise.all(data.items.map((item: any) => item.fields).map(async (slide: any) => {
     return {
+      order: slide.order,
       line1: slide.line1 ?? null,
       line2: slide.line2 ?? null,
       line3: slide.line3 ?? null,
       image: includeImages ? (await getImage(slide.image.sys.id) ?? null) : null,
     } as Slide
-  }));
+  }))
+
+  return slides.sort((a, b) => a.order - b.order);
 }
 
 export const getProjects = async (includeImages = false) => {
@@ -106,7 +109,7 @@ export const getProjects = async (includeImages = false) => {
       title: project.title,
       description: formatText(project.description),
       order: project.order,
-      randomRotation: Math.floor(Math.random() * 10),
+      randomRotation: Math.floor(Math.random() * 8),
       thumbnail: includeImages ? {
         image: await getImage(project.thumbnail.sys.id),
       } : null,
