@@ -31,23 +31,13 @@ declare global {
     video?: VideoObject
   }
 
-  interface UnprocessedSlide {
-    order: number | string;
-    line1: string;
-    line2: string;
-    line3: string;
-    src: string;
-    videoId?: string;
-  }
-
   type Slide = {
-    order: number;
-    media: MediaObject;
     line1: string;
     line2: string;
     line3: string;
+    image: ImageObject
   }
-
+  
   type UnprocessedProject = {
     order: number | string;
     title: string;
@@ -63,9 +53,12 @@ declare global {
     }
   }
 
-  type Project = Omit<UnprocessedProject, 'order' | 'thumbnail' | 'media'> & {
-    randomRotation: number;
+  type Project = {
+    id: string;
+    title: string;
     slug: string;
+    description: string;
+    randomRotation: number;
     thumbnail: MediaObject;
     media: MediaObject[];
     order: number;

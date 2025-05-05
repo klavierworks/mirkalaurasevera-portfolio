@@ -15,8 +15,8 @@ export const processUnprocessedSlide = async (item: UnprocessedSlide): Promise<S
   const video = await createVideoObject(item.videoId);
 
   return {
-    media: await createMediaObject(item.src, item.line1, item.videoId),
-    order: Number(item.order),
+    // @ts-expect-error test
+    image: {},
     line1,
     line2: rest.join(',').trim(),
     line3: item.line2,

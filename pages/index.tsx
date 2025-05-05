@@ -2,15 +2,16 @@ import { MouseEvent, useCallback, useEffect, useRef, useState } from 'react';
 import styles from './index.module.css';
 import { FullGestureState, useGesture } from '@use-gesture/react';
 import { CYPRESS } from '@/shared/cypress';
-import slides from '../shared/carousel.json';
 import Carousel from '@/components/Carousel/Carousel';
+import { getProjects, getSlides } from '@/utils/api';
 
 type HomeProps = {
   activeSlideIndex: number;
   setActiveSlideIndex: (index: number) => void;
+  slides: Slide[]
 }
 
-const Home = ({ activeSlideIndex, setActiveSlideIndex }: HomeProps ) => {
+const Home = ({ activeSlideIndex, setActiveSlideIndex, slides }: HomeProps ) => {
   const changeSlide = useCallback((direction: number) => {
     const url = new URL(window.location.href);
     let nextSlide = (activeSlideIndex + direction) % slides.length;
@@ -20,7 +21,7 @@ const Home = ({ activeSlideIndex, setActiveSlideIndex }: HomeProps ) => {
     url.pathname = nextSlide.toString();
     setActiveSlideIndex(nextSlide);
     window.history.pushState({}, '', url.href);
-  }, [activeSlideIndex, setActiveSlideIndex]);
+  }, [activeSlideIndex, setActiveSlideIndex, slides]);
 
   const handleNext = useCallback((event: MouseEvent<HTMLUListElement>) => {
     changeSlide(1);
@@ -80,10 +81,22 @@ const Home = ({ activeSlideIndex, setActiveSlideIndex }: HomeProps ) => {
     <article className={styles.frame} {...bind()}>
       <h2 className={styles.heading}>Selected Work</h2>
       <ul className={styles.carousel} onClick={handleNext} data-cy={CYPRESS.CAROUSEL}>
-        <Carousel activeSlideIndex={activeSlideIndex} isCarouselVisible={isCarouselVisible} />
+        <Carousel activeSlideIndex={activeSlideIndex} isCarouselVisible={isCarouselVisible} slides={slides} />
       </ul>
     </article>
   );
 }
+
+export const getStaticProps = async () => {
+  const slides = await getSlides(true)
+    const projects = await getProjects(true)
+
+  return {
+    props: {
+      projects,
+      slides
+    }
+  };
+};
 
 export default Home;

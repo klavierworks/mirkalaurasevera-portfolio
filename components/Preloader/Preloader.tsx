@@ -13,9 +13,11 @@ if (typeof window !== 'undefined') {
 type PreloaderProps = {
   children: React.ReactNode;
   onPreloadComplete?: (isLoaded: boolean) => void;
+  projects: Project[];
+  slides: Slide[];
 }
 
-const Preloader = ({ children,  onPreloadComplete }: PreloaderProps) => {
+const Preloader = ({ children,  onPreloadComplete, projects, slides }: PreloaderProps) => {
   const [hasPreloaded, setHasPreloaded] = useState(false);
   const pathname = usePathname();
 
@@ -46,8 +48,8 @@ const Preloader = ({ children,  onPreloadComplete }: PreloaderProps) => {
       {hasPreloaded ? children : (
         <>
           <div className={styles.layers}>
-            <Carousel activeSlideIndex={0} isCarouselVisible={false} />
-            <Projects isPreloading />
+            <Carousel activeSlideIndex={0} isCarouselVisible={false} slides={slides} />
+            <Projects isPreloading slides={slides} projects={projects} />
           </div>
           <div className={styles.loading} data-cy={CYPRESS.PRELOADER}>Loading...</div>
         </>

@@ -1,15 +1,21 @@
-import * as Index from './index';
 import styles from './About.module.css';
-import content from '../content/about.json';
+import { getAboutPage, getProjects, getSlides } from '@/utils/api';
 
-const About = () => {
+type AboutProps = {
+  about: {
+    bio: string;
+    information: string;
+  };
+};
+
+const About = ({ about }: AboutProps) => {
   // Replace all heading tags (h1-h6) in string with h2
-  const aboutWithStandardisedHeadings = content.information.replace(/<h[1-6]>/g, '<h2>').replace(/<\/h[1-6]>/g, '</h2>');
+  const aboutWithStandardisedHeadings = about.information.replace(/<h[1-6]>/g, '<h2>').replace(/<\/h[1-6]>/g, '</h2>');
 
   return (
     <div className={styles.column}>
       <article className={styles.bio}>
-        <span dangerouslySetInnerHTML={{ __html: content.bio}} />
+        <span dangerouslySetInnerHTML={{ __html: about.bio}} />
         <a className={styles.link} target="_blank" href="mailto:mls@mirkalaurasevera.com">Work Enquiries</a>
         <a className={styles.link} target="_blank" href="mailto:contact@mirkalaurasevera.com">Press Enquiries</a>
         <a className={styles.link} target="_blank" href="https://www.instagram.com/mirkalaurasevera">Instagram</a>
@@ -18,5 +24,20 @@ const About = () => {
     </div>
   );
 }
+
+export const getStaticProps = async () => {
+  const slides = await getSlides(true)
+  const projects = await getProjects(true)
+  const about = await getAboutPage()
+
+  return {
+    props: {
+      about,
+      projects,
+      slides
+    }
+  };
+};
+
 
 export default About;

@@ -1,17 +1,17 @@
 import styles from './Projects.module.css';
-import projectsJson from '../../shared/projects.json';
 import Project from '@/components/Project/Project';
 import SingleProject from '@/components/SingleProject/SingleProject';
+import { getProjects, getSlides } from '@/utils/api';
 import { useEffect, useRef } from 'react';
-
-const projects = projectsJson as unknown as Project[];
 
 type ProjectsProps = {
   activeProject?: Project;
   isPreloading?: boolean;
+  projects: Project[];
+  slides: Slide[];
 }
 
-const Projects = ({ activeProject, isPreloading }: ProjectsProps) => {
+const Projects = ({ activeProject, isPreloading, projects, slides, ...props }: ProjectsProps) => {
   const masonryFrameRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -46,6 +46,18 @@ const Projects = ({ activeProject, isPreloading }: ProjectsProps) => {
       <SingleProject activeProject={activeProject} />
     </div>
   );
+}
+
+export const getStaticProps = async () => {
+  const slides = await getSlides(true)
+  const projects = await getProjects(true)
+
+  return {
+    props: {
+      projects,
+      slides
+    }
+  }
 }
 
 export default Projects;
