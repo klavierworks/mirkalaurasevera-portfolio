@@ -4,7 +4,7 @@ const nextConfig = {
     return [
       {
         source: '/admin',
-        destination: 'https://app.pagescms.org/Runeii/mirkalaurasevera-portfolio/main/',
+        destination: 'https://app.contentful.com/spaces/o7cd9mv2klad/views/entries?id=zv4JLLWdFDbjOJGb&order.fieldId=relevance&order.direction=ascending&searchText=shoes&contentTypeId=projects&displayedFieldIds=contentType&displayedFieldIds=updatedAt&displayedFieldIds=author&contentTypeIds=projects',
         permanent: false,
       },
     ]

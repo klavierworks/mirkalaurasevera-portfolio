@@ -1,11 +1,11 @@
-import Project from './index';
+import * as Project from './index';
 import { getSlides, getProjects } from '@/utils/api';
 
-export default Project;
+export default Project.default;
 
 export const getStaticProps = async ({ params: { slug } }: {params: {slug: string}}) => {
-  const slides = await getSlides(true)
-  const projects = await getProjects(true)
+  const slides = await getSlides()
+  const projects = await getProjects()
 
   return {
     props: {

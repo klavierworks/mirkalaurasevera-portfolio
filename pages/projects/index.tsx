@@ -11,7 +11,7 @@ type ProjectsProps = {
   slides: Slide[];
 }
 
-const Projects = ({ activeProject, isPreloading, projects, slides, ...props }: ProjectsProps) => {
+const Projects = ({ activeProject, isPreloading, projects, slides }: ProjectsProps) => {
   const masonryFrameRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -49,8 +49,8 @@ const Projects = ({ activeProject, isPreloading, projects, slides, ...props }: P
 }
 
 export const getStaticProps = async () => {
-  const slides = await getSlides(true)
-  const projects = await getProjects(true)
+  const slides = await getSlides()
+  const projects = await getProjects()
 
   return {
     props: {
