@@ -20,7 +20,7 @@ const About = ({ about }: AboutProps) => {
         <a className={styles.link} target="_blank" href="mailto:contact@mirkalaurasevera.com">Press Enquiries</a>
         <a className={styles.link} target="_blank" href="https://www.instagram.com/mirkalaurasevera">Instagram</a>
       </article>
-      <article className={styles.about} dangerouslySetInnerHTML={{__html: aboutWithStandardisedHeadings}} />
+      <article className={styles.information} dangerouslySetInnerHTML={{__html: aboutWithStandardisedHeadings}} />
     </div>
   );
 }

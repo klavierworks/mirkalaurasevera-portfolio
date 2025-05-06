@@ -141,6 +141,7 @@ export const getSlides = async () => {
   const data = await response.json();
 
   const assets = data.includes['Asset'] ?? [];
+  const entries = data.includes['Entry'] ?? [];
 
   return Promise.all(data.items.map((item: any) => item.fields).map(async (slide: any) => {
     return {
@@ -148,7 +149,7 @@ export const getSlides = async () => {
       line1: slide.line1 ?? null,
       line2: slide.line2 ?? null,
       line3: slide.line3 ?? null,
-      image: createImageObject(slide.image, assets),
+      media: await createMediaObject(slide.media, assets, entries),
     } as Slide
   }))
 }
@@ -196,6 +197,12 @@ const formatText = (paragraphs) => {
   // @ts-expect-error
   return paragraphs.content.map(paragraph => {
     return paragraph.content.map((text: any) => {
+      if (text.nodeType === 'text') {
+        return text.value;
+      }
+      if (text.nodeType === 'hyperlink') {
+        return `<a href="${text.data.uri}" target="_blank" rel="noopener noreferrer">${text.content[0].value}</a>`;
+      }
       return text.value;
     }).join('');
   }).join('<br /><br />');

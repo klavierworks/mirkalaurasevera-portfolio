@@ -17,7 +17,7 @@ type SlideProps = {
 const Slide = ({ index, isActive, isPreviouslyActive, isCarouselVisible, slide, zIndex }: SlideProps) => {
   const imageRef = useRef<HTMLImageElement>(null);
   const spacerRef = useRef<HTMLDivElement>(null);
-  const { line1, line2, line3, image } = slide;
+  const { line1, line2, line3, media } = slide;
 
   const targetScale = useTargetScale({
     startSizeRef: imageRef,
@@ -31,7 +31,7 @@ const Slide = ({ index, isActive, isPreviouslyActive, isCarouselVisible, slide, 
 
   const style = {
     '--target-scale': targetScale,
-    '--aspect-ratio': `${image.width} / ${image.height}`,
+    '--aspect-ratio': `${media.image.width} / ${media.image.height}`,
     '--z-index': zIndex,
   } as CSSProperties
 
@@ -44,10 +44,6 @@ const Slide = ({ index, isActive, isPreviouslyActive, isCarouselVisible, slide, 
     }
     return CYPRESS.SLIDE;
   }, [isActive, isPreviouslyActive]);
-
-  const media = useMemo(() => ({
-    image,
-  }), [image]);
 
   return (
     <li className={slideClassNames} data-cy={cyAttribute} data-cy-index={index} style={style}>

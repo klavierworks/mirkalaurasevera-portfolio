@@ -35,7 +35,7 @@ declare global {
     line1: string;
     line2: string;
     line3: string;
-    image: ImageObject
+    media: MediaObject
   }
   
   type UnprocessedProject = {

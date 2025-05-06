@@ -17,7 +17,6 @@ const Media = forwardRef(({
   media,
   isActive,
   isLazyLoaded,
-  style
 }: MediaProps, ref: ForwardedRef<HTMLImageElement | HTMLVideoElement>) => {
   if (media?.video) {
     return (
@@ -27,7 +26,6 @@ const Media = forwardRef(({
         isActive={isActive}
         hasAudio={hasAudio && media.video.hasAudio}
         ref={ref}
-        style={style}
         video={media.video}
       />
     )
@@ -40,7 +38,6 @@ const Media = forwardRef(({
         isLazyLoaded={isLazyLoaded}
         image={media.image}
         ref={ref}
-        style={style}
       />
     )
   }

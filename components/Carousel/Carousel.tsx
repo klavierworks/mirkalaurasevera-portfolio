@@ -13,7 +13,7 @@ const Carousel = ({ activeSlideIndex, isCarouselVisible, slides}: CarouselProps 
   return slides.map((slide, index) => (
     <Slide
       index={index}
-      key={slide.image.alt}
+      key={slide.media.image.alt}
       slide={slide}
       isActive={activeSlideIndex === index}
       isCarouselVisible={isCarouselVisible}
