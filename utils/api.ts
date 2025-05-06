@@ -18,7 +18,7 @@ const createImageObject = (image: any, includes: any[]) => {
     height: asset.fields.file.details.image.height,
     aspectRatio: asset.fields.file.details.image.width / asset.fields.file.details.image.height,
     alt: asset.fields.file.fileName,
-  } as Slide['image']
+  } as ImageObject
 }
 
 const cache: Record<string, VimeoVideoDetails> = {}
