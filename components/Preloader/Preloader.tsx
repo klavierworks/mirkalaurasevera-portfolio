@@ -48,7 +48,7 @@ const Preloader = ({ children,  onPreloadComplete, projects, slides }: Preloader
       {hasPreloaded ? children : (
         <>
           <div className={styles.layers}>
-            <Carousel activeSlideIndex={0} isCarouselVisible={false} slides={slides} />
+            {slides && slides.length > 0 && <Carousel activeSlideIndex={0} isCarouselVisible={false} slides={slides} />}
             <Projects isPreloading slides={slides} projects={projects} />
           </div>
           <div className={styles.loading} data-cy={CYPRESS.PRELOADER}>Loading...</div>
