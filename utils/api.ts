@@ -21,12 +21,22 @@ const createImageObject = (image: any, includes: any[]) => {
   } as Slide['image']
 }
 
+const cache: Record<string, VimeoVideoDetails> = {}
 const getVimeoMetadata = async (rawVideoId?: string): Promise<VimeoVideoDetails | null> => {
   if (!rawVideoId) {
     return null;
   }
 
   const videoId = rawVideoId.includes('vimeo') ? rawVideoId.split('/').pop() : rawVideoId;
+
+  if (!videoId) {
+    console.log('Error: Invalid Vimeo video ID:', rawVideoId);
+    return null;
+  }
+
+  if (cache[videoId]) {
+    return cache[videoId];
+  }
 
   const url = `https://api.vimeo.com/videos/${videoId}`;
 
@@ -44,6 +54,7 @@ const getVimeoMetadata = async (rawVideoId?: string): Promise<VimeoVideoDetails 
 
     const data: VimeoVideoDetails = await response.json();
 
+    cache[videoId] = data;
     return data;
   } catch (error) {
     console.error(`Error fetching Vimeo video info for ${videoId}:`, error);
