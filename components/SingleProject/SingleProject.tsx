@@ -13,24 +13,6 @@ const SingleProject = ({ activeProject }: SingleProjectProps) => {
   const masonryFrameRef = useRef<HTMLDivElement>(null);
   const [visibleProject, setVisibleProject] = useState<Project>();
 
-  const [visibleSlideIndex, setVisibleSlideIndex] = useState(0);
-
-  const handleSetVisibleSlideIndex = (isIntersecting: boolean, index: number) => {
-    // Catches random fires of the observer when resetting the scroll
-    if (masonryFrameRef.current && masonryFrameRef.current.scrollTop < 100) {
-      setVisibleSlideIndex(0);
-      return;
-    }
-    if (isIntersecting) {
-      setVisibleSlideIndex(index);
-      return;
-    }
-    if (index === 0) {
-      return;
-    }
-    setVisibleSlideIndex(index - 1);
-  }
-
   useEffect(() => {
     if (!activeProject) {
       return
@@ -42,7 +24,6 @@ const SingleProject = ({ activeProject }: SingleProjectProps) => {
 
     return () => {
       ref?.scrollTo?.(0, 0);
-      setVisibleSlideIndex(0);
     }
   }, [activeProject]);
 
@@ -56,19 +37,15 @@ const SingleProject = ({ activeProject }: SingleProjectProps) => {
       <div className={frameClassNames} ref={masonryFrameRef}>
         <div className={styles.content}>
           <h1>{visibleProject?.title}</h1>
-          <div dangerouslySetInnerHTML={{__html: visibleProject?.description ?? '' }} />
-        </div>
-        <div className={styles.slider}>
           {visibleProject?.media.map((media, index) => (
             <ProjectMedia
               isFirstSlide={index === 0}
-              isVisible={visibleSlideIndex === index}
               key={media.image.src}
               media={media}
-              toggleIsVisible={isIntersecting => handleSetVisibleSlideIndex(isIntersecting, index)}
               />
             ))
           }
+          <div className={styles.description} dangerouslySetInnerHTML={{__html: visibleProject?.description ?? '' }} />
         </div>
       </div>
       {activeProject && (

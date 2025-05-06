@@ -1,19 +1,19 @@
 import Slide from "./Slide/Slide"
-import slides from '../../shared/carousel.json';
 
 type CarouselProps = {
   activeSlideIndex: number;
   isCarouselVisible: boolean;
+  slides: Slide[];
 }
 
 
-const Carousel = ({ activeSlideIndex, isCarouselVisible}: CarouselProps ) => {
+const Carousel = ({ activeSlideIndex, isCarouselVisible, slides}: CarouselProps ) => {
   const totalSlides = slides.length;
 
   return slides.map((slide, index) => (
     <Slide
       index={index}
-      key={slide.media.image.src}
+      key={slide.media.image.alt}
       slide={slide}
       isActive={activeSlideIndex === index}
       isCarouselVisible={isCarouselVisible}

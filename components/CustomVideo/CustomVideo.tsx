@@ -4,17 +4,17 @@ import Hls from "hls.js";
 import CustomImage from "../CustomImage/CustomImage";
 import mute from './mute.svg';
 import unmute from './unmute.svg';
+import { is } from "cypress/types/bluebird";
 
 type CustomVideoProps = {
   className: string;
   fallback: ImageObject;
   hasAudio?: boolean;
   isActive: boolean;
-  style?: CSSProperties;
   video: VideoObject
 }
 
-const CustomVideo = forwardRef(({ className, fallback, hasAudio, isActive, style, video }: CustomVideoProps, ref: ForwardedRef<HTMLImageElement | HTMLVideoElement>) => {
+const CustomVideo = forwardRef(({ className, fallback, hasAudio, isActive, video }: CustomVideoProps, ref: ForwardedRef<HTMLImageElement | HTMLVideoElement>) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hasStartedPlaying, setHasStartedPlaying] = useState(false);
 
@@ -93,8 +93,9 @@ const CustomVideo = forwardRef(({ className, fallback, hasAudio, isActive, style
   const [isMuted, setIsMuted] = useState(true);
 
   return (
-    <div className={`${styles.container} ${className} ${hasStartedPlaying && styles.hasStartedPlaying}`} style={style}>
+    <div className={`${styles.container} ${className} ${hasStartedPlaying && styles.hasStartedPlaying}`} style={{"--videoAspectRatio": videoAspectRatio} as CSSProperties}>
       <video
+        autoPlay={isActive}
         className={styles.video}
         controls={false}
         loop
@@ -104,7 +105,7 @@ const CustomVideo = forwardRef(({ className, fallback, hasAudio, isActive, style
         onClick={handleClick}
         onProgress={handleProgress}
       />
-      <div className={styles.controls} style={{"--videoAspectRatio": videoAspectRatio} as CSSProperties}>
+      <div className={styles.controls} >
         {hasAudio && (
           <div className={styles.mute} onClick={() => setIsMuted(!isMuted)}>
             <img src={isMuted ? mute.src : unmute.src} alt={isMuted ? 'Unmute' : 'Mute'} />

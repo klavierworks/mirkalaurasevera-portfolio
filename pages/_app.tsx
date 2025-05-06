@@ -57,7 +57,7 @@ const PortfolioApp = ({ Component, pageProps }: AppProps) => {
     </Head>
     <main className={layoutClassNames}>
       <Title activeSlideIndex={activeSlideIndex} />
-      <Preloader onPreloadComplete={setIsLoaded}>
+      <Preloader onPreloadComplete={setIsLoaded} {...pageProps}>
         <div className={styles.page}>
           <Component activeSlideIndex={activeSlideIndex} setActiveSlideIndex={setActiveSlideIndex} {...pageProps} />
         </div>

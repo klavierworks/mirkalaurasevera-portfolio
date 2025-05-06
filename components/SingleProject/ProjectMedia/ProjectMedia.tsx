@@ -1,19 +1,25 @@
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import styles from './ProjectMedia.module.css';
 import Media from "@/components/Media/Media"
+import { useState } from 'react';
 
 type ProjectMediaProps = {
   isFirstSlide: boolean;
-  isVisible: boolean;
   media: Project['media'][0];
-  toggleIsVisible: (isIntersecting: boolean) => void;
 }
 
-const ProjectMedia = ({ isFirstSlide, isVisible, media, toggleIsVisible }: ProjectMediaProps) => {
+const ProjectMedia = ({ isFirstSlide, media }: ProjectMediaProps) => {
+  const [isVisible, setIsVisible] = useState(isFirstSlide);
+
   const { ref } = useIntersectionObserver({
     initialIsIntersecting: isFirstSlide,
-    threshold: 0.9,
-    onChange: (isIntersecting) => toggleIsVisible(isIntersecting),
+    threshold: 0.5,
+    onChange: (isIntersecting) => {
+      if (!isIntersecting) {
+        return;
+      }
+      setIsVisible(true);
+    }
   });
 
   return (
