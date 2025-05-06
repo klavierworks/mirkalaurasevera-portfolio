@@ -177,10 +177,12 @@ export const getProjects = async () => {
   }));
 }
 
+// @ts-expect-error
 const formatText = (paragraphs) => {
   if (!paragraphs) {
     return null;
   }
+  // @ts-expect-error
   return paragraphs.content.map(paragraph => {
     return paragraph.content.map((text: any) => {
       return text.value;

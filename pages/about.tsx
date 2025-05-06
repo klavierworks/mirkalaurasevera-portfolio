@@ -26,8 +26,8 @@ const About = ({ about }: AboutProps) => {
 }
 
 export const getStaticProps = async () => {
-  const slides = await getSlides(true)
-  const projects = await getProjects(true)
+  const slides = await getSlides()
+  const projects = await getProjects()
   const about = await getAboutPage()
 
   return {
