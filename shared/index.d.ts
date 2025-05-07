@@ -34,7 +34,6 @@ declare global {
   type Slide = {
     line1: string;
     line2: string;
-    line3: string;
     media: MediaObject
   }
   

@@ -11,7 +11,7 @@
 
   display: grid;
   grid-template-rows: 10vh auto;
-  grid-template-columns: 16% 68% 16%;
+  grid-template-columns: 20px 1fr 20px;
 
   @media (min-width: 1520px) {
     grid-template-columns: 1fr 1080px 1fr;
@@ -24,7 +24,7 @@
 
 .arrow {
   position: fixed;
-  left: 1em;
+  left: 20px;
   z-index: 102;
   top: 10vh;
 

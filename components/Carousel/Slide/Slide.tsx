@@ -17,7 +17,7 @@ type SlideProps = {
 const Slide = ({ index, isActive, isPreviouslyActive, isCarouselVisible, slide, zIndex }: SlideProps) => {
   const imageRef = useRef<HTMLImageElement>(null);
   const spacerRef = useRef<HTMLDivElement>(null);
-  const { line1, line2, line3, media } = slide;
+  const { line1, line2, media } = slide;
 
   const targetScale = useTargetScale({
     startSizeRef: imageRef,
@@ -58,7 +58,6 @@ const Slide = ({ index, isActive, isPreviouslyActive, isCarouselVisible, slide, 
         <p className={styles.content}>
           {line1 && <>{line1}<br /></>}
           {line2 && <>{line2}<br /></>}
-          {line3 && <span className={styles.italics}>{line3}</span>}
         </p>
       </div>
     </li>

@@ -148,7 +148,6 @@ export const getSlides = async () => {
       order: slide.order,
       line1: slide.line1 ?? null,
       line2: slide.line2 ?? null,
-      line3: slide.line3 ?? null,
       media: await createMediaObject(slide.media, assets, entries),
     } as Slide
   }))
