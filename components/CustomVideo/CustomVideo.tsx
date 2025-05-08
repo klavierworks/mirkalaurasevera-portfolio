@@ -51,6 +51,9 @@ const CustomVideo = forwardRef(({ className, fallback, hasAudio, isActive, video
       const proxiedSrc = `/api/proxy-vimeo?url=${encodeURIComponent(src)}`;
       hls.loadSource(proxiedSrc);
       hls.attachMedia(videoEl);
+      hls.on(Hls.Events.MANIFEST_PARSED, function () {
+        hls.startLevel = hls.levels.length - 2;
+      });
       return;
     }
     videoEl.src = video.mp4Url ?? '';
