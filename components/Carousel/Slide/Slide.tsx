@@ -29,9 +29,11 @@ const Slide = ({ index, isActive, isPreviouslyActive, isCarouselVisible, slide, 
     [styles.isActive]: isActive && isCarouselVisible,
   });
 
+  const primaryMedia = media.image || media.video;
+
   const style = {
     '--target-scale': targetScale,
-    '--aspect-ratio': `${media.image.width} / ${media.image.height}`,
+    '--aspect-ratio': `${primaryMedia.width} / ${primaryMedia.height}`,
     '--z-index': zIndex,
   } as CSSProperties
 

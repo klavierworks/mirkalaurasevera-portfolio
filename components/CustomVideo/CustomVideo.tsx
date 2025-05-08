@@ -112,12 +112,14 @@ const CustomVideo = forwardRef(({ className, fallback, hasAudio, isActive, video
           </div>
         )}
       </div>
-      <CustomImage
-        className={styles.fallback}
-        image={fallback}
-        onClick={handleThumbnailClick}
-        ref={ref}
-      />
+      {fallback && (
+        <CustomImage
+          className={styles.fallback}
+          image={fallback}
+          onClick={handleThumbnailClick}
+          ref={ref}
+        />
+      )}
     </div>
   )
 })
