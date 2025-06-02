@@ -37,7 +37,7 @@ const SingleProject = ({ activeProject }: SingleProjectProps) => {
       <div className={frameClassNames} ref={masonryFrameRef}>
         <div className={styles.content}>
           <h1>{visibleProject?.title}</h1>
-          {visibleProject?.media.map((media, index) => (
+          {visibleProject?.media.map((media, index) => media && (
             <ProjectMedia
               isFirstSlide={index === 0}
               key={media.image.src}

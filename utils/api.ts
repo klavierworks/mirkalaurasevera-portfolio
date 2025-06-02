@@ -96,14 +96,16 @@ const createMediaObject = async (media: any, images: any[], entries: any[]) => {
     return null;
   }
 
+  let video: VideoObject | null = null;
   try {
-    return {
-      image: createImageObject(entry.fields.image, images) ?? null,
-      video: await createVideoObject(entry.fields.video, false) ?? null,
-    }
+    video = await createVideoObject(entry.fields.video, false) ?? null;
   } catch (error) {
-    console.error('Error creating media object:', error, entry);
-    return null;
+    console.error('Error creating media object video:', error, entry);
+  }
+  
+  return {
+    image: createImageObject(entry.fields.image, images) ?? null,
+    video,
   }
 }
 
