@@ -67,32 +67,43 @@ const createVideoObject = async (videoId: string | undefined, hasAudio = false) 
     return undefined;
   }
 
-  const videoInfo = await getVimeoMetadata(videoId);
-  
-  if (!videoInfo) {
-    return undefined;
+  try {
+
+    const videoInfo = await getVimeoMetadata(videoId);
+    
+    if (!videoInfo) {
+      return undefined;
+    }
+    
+    return {
+      hasAudio,
+      url: videoInfo.play?.hls?.link,
+      width: videoInfo.width,
+      height: videoInfo.height,
+      fallback: videoInfo.pictures?.sizes?.reverse?.()?.[0],
+      mp4Url: videoInfo.play?.progressive?.[0]?.link,
+    } as VideoObject;
+  } catch (error) {
+    throw error;
   }
-  
-  return {
-    hasAudio,
-    url: videoInfo.play?.hls?.link,
-    width: videoInfo.width,
-    height: videoInfo.height,
-    fallback: videoInfo.pictures?.sizes?.reverse?.()?.[0],
-    mp4Url: videoInfo.play?.progressive?.[0]?.link,
-  } as VideoObject;
 }
 
 const createMediaObject = async (media: any, images: any[], entries: any[]) => {
   const entry = entries.find((entry: any) => entry.sys.id === media.sys.id);
+  
   if (!entry) {
     console.log('Error: Entry not found for ID:', media.sys.id);
     return null;
   }
 
-  return {
-    image: createImageObject(entry.fields.image, images) ?? null,
-    video: await createVideoObject(entry.fields.video, false) ?? null,
+  try {
+    return {
+      image: createImageObject(entry.fields.image, images) ?? null,
+      video: await createVideoObject(entry.fields.video, false) ?? null,
+    }
+  } catch (error) {
+    console.error('Error creating media object:', error, entry);
+    return null;
   }
 }
 
