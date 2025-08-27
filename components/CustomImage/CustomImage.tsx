@@ -58,12 +58,11 @@ const CustomImage = forwardRef(({ className, isLazyLoaded, image, onClick, style
   }, [imageProps, src]);
 
 
-  {/* eslint-disable-next-line jsx-a11y/alt-text */}
   return (
     <img
-      alt={alt}
       className={className}
       {...imageProps}
+      alt={alt}
       onClick={onClick}
       ref={ref as ForwardedRef<HTMLImageElement>}
       style={style} />
