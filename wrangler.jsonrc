@@ -1,7 +1,6 @@
 {
   "name": "mirka-laura-severa",
-  "name": "my-app",
-  "compatibility_date": "2025-03-25",
+  "compatibility_date": "2025-08-25",
   "compatibility_flags": [
     "nodejs_compat"
   ],
