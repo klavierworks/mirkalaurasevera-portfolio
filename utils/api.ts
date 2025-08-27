@@ -98,7 +98,7 @@ const createMediaObject = async (media: any, images: any[], entries: any[]) => {
 
   let video: VideoObject | null = null;
   try {
-    video = await createVideoObject(entry.fields.video, false) ?? null;
+    video = await createVideoObject(entry.fields.video, entry.fields.hasAudio ?? false) ?? null;
   } catch (error) {
     console.error('Error creating media object video:', error, entry);
   }
