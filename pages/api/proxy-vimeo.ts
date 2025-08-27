@@ -1,24 +1,31 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
 export const runtime = 'edge';
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { url } = req.query;
+
+export default async function handler(req: Request) {
+  const nextUrl = req.url ? new URL(req.url) : null;
+  if (!nextUrl) {
+    return new Response(JSON.stringify({ error: 'Bad Request' }), { status: 400 });
+  }
+  const url = nextUrl?.searchParams.get('url');
 
   if (!url || typeof url !== 'string') {
-    return res.status(400).json({ error: 'Missing or invalid URL parameter' });
+    return new Response(JSON.stringify({ error: 'Missing or invalid URL parameter' }), { status: 400 });
   }
 
   try {
     const response = await fetch(url);
 
     if (!response.ok) {
-      return res.status(response.status).json({ error: 'Failed to fetch data' });
+      return new Response(JSON.stringify({ error: 'Failed to fetch data' }), { status: response.status });
     }
 
     // Forward the headers from the Vimeo response
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Content-Type', response.headers.get('content-type') || 'application/octet-stream');
-    res.send(await response.text());
+    return new Response(await response.text(), {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': response.headers.get('content-type') || 'application/octet-stream',
+      },
+    });
   } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
+    return new Response(JSON.stringify({ error: 'Internal Server Error' }), { status: 500 });
   }
 }
