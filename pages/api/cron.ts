@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-
+export const runtime = 'edge';
 
 export const handler = async (req: NextRequest, res: NextResponse) => {
   // @ts-expect-error ignore
