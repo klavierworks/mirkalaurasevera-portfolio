@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
   async redirects() {
     return [
       {
@@ -11,7 +10,6 @@ const nextConfig = {
     ]
   },
   images: {
-    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
