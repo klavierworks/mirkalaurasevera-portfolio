@@ -1,0 +1,25 @@
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .placeholder {
+    filter: blur(20px);
+    scale: 1.1;
+  }
+
+  .highQualityImage {
+    opacity: 0;
+  }
+}

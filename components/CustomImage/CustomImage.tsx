@@ -1,5 +1,6 @@
+import styles from './CustomImage.module.css';
 import { getImageProps } from "next/image";
-import { CSSProperties, ForwardedRef, forwardRef, useEffect, useMemo, useState } from "react";
+import { ForwardedRef, forwardRef, useEffect, useMemo, useState } from "react";
 
 type CustomImageProps = {
   className: string;
@@ -75,9 +76,6 @@ const CustomImage = forwardRef(({ className, isLazyLoaded, image, onClick, width
     return props;
   }, [image.width, image.height, width, height, src, alt, isLazyLoaded, thumbnail]);
 
-  // Determine which props to use
-  const activeProps = (highQualityProps && isHighQualityLoaded) ? highQualityProps : placeholderProps;
-
   useEffect(() => {
     if (typeof window === 'undefined' || !highQualityProps) {
       return;
@@ -115,17 +113,26 @@ const CustomImage = forwardRef(({ className, isLazyLoaded, image, onClick, width
   }, [highQualityProps, src]);
 
   return (
-    <img
-      className={className}
-      {...activeProps}
-      alt={alt}
-      onClick={onClick}
-      ref={ref as ForwardedRef<HTMLImageElement>}
-      style={{
-        transition: isHighQualityLoaded ? 'opacity 0.3s ease-in-out' : 'none',
-        ...activeProps.style
-      }}
-    />
+    <div className={`${styles.container} ${className}`} onClick={onClick} style={{ aspectRatio: image.aspectRatio }}>
+      <img
+        {...placeholderProps}
+        alt={alt}
+        ref={ref as ForwardedRef<HTMLImageElement>}
+        style={placeholderProps.style}
+        className={styles.placeholder}
+      />
+      <img
+        {...(highQualityProps || {})}
+        alt={alt}
+        onClick={onClick}
+        ref={ref as ForwardedRef<HTMLImageElement>}
+        style={{
+          opacity: isHighQualityLoaded ? 1 : 0,
+          ...(highQualityProps || {}).style
+        }}
+        className={styles.highQualityImage}
+      />
+    </div>
   )
 })
 
