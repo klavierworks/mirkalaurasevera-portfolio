@@ -12,7 +12,6 @@ const nextConfig = {
   images: {
     loader: 'custom',
     loaderFile: './imageLoader.ts',
-    qualities: [5, 85],
     remotePatterns: [
       {
         protocol: 'https',

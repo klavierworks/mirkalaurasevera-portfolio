@@ -5,6 +5,7 @@ import CustomImage from "../CustomImage/CustomImage";
 import mute from './mute.svg';
 import unmute from './unmute.svg';
 import { is } from "cypress/types/bluebird";
+import { $activeAudio } from "@/store";
 
 type CustomVideoProps = {
   className: string;
@@ -128,6 +129,24 @@ const CustomVideo = forwardRef(({ className, fallback, hasAudio, isActive, sizes
 	};
 
   const [isMuted, setIsMuted] = useState(true);
+  const handleToggleMute = () => {
+    const nextMuteState = !isMuted;
+    setIsMuted(nextMuteState);
+    $activeAudio.set(videoRef.current);
+  }
+  useEffect(() => {
+    const unsubscribe = $activeAudio.subscribe(($activeAudio) => {
+      if (!videoRef.current) {
+        return;
+      }
+      if ($activeAudio !== videoRef.current) {
+        setIsMuted(true);
+      }
+    });
+    return () => {
+      unsubscribe();
+    }
+  }, []);
 
   return (
     <div className={`${styles.container} ${className} ${hasStartedPlaying && !hasErrored && styles.hasStartedPlaying}`} style={{"--videoAspectRatio": videoAspectRatio} as CSSProperties}>
@@ -144,7 +163,7 @@ const CustomVideo = forwardRef(({ className, fallback, hasAudio, isActive, sizes
       />
       <div className={styles.controls} >
         {hasAudio && (
-          <div className={styles.mute} onClick={() => setIsMuted(!isMuted)}>
+          <div className={styles.mute} onClick={handleToggleMute}>
             <img src={isMuted ? mute.src : unmute.src} alt={isMuted ? 'Unmute' : 'Mute'} />
           </div>
         )}

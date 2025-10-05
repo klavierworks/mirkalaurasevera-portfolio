@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import ProjectMedia from './ProjectMedia/ProjectMedia';
+import { $activeAudio } from '@/store';
 
 type SingleProjectProps = {
   activeProject?: Project;
@@ -30,6 +31,7 @@ const SingleProject = ({ activeProject, setActiveProject }: SingleProjectProps) 
 
   const interceptLinkClick = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
+    $activeAudio.set(null);
     setActiveProject(undefined);
   }, [setActiveProject]);
 
