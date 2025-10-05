@@ -10,7 +10,7 @@ declare global {
     width: number;
     height: number;
     aspectRatio: number;
-    thumbnail: string;
+    placeholder: string;
   }
 
   type VideoObject = {

@@ -36,6 +36,7 @@ const Project = ({className, isPreloading, order, project }: ProjectProps) => {
           className={styles.media}
           media={project.thumbnail}
           isActive={!isPreloading}
+          sizes="(max-width: 720px) 50vw, (max-width: 1024px) 33vw, 25vw"
         />
       </animated.article>
     </Link>

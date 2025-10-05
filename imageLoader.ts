@@ -8,7 +8,6 @@ export default function cloudflareLoader({
     quality,
 }: { src: string; width: number; quality?: number }) {
     if (process.env.NODE_ENV === "development") {
-      console.log('Cloudflare Loader:', { src, width, quality });
       return src;
     }
     const params = [`width=${width}`];

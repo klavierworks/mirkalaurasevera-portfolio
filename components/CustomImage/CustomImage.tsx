@@ -8,7 +8,7 @@ type CustomImageProps = {
   isLazyLoaded?: boolean;
   onClick?: () => void;
   width?: string | number;
-  height?: string | number;
+  sizes?: string;
 }
 
 const getSize = (size: string | number) => {
@@ -26,58 +26,36 @@ const getSize = (size: string | number) => {
   return parseInt(size, 10);
 }
 
-const CustomImage = forwardRef(({ className, isLazyLoaded, image, onClick, width, height }: CustomImageProps, ref: ForwardedRef<HTMLImageElement | HTMLVideoElement>) => {
-  const { alt, src, thumbnail } = image;
-  const [isHighQualityLoaded, setIsHighQualityLoaded] = useState(false);
-  
-  // Low-res placeholder - works on both server and client
-  const placeholderProps = useMemo(() => { 
-    const { props } = getImageProps({
-      src,
-      width: image.width / 100,
-      height: image.height / 100,
-      alt,
-      quality: 5, // Very low quality
-      sizes: '10vw', // Small size
-      loading: isLazyLoaded ? 'lazy' : 'eager',
-      blurDataURL: thumbnail,
-    });
-    
-    return props;
-  }, [image.width, image.height, src, alt, isLazyLoaded, thumbnail]);
+const CustomImage = forwardRef(({ className, isLazyLoaded, image, onClick, width, sizes = '100vw' }: CustomImageProps, ref: ForwardedRef<HTMLImageElement | HTMLVideoElement>) => {
+  const { alt, src, placeholder } = image;
 
-  // High-quality image - only on client (uses viewport width)
-  const highQualityProps = useMemo(() => {
+  const imageProps = useMemo(() => {
     if (typeof window === 'undefined') {
       return null;
     }
 
     let intrinsicWidth = image.width;
-    let intrinsicHeight = image.height;
     
     if (width) {
       intrinsicWidth = getSize(width);
-    }
-    if (height) {
-      intrinsicHeight = getSize(height);
     }
     
     const { props } = getImageProps({
       src,
       width: intrinsicWidth,
-      height: intrinsicHeight,
+      height: intrinsicWidth * (image.height / image.width),
       alt,
-      quality: 90,
-      sizes: '100vw',
-      loading: isLazyLoaded ? 'lazy' : 'eager',
-      blurDataURL: thumbnail,
+      quality: 85,
+      sizes,
+      placeholder: isLazyLoaded ? 'blur' : undefined,
+      blurDataURL: placeholder,
     });
-    
+
     return props;
-  }, [image.width, image.height, width, height, src, alt, isLazyLoaded, thumbnail]);
+  }, [image.width, image.height, width, src, alt, sizes, isLazyLoaded, placeholder]);
 
   useEffect(() => {
-    if (typeof window === 'undefined' || !highQualityProps) {
+    if (typeof window === 'undefined' || !imageProps) {
       return;
     }
     
@@ -93,14 +71,13 @@ const CustomImage = forwardRef(({ className, isLazyLoaded, image, onClick, width
     
     const preload = async () => {
       const image = new Image();
-      image.src = highQualityProps.src;
-      image.srcset = highQualityProps.srcSet as string;
-      image.sizes = highQualityProps.sizes as string;
+      image.src = imageProps.src;
+      image.srcset = imageProps.srcSet as string;
+      image.sizes = imageProps.sizes as string;
       image.decoding = 'async';
       
       try {
         await image.decode();
-        setIsHighQualityLoaded(true);
       } catch (e) {
         console.error(e);
       }
@@ -110,29 +87,18 @@ const CustomImage = forwardRef(({ className, isLazyLoaded, image, onClick, width
     }
     
     preload();
-  }, [highQualityProps, src]);
+  }, [imageProps, src]);
+
 
   return (
-    <div className={`${styles.container} ${className}`} onClick={onClick} style={{ aspectRatio: image.aspectRatio }}>
-      <img
-        {...placeholderProps}
-        alt={alt}
-        ref={ref as ForwardedRef<HTMLImageElement>}
-        style={placeholderProps.style}
-        className={styles.placeholder}
-      />
-      <img
-        {...(highQualityProps || {})}
-        alt={alt}
-        onClick={onClick}
-        ref={ref as ForwardedRef<HTMLImageElement>}
-        style={{
-          opacity: isHighQualityLoaded ? 1 : 0,
-          ...(highQualityProps || {}).style
-        }}
-        className={styles.highQualityImage}
-      />
-    </div>
+    <img
+      className={className}
+      {...imageProps}
+      loading={isLazyLoaded ? 'lazy' : 'eager'}
+      alt={alt}
+      onClick={onClick}
+      ref={ref as ForwardedRef<HTMLImageElement>}
+    />
   )
 })
 

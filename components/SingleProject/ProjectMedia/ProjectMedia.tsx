@@ -24,7 +24,15 @@ const ProjectMedia = ({ isFirstSlide, media }: ProjectMediaProps) => {
 
   return (
     <div className={`${styles.mediaContainer} ${isVisible && styles.isVisible}`} ref={ref}>
-      <Media className={styles.media} hasAudio isLazyLoaded isActive media={media} />
+      <Media
+        className={styles.media}
+        hasAudio
+        isLazyLoaded
+        isActive
+        media={media}
+        width="100vw"
+        sizes="(max-width: 1520px) 100vw, 1080px"
+      />
     </div>
   )
 }

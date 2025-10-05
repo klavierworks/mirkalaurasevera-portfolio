@@ -12,9 +12,11 @@ type CustomVideoProps = {
   hasAudio?: boolean;
   isActive: boolean;
   video: VideoObject
+  width?: string | number;
+  sizes?: string;
 }
 
-const CustomVideo = forwardRef(({ className, fallback, hasAudio, isActive, video }: CustomVideoProps, ref: ForwardedRef<HTMLImageElement | HTMLVideoElement>) => {
+const CustomVideo = forwardRef(({ className, fallback, hasAudio, isActive, sizes, video, width, }: CustomVideoProps, ref: ForwardedRef<HTMLImageElement | HTMLVideoElement>) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hasStartedPlaying, setHasStartedPlaying] = useState(false);
 
@@ -67,6 +69,7 @@ const CustomVideo = forwardRef(({ className, fallback, hasAudio, isActive, video
 
     try {
       await videoRef.current.play();
+      setHasErrored(false);
     } catch (error: unknown) {
       if (!(error instanceof Error)) {
         console.error('Unknown error during video playback:', error);
@@ -149,6 +152,8 @@ const CustomVideo = forwardRef(({ className, fallback, hasAudio, isActive, video
           image={fallback}
           onClick={handleThumbnailClick}
           ref={ref}
+          width={width}
+          sizes={sizes}
         />
       )}
     </div>

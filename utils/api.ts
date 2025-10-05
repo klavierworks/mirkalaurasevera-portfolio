@@ -1,6 +1,40 @@
+import { readFile, writeFile } from 'fs/promises';
+import sharp from 'sharp';
 const baseUrl = `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master`;
 
-const createImageObject = (image: any, includes: any[]) => {
+const generatePlaceholder = async (passedUrl: string) => {
+  let url = passedUrl;
+  if (url.startsWith('//')) {
+    url = 'https:' + url;
+  }
+
+  // Check cache first
+  const urlHash = Buffer.from(url).toString('base64');
+  try {
+    const result = await readFile(`./cache/${urlHash}.cache`, 'utf-8');
+    if (result && result.startsWith('data:image/')) {
+      return result;
+    }
+  } catch (e) {}
+  const response = await fetch(url);
+  const arrayBuffer = await response.arrayBuffer();
+  const buffer = Buffer.from(arrayBuffer);
+  
+  // Now process with Sharp
+  const image = await sharp(buffer)
+    .resize(5)
+    .blur()
+    .toBuffer();
+  
+  const base64 = `data:image/jpeg;base64,${image.toString('base64')}`;
+
+  // Cache to json file
+  await writeFile(`./cache/${urlHash}.cache`, base64, 'utf-8');
+
+  return base64;
+}
+
+const createImageObject = async (image: any, includes: any[]) => {
   if (!image) {
     return null;
   }
@@ -18,6 +52,7 @@ const createImageObject = (image: any, includes: any[]) => {
     height: asset.fields.file.details.image.height,
     aspectRatio: asset.fields.file.details.image.width / asset.fields.file.details.image.height,
     alt: asset.fields.file.fileName,
+    placeholder: await generatePlaceholder(asset.fields.file.url),
   } as ImageObject
 }
 
@@ -104,7 +139,7 @@ const createMediaObject = async (media: any, images: any[], entries: any[]) => {
   }
   
   return {
-    image: createImageObject(entry.fields.image, images) ?? null,
+    image: await createImageObject(entry.fields.image, images) ?? null,
     video,
   }
 }
