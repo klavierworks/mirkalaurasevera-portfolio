@@ -8,7 +8,8 @@ type MediaProps = {
   media: MediaObject;
   isActive: boolean;
   isLazyLoaded?: boolean;
-  style?: CSSProperties;
+  width?: string | number;
+  height?: string | number;
 }
 
 const Media = forwardRef(({
@@ -17,6 +18,8 @@ const Media = forwardRef(({
   media,
   isActive,
   isLazyLoaded,
+  width,
+  height,
 }: MediaProps, ref: ForwardedRef<HTMLImageElement | HTMLVideoElement>) => {
   if (media?.video) {
     return (
@@ -38,6 +41,8 @@ const Media = forwardRef(({
         isLazyLoaded={isLazyLoaded}
         image={media.image}
         ref={ref}
+        width={width}
+        height={height}
       />
     )
   }

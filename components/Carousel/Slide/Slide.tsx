@@ -54,6 +54,8 @@ const Slide = ({ index, isActive, isPreviouslyActive, isCarouselVisible, slide, 
         media={media}
         isActive={isActive && isCarouselVisible}
         ref={imageRef}
+        width="100vw"
+        height="100vh"
       />
       <div className={styles.imageSpacer} ref={spacerRef} />
       <div className={styles.title}>

@@ -1,4 +1,4 @@
-import { CSSProperties, ForwardedRef, forwardRef, useEffect, useRef, useState } from "react";
+import { CSSProperties, ForwardedRef, forwardRef, useCallback, useEffect, useRef, useState } from "react";
 import styles from './CustomVideo.module.css';
 import Hls from "hls.js";
 import CustomImage from "../CustomImage/CustomImage";
@@ -59,17 +59,45 @@ const CustomVideo = forwardRef(({ className, fallback, hasAudio, isActive, video
     videoEl.src = video.mp4Url ?? '';
   }, [video.mp4Url, video.url]);
 
+  const [hasErrored, setHasErrored] = useState(true);
+  const handlePlay = useCallback(async () => {
+    if (!videoRef.current) {
+      return;
+    }
+
+    try {
+      await videoRef.current.play();
+    } catch (error: unknown) {
+      if (!(error instanceof Error)) {
+        console.error('Unknown error during video playback:', error);
+        return;
+      }
+      // Check for iOS Low Power Mode
+      // In Low Power Mode, play() is rejected with NotAllowedError or AbortError
+      const isLowPowerMode = 
+        error.name === 'NotAllowedError' || 
+        error.name === 'AbortError';
+
+      if (isLowPowerMode) {
+        console.warn('Video playback was prevented, possibly due to iOS Low Power Mode.');
+      } else {
+        console.error('Video playback failed:', error.name, error.message);
+      }
+      setHasErrored(true);
+    }
+  }, []);
+
   useEffect(() => {
     if (!videoRef.current) {
       return;
     }
 
     if (isActive) {
-      videoRef.current.play();
+      handlePlay();
     } else {
       videoRef.current.pause();
     }
-  }, [isActive]);
+  }, [isActive, handlePlay]);
 
 	const handleProgress = () => {
 		setHasStartedPlaying(true);
@@ -80,7 +108,7 @@ const CustomVideo = forwardRef(({ className, fallback, hasAudio, isActive, video
       return;
     }
 		if (videoRef.current.paused) {
-			videoRef.current.play();
+      handlePlay();
 		} else {
 			videoRef.current.pause();
 		}
@@ -90,13 +118,13 @@ const CustomVideo = forwardRef(({ className, fallback, hasAudio, isActive, video
     if (!videoRef.current) {
       return;
     }
-		videoRef.current.play();
+    handlePlay();
 	};
 
   const [isMuted, setIsMuted] = useState(true);
 
   return (
-    <div className={`${styles.container} ${className} ${hasStartedPlaying && styles.hasStartedPlaying}`} style={{"--videoAspectRatio": videoAspectRatio} as CSSProperties}>
+    <div className={`${styles.container} ${className} ${hasStartedPlaying && !hasErrored && styles.hasStartedPlaying}`} style={{"--videoAspectRatio": videoAspectRatio} as CSSProperties}>
       <video
         autoPlay={isActive}
         className={styles.video}
