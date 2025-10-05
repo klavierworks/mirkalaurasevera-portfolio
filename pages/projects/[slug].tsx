@@ -9,7 +9,7 @@ export const getStaticProps = async ({ params: { slug } }: {params: {slug: strin
 
   return {
     props: {
-      activeProject: projects.find(project => project.slug === slug),
+      initialActiveProject: projects.find(project => project.slug === slug),
       projects,
       slides
     }

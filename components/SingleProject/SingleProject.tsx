@@ -1,15 +1,16 @@
 import styles from './SingleProject.module.css';
 import arrow from './arrow.svg';
 import Link from "next/link";
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import ProjectMedia from './ProjectMedia/ProjectMedia';
 
 type SingleProjectProps = {
   activeProject?: Project;
+  setActiveProject: (project?: Project) => void;
 }
 
-const SingleProject = ({ activeProject }: SingleProjectProps) => {
+const SingleProject = ({ activeProject, setActiveProject }: SingleProjectProps) => {
   const masonryFrameRef = useRef<HTMLDivElement>(null);
   const [visibleProject, setVisibleProject] = useState<Project>();
 
@@ -26,6 +27,11 @@ const SingleProject = ({ activeProject }: SingleProjectProps) => {
       ref?.scrollTo?.(0, 0);
     }
   }, [activeProject]);
+
+  const interceptLinkClick = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    setActiveProject(undefined);
+  }, [setActiveProject]);
 
   const frameClassNames = classNames(styles.frame, {
     'has-scrollbar': true,
@@ -49,7 +55,7 @@ const SingleProject = ({ activeProject }: SingleProjectProps) => {
         </div>
       </div>
       {activeProject && (
-        <Link href={`/projects`} className={styles.arrow}>
+        <Link href={`/projects`} className={styles.arrow} onClick={interceptLinkClick}>
           <img alt="back icon" src={arrow.src} />
         </Link>
       )}

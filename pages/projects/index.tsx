@@ -2,17 +2,32 @@ import styles from './Projects.module.css';
 import Project from '@/components/Project/Project';
 import SingleProject from '@/components/SingleProject/SingleProject';
 import { getProjects, getSlides } from '@/utils/api';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 type ProjectsProps = {
-  activeProject?: Project;
+  initialActiveProject?: Project;
   isPreloading?: boolean;
   projects: Project[];
   slides: Slide[];
 }
 
-const Projects = ({ activeProject, isPreloading, projects, slides }: ProjectsProps) => {
+const Projects = ({ initialActiveProject, isPreloading, projects, slides }: ProjectsProps) => {
   const masonryFrameRef = useRef<HTMLDivElement>(null);
+
+  const [activeProject, setActiveProject] = useState(initialActiveProject)
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return
+    }
+
+    const currentUrl = new URL(window.location.href);
+    if (activeProject) {
+      currentUrl.pathname = `/projects/${activeProject.slug}`;
+    } else {
+      currentUrl.pathname = `/projects`;
+    }
+    window.history.replaceState({}, '', currentUrl.toString());
+  }, [activeProject]);
 
   useEffect(() => {
     const handleMutation = (mutations?: MutationRecord[]) => {
@@ -41,9 +56,10 @@ const Projects = ({ activeProject, isPreloading, projects, slides }: ProjectsPro
           isPreloading={isPreloading}
           order={index % 2 === 0 ? index / 2 : (projects.length / 2) + index}
           project={project}
+          setActiveProject={setActiveProject}
         />
       ))}
-      <SingleProject activeProject={activeProject} />
+      <SingleProject activeProject={activeProject} setActiveProject={setActiveProject} />
     </div>
   );
 }

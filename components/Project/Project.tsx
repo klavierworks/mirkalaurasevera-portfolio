@@ -2,15 +2,17 @@ import Media from "../Media/Media";
 import styles from "./Project.module.css";
 import Link from "next/link";
 import { animated, config, useSpring } from "@react-spring/web";
+import { useCallback } from "react";
 
 type ProjectProps = {
   className: string;
   isPreloading?: boolean;
   order: number;
   project: Project;
+  setActiveProject: (project: Project) => void;
 }
 
-const Project = ({className, isPreloading, order, project }: ProjectProps) => {
+const Project = ({className, isPreloading, order, project, setActiveProject }: ProjectProps) => {
   const spring = useSpring({
     from: {
       y: 1000,
@@ -26,10 +28,16 @@ const Project = ({className, isPreloading, order, project }: ProjectProps) => {
     delay: 750 * Math.random()
   })
 
+  const interceptLinkClick = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    setActiveProject(project);
+  }, [setActiveProject, project]);
+
   return (
     <Link
       href={`/projects/${project.slug}`}
       className={`${styles.project} ${className}`}
+      onClick={interceptLinkClick}
     >
       <animated.article style={spring}>
         <Media 
