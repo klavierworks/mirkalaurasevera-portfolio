@@ -20,11 +20,14 @@ const CustomVideo = forwardRef(({ className, fallback, hasAudio, isActive, sizes
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hasStartedPlaying, setHasStartedPlaying] = useState(false);
 
-  const [videoAspectRatio, setVideoAspectRatio] = useState(0);
+  const [videoAspectRatio, setVideoAspectRatio] = useState(video.width / video.height);
 
   useEffect(() => {
     const handleResize = () => {
       if (!videoRef.current) {
+        return;
+      }
+      if (!videoRef.current.videoWidth || !videoRef.current.videoHeight) {
         return;
       }
       setVideoAspectRatio(videoRef.current.videoWidth / videoRef.current.videoHeight);
