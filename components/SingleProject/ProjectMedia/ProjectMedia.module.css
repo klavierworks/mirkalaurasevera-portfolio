@@ -13,9 +13,9 @@
 }
 
 .media {
-  width: auto;
+  width: 100%;
   margin: 0 auto;
-  height: 100%;
+  height: auto;
   max-height: 98svh;
   max-width: 100%;
   display: block;
