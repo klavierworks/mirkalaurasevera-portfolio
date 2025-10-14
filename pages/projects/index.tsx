@@ -21,6 +21,10 @@ const Projects = ({ initialActiveProject, isPreloading, projects, slides }: Proj
     }
 
     const currentUrl = new URL(window.location.href);
+    console.log(currentUrl.pathname);
+    if (!currentUrl.pathname.startsWith('/projects')) {
+      return;
+    }
     if (activeProject) {
       currentUrl.pathname = `/projects/${activeProject.slug}`;
     } else {
