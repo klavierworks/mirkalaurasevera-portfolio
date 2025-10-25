@@ -15,7 +15,9 @@ export default async function handler(req: Request) {
     const response = await fetch(url);
 
     if (!response.ok) {
-      return new Response(JSON.stringify({ url, error: 'Failed to fetch data', status: response.status, statusText: response.statusText, response: await response.text() }), { status: response.status });
+      const responseText = await response.text();
+      console.log('Vimeo proxy fetch error:', { url, status: response.status, statusText: response.statusText, response: responseText });
+      return new Response(JSON.stringify({ url, error: 'Failed to fetch data', status: response.status, statusText: response.statusText, response: responseText }), { status: response.status });
     }
 
     // Forward the headers from the Vimeo response
