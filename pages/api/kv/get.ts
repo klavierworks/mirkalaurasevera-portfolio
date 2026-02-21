@@ -22,8 +22,9 @@ export default async function handler(request: Request, env: Env) {
   } catch (err) {
     console.error("Error retrieving KV value:", err);
 
-    return new Response(JSON.stringify(err), {
+    return new Response("", {
       status: 500,
+      statusText: err instanceof Error ? err.message : String(err),
     });
   }
 };
