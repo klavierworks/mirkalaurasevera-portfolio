@@ -19,14 +19,14 @@ export default async function handler(request: Request, env: Env) {
       });
     }
 
-    console.log(typeof vimeoCache, vimeoCache.success);
+
     if (vimeoCache.success === false) {
       return new Response(JSON.stringify({ error: "Not found" }), {
         status: 404,
       });
     }
 
-    return new Response(vimeoCache);
+    return new Response(JSON.stringify(vimeoCache));
   } catch (err) {
     console.error("Error retrieving KV value:", err);
 
