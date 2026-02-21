@@ -1,6 +1,7 @@
 {
   "name": "mirkalaurasevera-portfolio",
-  "pages_build_output_dir": "./dist",
+  "pages_build_output_dir": ".next",
+  "compatibility_flags": ["nodejs_compat"],
   "kv_namespaces": [
     {
       "binding": "VIDEO_CACHE",
