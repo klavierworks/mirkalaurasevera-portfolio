@@ -1,3 +1,5 @@
+import { kvSet } from "@/utils/kv";
+
 export const runtime = 'edge';
 
 export interface Env {
@@ -11,7 +13,7 @@ export default async function handler(request: Request, env: Env) {
       value: any;
     };
 
-    await env.VIDEO_CACHE.put(key, JSON.stringify(value));
+    await kvSet(key, JSON.stringify(value));
 
     return new Response();
   } catch (err) {

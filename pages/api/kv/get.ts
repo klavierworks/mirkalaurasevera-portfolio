@@ -1,3 +1,5 @@
+import { kvGet } from "@/utils/kv";
+
 export const runtime = 'edge';
 
 export interface Env {
@@ -7,9 +9,9 @@ export interface Env {
 export default async function handler(request: Request, env: Env) {
   try {
     const url = new URL(request.url);
-    const key = url.searchParams.get("key");
+    const key = url.searchParams.get("key")!;
 
-    const vimeoCache = await env.VIDEO_CACHE.get(key);
+    const vimeoCache = await kvGet(key);
 
     if (vimeoCache === null) {
       return new Response(JSON.stringify({ error: "Not found" }), {
