@@ -13,7 +13,7 @@ const generatePlaceholder = async (passedUrl: string) => {
   const urlHash = Buffer.from(url).toString('base64');
   try {
     const result = await readFile(`./cache/${urlHash}.cache`, 'utf-8');
-    if (result && result.startsWith('data:image/')) {
+  if (result && result.startsWith('data:image/')) {
       return result;
     }
   } catch (e) {}
@@ -61,7 +61,7 @@ export const getVideoFromCache = async (videoId: string) => {
   try {
     const response = await fetch(`${functionUrl}/kv/get?key=${videoId}`);
     if (!response.ok) {
-      throw new Error(`Error fetching cache: ${response.status}`);
+      throw new Error(`Error fetching cache: ${response.status} ${response.statusText} for video ID: ${videoId}`);
     }
     const data = await response.json();
 
