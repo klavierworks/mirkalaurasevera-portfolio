@@ -65,10 +65,11 @@ export const getVideoFromCache = async (videoId: string) => {
     }
     const data = await response.json();
 
-    if (!data || Object.keys(data).length === 0) {
+    if (!data || Object.keys(data).length === 0 || data.success === false) {
       console.log(`Cache miss for video ID: ${videoId}`);
       return null;
     }
+    console.log(typeof data, data.success);
     console.log(`Cache hit for video ID: ${videoId}, data:`, data);
     return data;
   } catch (error) {
