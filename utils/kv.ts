@@ -8,15 +8,15 @@ const headers = {
   Authorization: `Bearer ${CF_API_TOKEN}`,
 };
 
-export async function kvGet(key: string): Promise<string | null> {
+export const kvGet = async (key: string) => {
   const res = await fetch(`${BASE_URL}/${encodeURIComponent(key)}`, {
     headers,
   });
   if (res.status === 404) return null;
-  return res.text();
+  return res.json();
 }
 
-export async function kvSet(key: string, value: string): Promise<void> {
+export const kvSet = async (key: string, value: string) => {
   await fetch(`${BASE_URL}/${encodeURIComponent(key)}`, {
     method: "PUT",
     headers,

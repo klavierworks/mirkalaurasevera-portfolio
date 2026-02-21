@@ -13,10 +13,16 @@ export default async function handler(request: Request, env: Env) {
 
     const vimeoCache = await kvGet(key);
 
+
     if (vimeoCache === null) {
       return new Response(JSON.stringify({ error: "Not found" }), {
         status: 404,
-        headers: { "content-type": "application/json; charset=utf-8" },
+      });
+    }
+
+    if (vimeoCache.success === false) {
+      return new Response(JSON.stringify({ error: "Not found" }), {
+        status: 404,
       });
     }
 

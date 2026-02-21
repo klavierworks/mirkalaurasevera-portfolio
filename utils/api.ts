@@ -69,7 +69,7 @@ export const getVideoFromCache = async (videoId: string) => {
       console.log(`Cache miss for video ID: ${videoId}`);
       return null;
     }
-    console.log(`Cache hit for video ID: ${videoId}`);
+    console.log(`Cache hit for video ID: ${videoId}, data:`, data);
     return data;
   } catch (error) {
     console.error(`Error retrieving cache for video ${videoId}:`, error);
