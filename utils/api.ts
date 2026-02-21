@@ -1,6 +1,7 @@
 import { readFile, writeFile } from 'fs/promises';
 import sharp from 'sharp';
 const baseUrl = `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master`;
+const functionUrl = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:8788';
 
 const generatePlaceholder = async (passedUrl: string) => {
   let url = passedUrl;
@@ -58,7 +59,7 @@ const createImageObject = async (image: any, includes: any[]) => {
 
 export const getVideoFromCache = async (videoId: string) => {
   try {
-    const response = await fetch(`http://localhost:8788/kv/get?key=${videoId}`);
+    const response = await fetch(`${functionUrl}/kv/get?key=${videoId}`);
     if (!response.ok) {
       throw new Error(`Error fetching cache: ${response.status}`);
     }
@@ -78,7 +79,7 @@ export const getVideoFromCache = async (videoId: string) => {
 
 export const saveVideoToCache = async (key: string, value: any) => {
   try {
-    await fetch('http://localhost:8788/kv/set', {
+    await fetch(`${functionUrl}/kv/set`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
