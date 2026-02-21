@@ -1,5 +1,5 @@
 const CF_ACCOUNT_ID = process.env.CF_ACCOUNT_ID;
-const CF_NAMESPACE_ID = "VIDEO_CACHE";
+const CF_NAMESPACE_ID = "ce25db4deab241fea2090d8820784e69";
 const CF_API_TOKEN = process.env.CF_API_TOKEN;
 
 const BASE_URL = `https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/storage/kv/namespaces/${CF_NAMESPACE_ID}/values`;
