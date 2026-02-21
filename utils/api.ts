@@ -1,7 +1,7 @@
 import { readFile, writeFile } from 'fs/promises';
 import sharp from 'sharp';
 const baseUrl = `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master`;
-const functionUrl = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:8788';
+const functionUrl = process.env.NODE_ENV === 'production' ? 'https://mirkalaurasevera.com' : 'http://localhost:8788';
 
 const generatePlaceholder = async (passedUrl: string) => {
   let url = passedUrl;
