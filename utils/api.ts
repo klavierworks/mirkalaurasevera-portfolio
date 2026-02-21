@@ -56,7 +56,43 @@ const createImageObject = async (image: any, includes: any[]) => {
   } as ImageObject
 }
 
-const cache: Record<string, VimeoVideoDetails> = {}
+export const getVideoFromCache = async (videoId: string) => {
+  try {
+    const response = await fetch(`http://localhost:8788/kv/get?key=${videoId}`);
+    if (!response.ok) {
+      throw new Error(`Error fetching cache: ${response.status}`);
+    }
+    const data = await response.json();
+
+    if (!data || Object.keys(data).length === 0) {
+      console.log(`Cache miss for video ID: ${videoId}`);
+      return null;
+    }
+    console.log(`Cache hit for video ID: ${videoId}`);
+    return data;
+  } catch (error) {
+    console.error(`Error retrieving cache for video ${videoId}:`, error);
+    return null;
+  }
+}
+
+export const saveVideoToCache = async (key: string, value: any) => {
+  try {
+    await fetch('http://localhost:8788/kv/set', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        key,
+        value,
+      })
+    });
+  } catch (error) {
+    console.error(`Error saving cache for video ${key}:`, error);
+  }
+}
+
 const getVimeoMetadata = async (rawVideoId?: string): Promise<VimeoVideoDetails | null> => {
   if (!rawVideoId) {
     return null;
@@ -69,8 +105,9 @@ const getVimeoMetadata = async (rawVideoId?: string): Promise<VimeoVideoDetails 
     return null;
   }
 
-  if (cache[videoId]) {
-    return cache[videoId];
+  const cachedVideo = await getVideoFromCache(videoId);
+  if (cachedVideo) {
+    return cachedVideo;
   }
 
   const url = `https://api.vimeo.com/videos/${videoId}`;
@@ -89,7 +126,8 @@ const getVimeoMetadata = async (rawVideoId?: string): Promise<VimeoVideoDetails 
 
     const data: VimeoVideoDetails = await response.json();
 
-    cache[videoId] = data;
+    await saveVideoToCache(videoId, data);
+
     return data;
   } catch (error) {
     console.error(`Error fetching Vimeo video info for ${videoId}:`, error);
@@ -105,7 +143,7 @@ const createVideoObject = async (videoId: string | undefined, hasAudio = false) 
   try {
 
     const videoInfo = await getVimeoMetadata(videoId);
-    
+
     if (!videoInfo) {
       return undefined;
     }
