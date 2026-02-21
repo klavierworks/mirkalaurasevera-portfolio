@@ -9,7 +9,6 @@ const headers = {
 };
 
 export async function kvGet(key: string): Promise<string | null> {
-  console.log(CF_ACCOUNT_ID, CF_NAMESPACE_ID, CF_API_TOKEN);
   const res = await fetch(`${BASE_URL}/${encodeURIComponent(key)}`, {
     headers,
   });
