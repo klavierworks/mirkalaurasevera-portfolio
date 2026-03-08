@@ -58,9 +58,7 @@ const createImageObject = async (image: any, includes: any[]) => {
 }
 
 const inMemoryCache: Record<string, unknown> = {};
-export const getVideoFromCache = async (rawVideoId: string) => {
-  const videoId = rawVideoId.split('?')[0];
-
+export const getVideoFromCache = async (videoId: string) => {
   if (inMemoryCache[videoId]) {
     console.log(`Cache hit (in-memory) for video ID: ${videoId}`);
     return inMemoryCache[videoId] as VimeoVideoDetails;
@@ -109,7 +107,11 @@ const getVimeoMetadata = async (rawVideoId?: string): Promise<VimeoVideoDetails 
     return null;
   }
 
-  const videoId = rawVideoId.includes('vimeo') ? rawVideoId.split('/').pop() : rawVideoId;
+  let videoId = rawVideoId.includes('vimeo') ? rawVideoId.split('/').pop() : rawVideoId;
+
+  if (rawVideoId.includes('?')) {
+    videoId = rawVideoId.split('?')[0];
+  }
 
   if (!videoId) {
     console.log('Error: Invalid Vimeo video ID:', rawVideoId);
