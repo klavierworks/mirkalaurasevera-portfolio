@@ -109,13 +109,13 @@ const getVimeoMetadata = async (rawVideoId?: string): Promise<VimeoVideoDetails 
 
   let videoId = rawVideoId.includes('vimeo') ? rawVideoId.split('/').pop() : rawVideoId;
 
-  if (rawVideoId.includes('?')) {
-    videoId = rawVideoId.split('?')[0];
-  }
-
   if (!videoId) {
     console.log('Error: Invalid Vimeo video ID:', rawVideoId);
     return null;
+  }
+
+  if (videoId.includes('?')) {
+    videoId = videoId.split('?')[0];
   }
 
   const cachedVideo = await getVideoFromCache(videoId);
