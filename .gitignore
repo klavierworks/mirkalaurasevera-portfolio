@@ -40,3 +40,5 @@ dist
 carousel.json
 projects.json
 .wrangler
+
+cache

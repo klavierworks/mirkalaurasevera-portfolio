@@ -4,7 +4,6 @@ import Hls from "hls.js";
 import CustomImage from "../CustomImage/CustomImage";
 import mute from './mute.svg';
 import unmute from './unmute.svg';
-import { is } from "cypress/types/bluebird";
 import { $activeAudio } from "@/store";
 
 type CustomVideoProps = {
@@ -54,8 +53,7 @@ const CustomVideo = forwardRef(({ className, fallback, hasAudio, isActive, sizes
     }
     if (Hls.isSupported()) {
       var hls = new Hls();
-      const proxiedSrc = `/api/proxy-vimeo?url=${encodeURIComponent(src)}`;
-      hls.loadSource(proxiedSrc);
+      hls.loadSource(src);
       hls.attachMedia(videoEl);
       hls.on(Hls.Events.MANIFEST_PARSED, function () {
         hls.startLevel = hls.levels.length - 2;

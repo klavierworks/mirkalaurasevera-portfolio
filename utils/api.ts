@@ -1,7 +1,6 @@
 import { readFile, writeFile } from 'fs/promises';
 import sharp from 'sharp';
 const baseUrl = `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master`;
-const functionUrl = process.env.NODE_ENV === 'production' ? 'https://mirkalaurasevera.com/api' : 'http://localhost:3000/api';
 
 const generatePlaceholder = async (passedUrl: string) => {
   let url = passedUrl;
@@ -57,121 +56,60 @@ const createImageObject = async (image: any, includes: any[]) => {
   } as ImageObject
 }
 
-const inMemoryCache: Record<string, unknown> = {};
-export const getVideoFromCache = async (videoId: string) => {
-  if (inMemoryCache[videoId]) {
-    console.log(`Cache hit (in-memory) for video ID: ${videoId}`);
-    return inMemoryCache[videoId] as VimeoVideoDetails;
-  }
+const BUNNY_CDN_BASE = 'https://vz-6b3f851c-0fe.b-cdn.net';
+const BUNNY_PLAYER_BASE = 'https://player.mediadelivery.net/play';
 
-  try {
-    const response = await fetch(`${functionUrl}/kv/get?key=${videoId}`);
-    if (!response.ok) {
-      throw new Error(`Error fetching cache: ${response.status} ${response.statusText} for video ID: ${videoId}`);
-    }
-    const data = await response.json();
-
-    if (!data || Object.keys(data).length === 0 || data.success === false) {
-      console.log(`Cache miss for video ID: ${videoId}`);
-      return null;
-    }
-
-    console.log(`Cache hit for video ID: ${videoId}`);
-    inMemoryCache[videoId] = data
-    return data;
-  } catch (error) {
-    console.error(`Error retrieving cache for video ${videoId}:`, error);
+const parseBunnyVideoId = (raw?: string): string | null => {
+  if (!raw) {
     return null;
   }
+  let id = raw.includes('iframe.mediadelivery.net') ? raw.split('/').pop() ?? '' : raw;
+  if (id.includes('?')) {
+    id = id.split('?')[0];
+  }
+  return id || null;
 }
 
-export const saveVideoToCache = async (key: string, value: any) => {
+const inMemoryDimensionsCache: Record<string, { width: number; height: number }> = {};
+const getThumbnailDimensions = async (videoId: string) => {
+  if (inMemoryDimensionsCache[videoId]) {
+    return inMemoryDimensionsCache[videoId];
+  }
+
+  const cachePath = `./cache/${videoId}.video.cache`;
   try {
-    await fetch(`${functionUrl}/kv/set`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        key,
-        value,
-      })
-    });
-  } catch (error) {
-    console.error(`Error saving cache for video ${key}:`, error);
-  }
+    const cached = await readFile(cachePath, 'utf-8');
+    const parsed = JSON.parse(cached) as { width: number; height: number };
+    inMemoryDimensionsCache[videoId] = parsed;
+    return parsed;
+  } catch (e) {}
+
+  const response = await fetch(`${BUNNY_CDN_BASE}/${videoId}/thumbnail.jpg`);
+  const buffer = Buffer.from(await response.arrayBuffer());
+  const metadata = await sharp(buffer).metadata();
+  const dims = { width: metadata.width ?? 0, height: metadata.height ?? 0 };
+
+  await writeFile(cachePath, JSON.stringify(dims), 'utf-8');
+  inMemoryDimensionsCache[videoId] = dims;
+  return dims;
 }
 
-const getVimeoMetadata = async (rawVideoId?: string): Promise<VimeoVideoDetails | null> => {
-  if (!rawVideoId) {
-    return null;
-  }
-
-  let videoId = rawVideoId.includes('vimeo') ? rawVideoId.split('/').pop() : rawVideoId;
-
-  if (!videoId) {
-    console.log('Error: Invalid Vimeo video ID:', rawVideoId);
-    return null;
-  }
-
-  if (videoId.includes('?')) {
-    videoId = videoId.split('?')[0];
-  }
-
-  const cachedVideo = await getVideoFromCache(videoId);
-  if (cachedVideo) {
-    return cachedVideo;
-  }
-
-  const url = `https://api.vimeo.com/videos/${videoId}`;
-
-  try {
-    const response = await fetch(url, {
-      method: 'GET',
-      headers: {
-        'Authorization': `bearer ${process.env.VIMEO_CLIENT_TOKEN}`,
-        'Content-Type': 'application/json'
-      }
-    });
-    if (!response.ok) {
-      throw new Error(`Error: ${response.status}`);
-    }
-
-    const data: VimeoVideoDetails = await response.json();
-
-    await saveVideoToCache(videoId, data);
-
-    return data;
-  } catch (error) {
-    console.error(`Error fetching Vimeo video info for ${videoId}:`, error);
-    throw error;
-  }
-}
-
-const createVideoObject = async (videoId: string | undefined, hasAudio = false) => {
+const createVideoObject = async (rawVideoId: string | undefined, hasAudio = false): Promise<VideoObject | undefined> => {
+  const videoId = parseBunnyVideoId(rawVideoId);
   if (!videoId) {
     return undefined;
   }
 
-  try {
+  const libraryId = process.env.BUNNY_STREAM_LIBRARY_ID;
+  const { width, height } = await getThumbnailDimensions(videoId);
 
-    const videoInfo = await getVimeoMetadata(videoId);
-
-    if (!videoInfo) {
-      return undefined;
-    }
-    
-    return {
-      hasAudio,
-      url: videoInfo.play?.hls?.link,
-      width: videoInfo.width,
-      height: videoInfo.height,
-      fallback: videoInfo.pictures?.sizes?.reverse?.()?.[0],
-      mp4Url: videoInfo.play?.progressive?.[0]?.link,
-    } as VideoObject;
-  } catch (error) {
-    throw error;
-  }
+  return {
+    hasAudio,
+    url: `${BUNNY_CDN_BASE}/${videoId}/playlist.m3u8`,
+    mp4Url: `${BUNNY_PLAYER_BASE}/${libraryId}/${videoId}`,
+    width,
+    height,
+  };
 }
 
 const createMediaObject = async (media: any, images: any[], entries: any[]) => {
