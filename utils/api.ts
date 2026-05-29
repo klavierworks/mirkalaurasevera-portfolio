@@ -55,7 +55,6 @@ const createImageObject = async (image: any, includes: any[]) => {
     placeholder: await generatePlaceholder(asset.fields.file.url),
   } as ImageObject
 }
-
 const BUNNY_CDN_BASE = 'https://vz-6b3f851c-0fe.b-cdn.net';
 const BUNNY_PLAYER_BASE = 'https://player.mediadelivery.net/play';
 
@@ -63,12 +62,31 @@ const parseBunnyVideoId = (raw?: string): string | null => {
   if (!raw) {
     return null;
   }
-  let id = raw.includes('iframe.mediadelivery.net') ? raw.split('/').pop() ?? '' : raw;
-  if (id.includes('?')) {
-    id = id.split('?')[0];
+
+  // iframe.mediadelivery.net/embed/.../<videoId>
+  if (raw.includes('iframe.mediadelivery.net')) {
+    let id = raw.split('/').pop() ?? '';
+
+    if (id.includes('?')) {
+      id = id.split('?')[0];
+    }
+
+    return id || null;
   }
-  return id || null;
-}
+
+  // https://vz-xxxx.b-cdn.net/<videoId>/playlist.m3u8
+  if (raw.includes('.b-cdn.net')) {
+    const parts = raw.split('/');
+    const playlistIndex = parts.findIndex(part => part === 'playlist.m3u8');
+
+    if (playlistIndex > 0) {
+      return parts[playlistIndex - 1] || null;
+    }
+  }
+
+  // raw id fallback
+  return raw || null;
+};
 
 const inMemoryDimensionsCache: Record<string, { width: number; height: number }> = {};
 const getThumbnailDimensions = async (videoId: string) => {
