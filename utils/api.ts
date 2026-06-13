@@ -55,10 +55,21 @@ const createImageObject = async (image: any, includes: any[]) => {
     placeholder: await generatePlaceholder(asset.fields.file.url),
   } as ImageObject
 }
-const BUNNY_CDN_BASE = 'https://vz-6b3f851c-0fe.b-cdn.net';
+
+// Bunny libraries, test in order. Can't get this info from API for a videoID
+const BUNNY_CDN_HOSTS = [
+  'https://vz-9406f99f-61c.b-cdn.net',
+  'https://vz-6b3f851c-0fe.b-cdn.net',
+];
+
 const BUNNY_PLAYER_BASE = 'https://player.mediadelivery.net/play';
 
-const parseBunnyVideoId = (raw?: string): string | null => {
+interface ParsedBunnyVideo {
+  videoId: string;
+  cdnBase: string | null;
+}
+
+const parseBunnyVideoId = (raw?: string): ParsedBunnyVideo | null => {
   if (!raw) {
     return null;
   }
@@ -71,7 +82,7 @@ const parseBunnyVideoId = (raw?: string): string | null => {
       id = id.split('?')[0];
     }
 
-    return id || null;
+    return id ? { videoId: id, cdnBase: null } : null;
   }
 
   // https://vz-xxxx.b-cdn.net/<videoId>/playlist.m3u8
@@ -80,16 +91,33 @@ const parseBunnyVideoId = (raw?: string): string | null => {
     const playlistIndex = parts.findIndex(part => part === 'playlist.m3u8');
 
     if (playlistIndex > 0) {
-      return parts[playlistIndex - 1] || null;
+      const id = parts[playlistIndex - 1];
+      if (!id) {
+        return null;
+      }
+
+      let cdnBase: string | null = null;
+      try {
+        cdnBase = new URL(raw).origin;
+      } catch (e) {}
+
+      return { videoId: id, cdnBase };
     }
   }
 
   // raw id fallback
-  return raw || null;
+  return raw ? { videoId: raw, cdnBase: null } : null;
 };
 
-const inMemoryDimensionsCache: Record<string, { width: number; height: number }> = {};
-const getThumbnailDimensions = async (videoId: string) => {
+interface ResolvedThumbnail {
+  width: number;
+  height: number;
+  // The host that actually served the thumbnail — reused for the playlist URL.
+  cdnBase: string;
+}
+
+const inMemoryDimensionsCache: Record<string, ResolvedThumbnail> = {};
+const getThumbnailDimensions = async (videoId: string, candidateBases: string[]): Promise<ResolvedThumbnail> => {
   if (inMemoryDimensionsCache[videoId]) {
     return inMemoryDimensionsCache[videoId];
   }
@@ -97,33 +125,59 @@ const getThumbnailDimensions = async (videoId: string) => {
   const cachePath = `./cache/${videoId}.video.cache`;
   try {
     const cached = await readFile(cachePath, 'utf-8');
-    const parsed = JSON.parse(cached) as { width: number; height: number };
-    inMemoryDimensionsCache[videoId] = parsed;
-    return parsed;
+    const parsed = JSON.parse(cached) as Partial<ResolvedThumbnail>;
+    // Only trust the cache if it records which host served the thumbnail;
+    // older entries without a host get re-probed below.
+    if (parsed.cdnBase) {
+      const resolved = parsed as ResolvedThumbnail;
+      inMemoryDimensionsCache[videoId] = resolved;
+      return resolved;
+    }
   } catch (e) {}
 
-  const response = await fetch(`${BUNNY_CDN_BASE}/${videoId}/thumbnail.jpg`);
-  const buffer = Buffer.from(await response.arrayBuffer());
-  const metadata = await sharp(buffer).metadata();
-  const dims = { width: metadata.width ?? 0, height: metadata.height ?? 0 };
+  for (const cdnBase of candidateBases) {
+    try {
+      const response = await fetch(`${cdnBase}/${videoId}/thumbnail.jpg`);
+      if (!response.ok) {
+        continue;
+      }
 
-  await writeFile(cachePath, JSON.stringify(dims), 'utf-8');
-  inMemoryDimensionsCache[videoId] = dims;
-  return dims;
+      const buffer = Buffer.from(await response.arrayBuffer());
+      const metadata = await sharp(buffer).metadata();
+      const dims: ResolvedThumbnail = {
+        width: metadata.width ?? 0,
+        height: metadata.height ?? 0,
+        cdnBase,
+      };
+
+      await writeFile(cachePath, JSON.stringify(dims), 'utf-8');
+      inMemoryDimensionsCache[videoId] = dims;
+      return dims;
+    } catch (e) {
+      // Not on this host (404 page, non-image body, etc.) — try the next one.
+    }
+  }
+
+  throw new Error(`Unable to load Bunny thumbnail for video ${videoId} from: ${candidateBases.join(', ')}`);
 }
 
 const createVideoObject = async (rawVideoId: string | undefined, hasAudio = false): Promise<VideoObject | undefined> => {
-  const videoId = parseBunnyVideoId(rawVideoId);
-  if (!videoId) {
+  const parsed = parseBunnyVideoId(rawVideoId);
+  if (!parsed) {
     return undefined;
   }
 
+  const { videoId, cdnBase } = parsed;
+  // If the stored URL carried its own host, trust it; otherwise probe the
+  // known hosts in order and use whichever serves this video.
+  const candidateBases = cdnBase ? [cdnBase] : BUNNY_CDN_HOSTS;
+
   const libraryId = process.env.BUNNY_STREAM_LIBRARY_ID;
-  const { width, height } = await getThumbnailDimensions(videoId);
+  const { width, height, cdnBase: resolvedBase } = await getThumbnailDimensions(videoId, candidateBases);
 
   return {
     hasAudio,
-    url: `${BUNNY_CDN_BASE}/${videoId}/playlist.m3u8`,
+    url: `${resolvedBase}/${videoId}/playlist.m3u8`,
     mp4Url: `${BUNNY_PLAYER_BASE}/${libraryId}/${videoId}`,
     width,
     height,
